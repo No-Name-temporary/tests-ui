@@ -1,61 +1,20 @@
-import axios from 'axios';
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import TestsResults from "./components/TestsResults";
+import CreateTest from "./components/CreateTest";
 
 const App = () => {
-	
-	const handleRunNow = () => {
-		console.log('button clicked');
-		// const response = axios.post("/")
-	
-	}
-	
-	const handleScheduleTest = () => {
-		console.log("scheduling events clicked");
-		// try {
-		// 	const response = axios.post("/schedule")
-		// 	console.log(response);
-		// } catch (e) {
-		// 	console.log(e)
-		// }
-	}
 
-	const handleCreateTest = () => {
-		const data = {
-			"test": {
-				"title": "My new test",
-				"locations": ["us-east-1"],
-				"minutesBetweenRuns": 60,
-				"type": "API",
-				"http_request": {
-					"http_method": "GET",
-					"url": "https://mysite.com/api/users",
-					"headers": {},
-					"body": {},
-					"assertions": {
-						"status_code": 200,
-						"contains_properties": []
-					},
-				},
-			}
-		}
-
-		try {
-			const response = axios.post(`/api/tests`, data)
-			console.log(response);
-		} catch(e) {
-			console.log(e);
-		}
-	}
-
-	return (
-		<div>
-			<h1>Tests</h1>
-			<p>Method: POST </p>
-			<p>URL:</p> 
-			<button onClick={handleRunNow}>Run now</button>
-			<button onClick={handleScheduleTest}>Schedule 1 min</button>
-			<button onClick={handleCreateTest}>Create Test</button>
-		</div>
-	)
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route index element={<Home />}></Route>
+        <Route path="/tests/results" element={<TestsResults />}></Route>
+        <Route path="/create/test" element={<CreateTest />}></Route>
+      </Routes>
+    </div>
+  );
 }
 
 
