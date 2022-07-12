@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const URL = "http://testscrud-env.eba-fpb5kcf8.us-east-1.elasticbeanstalk.com";
+const testURL = "http://localhost:5001"; //for local testing
 
 function logError(errorResponse) {
   const response = errorResponse.response;
@@ -18,8 +19,16 @@ axios.defaults.headers.common["Accept"] = "application/json";
 const apiClient = {
 	createTest: async (test) => {
 		try {
-			const { data } = await axios.post(`${URL}/api/tests`, { test })
+			const { data } = await axios.post(`${URL}/api/tests`, test);
 			return data;
+		} catch (e) {
+			logError(e);
+		}
+	},
+	getTests: async () => {
+		try {
+			const { data } = await axios.get(`${URL}/api/tests`);
+			return data; 
 		} catch (e) {
 			logError(e);
 		}

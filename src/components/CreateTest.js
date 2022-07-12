@@ -1,8 +1,9 @@
 import React from 'react';
-import Dropdown from "./form/Dropdown";
-import RadioButtons from './form/RadioButtons'
+import Dropdown from "./form-components/Dropdown";
+import RadioButtons from './form-components/RadioButtons'
 import apiClient from '../services/ApiClient';
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const CreateTest = () => {
 
@@ -32,32 +33,55 @@ const CreateTest = () => {
 	const [sourceValue, setSourceValue] = useState('JSON body');
 	const [comparisonValue, setComparisonValue] = useState('Equals');
 
-	/*
-	example payload for POST
-			const data = {
+	const [title, setTitle] = useState("");
+	const [frequency, setFrequency] = useState("1");
+	const [method, setMethod] = useState("");
+	const [url, setUrl] = useState("");
+	const [body, setBody] = useState("");
+	const [property, setProperty] = useState("");
+	const [target, setTarget] = useState("");
+
+	
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+/*
+how will the assertions be stored in JSON? 
+*/
+
+		const testData = {
 			"test": {
-				"title": "My new test",
-				"locations": ["us-east-1"],
-				"minutesBetweenRuns": 60,
+				"title": title,
+				"locations": [locationValue],
+				"minutesBetweenRuns": Number(frequency),
 				"type": "API",
 				"http_request": {
-					"http_method": "GET",
-					"url": "https://mysite.com/api/users",
+					"http_method": method,
+					"url": url,
 					"headers": {},
-					"body": {},
+					"body": JSON.stringify(body),
 					"assertions": {
 						"status_code": 200,
-						"contains_properties": []
-					},
-				},
+						"contains_properties": [property]
+					}
+				}
 			}
-		}
+		};
 
+		const data = await apiClient.createTest(testData);
 
-	*/
+		console.log(data);
+		setLocationValue("us-east-1");
+		setSourceValue("JSON body");
+		setComparisonValue("Equals");
+		setTitle("");
+		setFrequency("1");
+		setMethod("");
+		setUrl("");
+		setBody("");
+		setProperty("");
+		setTarget("");
 
-	const handleSubmit = () => {
-		//collect data from the form and send a post request 
 	}
 
   const handleLocationChange = (event) => {
@@ -72,9 +96,40 @@ const CreateTest = () => {
 		setComparisonValue(event.target.value);
 	}
 
+	const handleFrequency = (event) => {
+    setFrequency(event.target.value)
+  }
+
+	const handleTitle = (event) => {
+		setTitle(event.target.value);
+	}
+
+	const handleMethod = (event) => {
+		setMethod(event.target.value);
+	}
+
+	const handleUrl = (event) => {
+		setUrl(event.target.value);
+	}
+
+	const handleBody = (event) => {
+		setBody(event.target.value);
+	}
+
+	const handleProperty = (event) => {
+		setProperty(event.target.value); 
+	}
+
+	const handleTarget = (event) => {
+		setTarget(event.target.value);
+	}
+
 
 	return (
 		<div>
+				<Link to="/">
+				<button>Home</button>
+			</Link>
 			<h1>Create an API test</h1>
 			<form onSubmit={handleSubmit}>
           <dl>
@@ -82,8 +137,9 @@ const CreateTest = () => {
             <dd>
               <input
                 type="text"
-                placeholder='Enetr name...'
-                value={""}
+                placeholder="Eneter name..."
+                value={title}
+								onChange={handleTitle}
               />
             </dd>
 						<h2>Make an HTTP request</h2>
@@ -91,8 +147,9 @@ const CreateTest = () => {
             <dd>
               <input
                 type="text"
-                placeholder='GET'
-                value={""}
+                placeholder="GET"
+                value={method}
+								onChange={handleMethod}
               />
             </dd>
 						<dt>URL</dt>
@@ -100,7 +157,8 @@ const CreateTest = () => {
               <input
                 type="text"
                 placeholder='https://example-website.com'
-                value={""}
+                value={url}
+								onChange={handleUrl}
               />
             </dd>
 						<Dropdown
@@ -111,10 +169,11 @@ const CreateTest = () => {
 						/>
 						<dt>Body</dt>
             <dd>
-              <input
-                type="text"
-                placeholder='Enter JSON body'
-                value={""}
+              <textarea
+                type="textarea"
+                placeholder='Enter JSON body...'
+                value={body}
+								onChange={handleBody}
               />
             </dd>
 						<h2>Add assertions</h2>
@@ -128,8 +187,9 @@ const CreateTest = () => {
 						<dd>
 							<input
                 type="text"
-                placeholder=''
-                value={""}
+                placeholder=""
+                value={property}
+								onChange={handleProperty}
               />
 						</dd>
 							<Dropdown
@@ -143,10 +203,11 @@ const CreateTest = () => {
 							<input
                 type="text"
                 placeholder=''
-                value={""}
+                value={target}
+								onChange={handleTarget}
               />
 						</dd>
-							<RadioButtons/>
+							<RadioButtons frequency={frequency} handleFrequency={handleFrequency}/>
           </dl>
           <button className="button" type="submit">
             Create

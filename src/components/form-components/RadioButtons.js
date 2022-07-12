@@ -1,11 +1,7 @@
 import React from 'react'
 
-const RadioButtons = () => {
-  const [frequency, setFrequency] = React.useState('1');
+const RadioButtons = ({ frequency, handleFrequency }) => {
 
- const handleChange = (event) => {
-    setFrequency(event.target.value)
-  }
 
   return (
 		<div>
@@ -15,7 +11,7 @@ const RadioButtons = () => {
           type="radio"
           value="1"
           checked={frequency === '1'}
-          onChange={handleChange}
+          onChange={handleFrequency}
         /> 1 minute
       </div>
       <div>
@@ -23,7 +19,7 @@ const RadioButtons = () => {
           type="radio"
           value="10"
           checked={frequency === '10'}
-          onChange={handleChange}
+          onChange={handleFrequency}
         /> 10 minutes
       </div>
       <div>
@@ -31,7 +27,7 @@ const RadioButtons = () => {
           type="radio"
           value="15"
           checked={frequency === '15'}
-          onChange={handleChange}
+          onChange={handleFrequency}
         /> 15 minutes
       </div>
 		</div>
