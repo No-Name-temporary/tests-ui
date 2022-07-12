@@ -41,13 +41,9 @@ const CreateTest = () => {
 	const [property, setProperty] = useState("");
 	const [target, setTarget] = useState("");
 
-	
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-/*
-how will the assertions be stored in JSON? 
-*/
 
 		const testData = {
 			"test": {
@@ -59,18 +55,21 @@ how will the assertions be stored in JSON?
 					"http_method": method,
 					"url": url,
 					"headers": {},
-					"body": JSON.stringify(body),
+					"body": JSON.parse(body === "" ? "{}" : body),
 					"assertions": {
-						"status_code": 200,
-						"contains_properties": [property]
+						[source]: {
+							comparison: comparisonValue,
+							property: property,
+							target: target
+						}
 					}
 				}
 			}
 		};
-
+	
 		const data = await apiClient.createTest(testData);
-
 		console.log(data);
+
 		setLocationValue("us-east-1");
 		setSourceValue("JSON body");
 		setComparisonValue("Equals");
@@ -81,18 +80,17 @@ how will the assertions be stored in JSON?
 		setBody("");
 		setProperty("");
 		setTarget("");
-
 	}
 
-  const handleLocationChange = (event) => {
+  const handleLocation = (event) => {
     setLocationValue(event.target.value);
   };
 
-	const handleSourceChange = (event) => {
+	const handleSource = (event) => {
     setSourceValue(event.target.value);
   };
 
-	const handleComparisonChange = (event) => {
+	const handleComparison = (event) => {
 		setComparisonValue(event.target.value);
 	}
 
@@ -165,7 +163,7 @@ how will the assertions be stored in JSON?
 							label="Location"
 							options={locations}
 							value={locationValue}
-							onChange={handleLocationChange}
+							onChange={handleLocation}
 						/>
 						<dt>Body</dt>
             <dd>
@@ -181,7 +179,7 @@ how will the assertions be stored in JSON?
 							label="Source"
 							options={source}
 							value={sourceValue}
-							onChange={handleSourceChange}
+							onChange={handleSource}
 						/>
 						<dt>Property</dt>
 						<dd>
@@ -196,13 +194,13 @@ how will the assertions be stored in JSON?
 								label="Comparison"
 								options={comparison}
 								value={comparisonValue}
-								onChange={handleComparisonChange}
+								onChange={handleComparison}
 							/>
 						<dt>Target</dt>
 						<dd>
 							<input
                 type="text"
-                placeholder=''
+                placeholder=""
                 value={target}
 								onChange={handleTarget}
               />

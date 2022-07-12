@@ -19,7 +19,7 @@ axios.defaults.headers.common["Accept"] = "application/json";
 const apiClient = {
 	createTest: async (test) => {
 		try {
-			const { data } = await axios.post(`${URL}/api/tests`, test);
+			const { data } = await axios.post(`${testURL}/api/tests`, test);
 			return data;
 		} catch (e) {
 			logError(e);
@@ -27,7 +27,7 @@ const apiClient = {
 	},
 	getTests: async () => {
 		try {
-			const { data } = await axios.get(`${URL}/api/tests`);
+			const { data } = await axios.get(`${testURL}/api/tests`);
 			return data; 
 		} catch (e) {
 			logError(e);
