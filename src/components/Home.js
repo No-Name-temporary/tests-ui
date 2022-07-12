@@ -7,30 +7,30 @@ To do:
 - display url and whther it passed or pailed
 
 */
-	return (
-		<div>
-			<Link to="/CreateTest">
-				<button>Create New</button>
-			</Link>
-			<Link to="/TestsResults">
-				<button>Tests Results</button>
-			</Link>
-			<table>
-				<thead>
-					<tr>  
-						<th>Name</th> 
-						<th>Last Result</th> 
-					</tr> 
-				</thead>
-				<tbody>    
-						<tr>    
-								<td>URL of latest tests</td>   
-								<td>PASS</td>
-						</tr>
-				</tbody>
-			</table>
-		</div>
-	)
+  return (
+    <div>
+      <Link to="/CreateTest">
+        <button>Create New</button>
+      </Link>
+      <Link to="/TestsResults">
+        <button>Tests Results</button>
+      </Link>
+      <table>
+        <thead>
+          <tr>  
+            <th>Name</th> 
+            <th>Last Result</th> 
+          </tr> 
+        </thead>
+        <tbody>    
+            <tr>    
+                <td>URL of latest tests</td>   
+                <td>PASS</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  )
 }
 
 

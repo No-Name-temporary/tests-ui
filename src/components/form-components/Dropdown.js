@@ -1,20 +1,20 @@
 import React from 'react'
 
 const Dropdown = ({ label, value, options, onChange }) => {
-	return (
-		<div>
-			<label>
-			<dt>{label}</dt>
-			<dd>
-				<select value={value} onChange={onChange}>
-					{options.map((option, idx) => (
-						<option key={idx} value={option.value}>{option.label}</option>
-					))}
-				</select>
-			</dd>
+  return (
+    <div>
+      <label>
+      <dt>{label}</dt>
+      <dd>
+        <select value={value} onChange={onChange}>
+          {options.map((option, idx) => (
+            <option key={idx} value={option.value}>{option.label}</option>
+          ))}
+        </select>
+      </dd>
     </label>
-		</div>
-	)
+    </div>
+  )
 }
 
 export default Dropdown

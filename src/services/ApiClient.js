@@ -17,22 +17,22 @@ axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.headers.common["Accept"] = "application/json";
 
 const apiClient = {
-	createTest: async (test) => {
-		try {
-			const { data } = await axios.post(`${testURL}/api/tests`, test);
-			return data;
-		} catch (e) {
-			logError(e);
-		}
-	},
-	getTests: async () => {
-		try {
-			const { data } = await axios.get(`${testURL}/api/tests`);
-			return data; 
-		} catch (e) {
-			logError(e);
-		}
-	}
+  createTest: async (test) => {
+    try {
+      const { data } = await axios.post(`${testURL}/api/tests`, test);
+      return data;
+    } catch (e) {
+      logError(e);
+    }
+  },
+  getTests: async () => {
+    try {
+      const { data } = await axios.get(`${testURL}/api/tests`);
+      return data; 
+    } catch (e) {
+      logError(e);
+    }
+  }
 };
 
 export default apiClient;

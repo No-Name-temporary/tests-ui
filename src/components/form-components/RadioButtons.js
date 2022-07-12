@@ -4,7 +4,7 @@ const RadioButtons = ({ frequency, handleFrequency }) => {
 
 
   return (
-		<div>
+    <div>
       <h2>How frequently should the test run?</h2>
       <div>
         <input
@@ -30,7 +30,7 @@ const RadioButtons = ({ frequency, handleFrequency }) => {
           onChange={handleFrequency}
         /> 15 minutes
       </div>
-		</div>
+    </div>
   )
 }
 
