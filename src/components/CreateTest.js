@@ -51,7 +51,7 @@ const CreateTest = () => {
         "locations": [locationValue],
         "minutesBetweenRuns": Number(frequency),
         "type": "API",
-        "http_request": {
+        "httpRequest": {
           "http_method": method,
           "url": url,
           "headers": {},
