@@ -10,23 +10,23 @@ const CreateTest = () => {
   //locations, source, comparison are hardcoded for now, ideally 
   // we should get them from DB 
   const locations = [
-    { label: 'us-east-2', value: 'us-east-2' },
-    { label: 'us-east-1', value: 'us-east-1' },
-    { label: 'us-west-1', value: 'us-west-1' },
+    {value: 'us-east-2' },
+    {value: 'us-east-1' },
+    {value: 'us-west-1' },
   ];
 
   const source = [
-    { label: 'Status code', value: 'Status code' },
-    { label: 'JSON body', value: 'JSON body' },
-    { label: 'Headers', value: 'Headers' },
-    { label: 'Text body', value: 'Text body' },
-    { label: 'Response Time', value: 'Response Time'},
+    {value: 'Status code' },
+    {value: 'JSON body' },
+    {value: 'Headers' },
+    {value: 'Text body' },
+    {value: 'Response Time'},
   ];
 
   const comparison = [
-    { label: 'Equals', value: 'Equals' },
-    { label: 'Not equals', value: 'Not equals' },
-    { label: 'Has key', value: 'Has key'},
+    {value: 'Equals' },
+    {value: 'Not equals' },
+    {value: 'Has key'},
   ];
 
   const [locationValue, setLocationValue] = useState('us-east-1');
@@ -52,7 +52,7 @@ const CreateTest = () => {
         "minutesBetweenRuns": Number(frequency),
         "type": "API",
         "httpRequest": {
-          "http_method": method,
+          "method": method,
           "url": url,
           "headers": {},
           "body": JSON.parse(body === "" ? "{}" : body),
@@ -82,43 +82,43 @@ const CreateTest = () => {
     setTarget("");
   }
 
-  const handleLocation = (event) => {
+  const handleUpdateLocation = (event) => {
     setLocationValue(event.target.value);
   };
 
-  const handleSource = (event) => {
+  const handleUpdateSource = (event) => {
     setSourceValue(event.target.value);
   };
 
-  const handleComparison = (event) => {
+  const handleUpdateComparison = (event) => {
     setComparisonValue(event.target.value);
   }
 
-  const handleFrequency = (event) => {
+  const handleUpdateFrequency = (event) => {
     setFrequency(event.target.value)
   }
 
-  const handleTitle = (event) => {
+  const handleUpdateTitle = (event) => {
     setTitle(event.target.value);
   }
 
-  const handleMethod = (event) => {
+  const handleUpdateMethod = (event) => {
     setMethod(event.target.value);
   }
 
-  const handleUrl = (event) => {
+  const handleUpdateUrl = (event) => {
     setUrl(event.target.value);
   }
 
-  const handleBody = (event) => {
+  const handleUpdateBody = (event) => {
     setBody(event.target.value);
   }
 
-  const handleProperty = (event) => {
+  const handleUpdateProperty = (event) => {
     setProperty(event.target.value); 
   }
 
-  const handleTarget = (event) => {
+  const handleUpdateTarget = (event) => {
     setTarget(event.target.value);
   }
 
@@ -137,7 +137,7 @@ const CreateTest = () => {
                 type="text"
                 placeholder="Eneter name..."
                 value={title}
-                onChange={handleTitle}
+                onChange={handleUpdateTitle}
               />
             </dd>
             <h2>Make an HTTP request</h2>
@@ -147,7 +147,7 @@ const CreateTest = () => {
                 type="text"
                 placeholder="GET"
                 value={method}
-                onChange={handleMethod}
+                onChange={handleUpdateMethod}
               />
             </dd>
             <dt>URL</dt>
@@ -156,14 +156,14 @@ const CreateTest = () => {
                 type="text"
                 placeholder='https://example-website.com'
                 value={url}
-                onChange={handleUrl}
+                onChange={handleUpdateUrl}
               />
             </dd>
             <Dropdown
               label="Location"
               options={locations}
               value={locationValue}
-              onChange={handleLocation}
+              onChange={handleUpdateLocation}
             />
             <dt>Body</dt>
             <dd>
@@ -171,7 +171,7 @@ const CreateTest = () => {
                 type="textarea"
                 placeholder='Enter JSON body...'
                 value={body}
-                onChange={handleBody}
+                onChange={handleUpdateBody}
               />
             </dd>
             <h2>Add assertions</h2>
@@ -179,7 +179,7 @@ const CreateTest = () => {
               label="Source"
               options={source}
               value={sourceValue}
-              onChange={handleSource}
+              onChange={handleUpdateSource}
             />
             <dt>Property</dt>
             <dd>
@@ -187,14 +187,14 @@ const CreateTest = () => {
                 type="text"
                 placeholder=""
                 value={property}
-                onChange={handleProperty}
+                onChange={handleUpdateProperty}
               />
             </dd>
               <Dropdown
                 label="Comparison"
                 options={comparison}
                 value={comparisonValue}
-                onChange={handleComparison}
+                onChange={handleUpdateComparison}
               />
             <dt>Target</dt>
             <dd>
@@ -202,10 +202,10 @@ const CreateTest = () => {
                 type="text"
                 placeholder=""
                 value={target}
-                onChange={handleTarget}
+                onChange={handleUpdateTarget}
               />
             </dd>
-              <RadioButtons frequency={frequency} handleFrequency={handleFrequency}/>
+              <RadioButtons frequency={frequency} handleFrequency={handleUpdateFrequency}/>
           </dl>
           <button className="button" type="submit">
             Create

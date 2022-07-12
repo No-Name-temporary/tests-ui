@@ -9,10 +9,10 @@ To do:
 */
   return (
     <div>
-      <Link to="/CreateTest">
+      <Link to="/create/test">
         <button>Create New</button>
       </Link>
-      <Link to="/TestsResults">
+      <Link to="/tests/results">
         <button>Tests Results</button>
       </Link>
       <table>
