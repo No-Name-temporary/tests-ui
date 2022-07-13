@@ -57,7 +57,7 @@ const CreateTest = () => {
           "headers": {},
           "body": JSON.parse(body === "" ? "{}" : body),
           "assertions": {
-            [source]: {
+            [sourceValue]: {
               comparison: comparisonValue,
               property: property,
               target: target
@@ -66,7 +66,8 @@ const CreateTest = () => {
         }
       }
     };
-  
+
+		console.log(testData);
     const data = await apiClient.createTest(testData);
     console.log(data);
 
