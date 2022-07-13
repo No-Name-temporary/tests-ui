@@ -13,9 +13,6 @@ function logError(errorResponse) {
   }
 };
 
-// axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-// axios.defaults.headers.common["Accept"] = "application/json";
-
 const apiClient = {
   createTest: async (test) => {
     try {
@@ -32,7 +29,7 @@ const apiClient = {
     } catch (e) {
       logError(e);
     }
-  }
+  },
 };
 
 export default apiClient;
