@@ -11,7 +11,7 @@ const CreateTest = () => {
   // we should get them from DB 
   const locations = [
     {value: 'us-west-1' },
-    {value: 'us-north-1' },
+    {value: 'eu-north-1' },
     {value: 'us-east-1' },
   ];
 
