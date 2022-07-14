@@ -10,14 +10,14 @@ const CreateTest = () => {
   //locations, source, comparison are hardcoded for now, ideally 
   // we should get them from DB 
   const locations = [
-		{value: 'us-west-1' },
+    {value: 'us-west-1' },
     {value: 'us-north-1' },
     {value: 'us-east-1' },
   ];
 
   const source = [
     {value: 'jsonBody' },
-		{value: 'statusCode' },
+    {value: 'statusCode' },
     {value: 'headers' },
     {value: 'textBody' },
     {value: 'responseTime'},
@@ -67,7 +67,7 @@ const CreateTest = () => {
       }
     };
 
-		console.log(testData);
+    console.log(testData);
     const data = await apiClient.createTest(testData);
     console.log(data);
 
