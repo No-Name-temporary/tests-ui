@@ -16,11 +16,11 @@ const CreateTest = () => {
   ];
 
   const source = [
-    {value: 'Status code' },
-    {value: 'JSON body' },
+    {value: 'JSONbody' },
+		{value: 'statusCode' },
     {value: 'Headers' },
-    {value: 'Text body' },
-    {value: 'Response Time'},
+    {value: 'TextBody' },
+    {value: 'ResponseTime'},
   ];
 
   const comparison = [
@@ -30,7 +30,7 @@ const CreateTest = () => {
   ];
 
   const [locationValue, setLocationValue] = useState('us-east-1');
-  const [sourceValue, setSourceValue] = useState('JSON body');
+  const [sourceValue, setSourceValue] = useState('jsonBody');
   const [comparisonValue, setComparisonValue] = useState('Equals');
 
   const [title, setTitle] = useState("");
@@ -72,7 +72,7 @@ const CreateTest = () => {
     console.log(data);
 
     setLocationValue("us-east-1");
-    setSourceValue("JSON body");
+    setSourceValue("jsonBody");
     setComparisonValue("Equals");
     setTitle("");
     setFrequency("1");
