@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import apiClient from "../services/ApiClient";
+import TestRow from "./TestRow";
 
 const Home = ({ scheduledTests }) => {
+  const [tests, setTests] = useState([]);
+
+  const getAllTestsHook = () => {
+    const run = async () => {
+      const tests = await apiClient.getTests()
+      setTests(tests);
+    }
+    run();
+  }
+
+  useEffect(getAllTestsHook, [])
 
   return (
     <div>
@@ -15,12 +29,7 @@ const Home = ({ scheduledTests }) => {
           </tr> 
         </thead>
         <tbody>
-          {scheduledTests.map((test, idx) => (
-            <tr key={test.id}>
-              <td>{test.name}</td>
-              <td>{test.url}</td>
-            </tr>
-          ))}
+            { tests.map(test => <TestRow key={test.id} data={test}/>)}   
         </tbody>
       </table>
     </div>

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const URL = "http://testscrud-env.eba-fpb5kcf8.us-east-1.elasticbeanstalk.com";
-const testURL = "http://localhost:5001"; //for local testing
 
 function logError(errorResponse) {
   const response = errorResponse.response;
@@ -16,7 +15,7 @@ function logError(errorResponse) {
 const apiClient = {
   createTest: async (test) => {
     try {
-      const { data } = await axios.post(`${testURL}/api/tests`, test);
+      const { data } = await axios.post(`${URL}/api/tests`, test);
       return data;
     } catch (e) {
       logError(e);
@@ -24,7 +23,15 @@ const apiClient = {
   },
   getTests: async () => {
     try {
-      const { data } = await axios.get(`${testURL}/api/tests`);
+      const { data } = await axios.get(`${URL}/api/tests`);
+      return data; 
+    } catch (e) {
+      logError(e);
+    }
+  },
+  getTest: async (id) => {
+    try {
+      const { data } = await axios.get(`${URL}/api/tests/${id}`);
       return data; 
     } catch (e) {
       logError(e);
