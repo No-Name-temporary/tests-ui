@@ -1,32 +1,26 @@
 import { Link } from "react-router-dom";
 
-const Home = () => {
-/*
-To do: 
-- after receiving all the test from the server choose the latest
-- display url and whther it passed or pailed
+const Home = ({ scheduledTests }) => {
 
-*/
   return (
     <div>
       <Link to="/create/test">
         <button>Create New</button>
       </Link>
-      <Link to="/tests/results">
-        <button>Tests Results</button>
-      </Link>
       <table>
         <thead>
           <tr>  
-            <th>Name</th> 
-            <th>Last Result</th> 
+            <th>Name</th>
+            <th>URL</th> 
           </tr> 
         </thead>
-        <tbody>    
-            <tr>    
-                <td>URL of latest tests</td>   
-                <td>PASS</td>
+        <tbody>
+          {scheduledTests.map((test, idx) => (
+            <tr key={test.id}>
+              <td>{test.name}</td>
+              <td>{test.url}</td>
             </tr>
+          ))}
         </tbody>
       </table>
     </div>
