@@ -10,9 +10,9 @@ const CreateTest = () => {
   //locations, source, comparison are hardcoded for now, ideally 
   // we should get them from DB 
   const locations = [
-    {value: 'us-east-2' },
+		{value: 'us-west-1' },
+    {value: 'us-north-1' },
     {value: 'us-east-1' },
-    {value: 'us-west-1' },
   ];
 
   const source = [
@@ -29,7 +29,7 @@ const CreateTest = () => {
     {value: 'has_key'},
   ];
 
-  const [locationValue, setLocationValue] = useState('us-east-1');
+  const [locationValue, setLocationValue] = useState('us-west-1');
   const [sourceValue, setSourceValue] = useState('jsonBody');
   const [comparisonValue, setComparisonValue] = useState('equal_to');
 
@@ -71,7 +71,7 @@ const CreateTest = () => {
     const data = await apiClient.createTest(testData);
     console.log(data);
 
-    setLocationValue("us-east-1");
+    setLocationValue("us-west-1");
     setSourceValue("jsonBody");
     setComparisonValue("equal_to");
     setTitle("");
