@@ -1,20 +1,22 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-const Dropdown = ({ label, value, options, onChange }) => {
-	return (
+function Dropdown({
+  label, value, options, onChange,
+}) {
+  return (
     <div>
-      <label>
       <dt>{label}</dt>
       <dd>
         <select value={value} onChange={onChange}>
           {options.map((option, idx) => (
+            // eslint-disable-next-line react/no-array-index-key
             <option key={idx} value={option.value}>{option.value}</option>
           ))}
         </select>
       </dd>
-    </label>
     </div>
-  )
+  );
 }
 
-export default Dropdown
+export default Dropdown;

@@ -1,8 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const RadioButtons = ({ frequency, handleFrequency }) => {
-
-
+function RadioButtons({ frequency, handleFrequency }) {
   return (
     <div>
       <h2>How frequently should the test run?</h2>
@@ -12,7 +10,8 @@ const RadioButtons = ({ frequency, handleFrequency }) => {
           value="1"
           checked={frequency === '1'}
           onChange={handleFrequency}
-        /> 1 minute
+        />
+        1 minute
       </div>
       <div>
         <input
@@ -20,7 +19,8 @@ const RadioButtons = ({ frequency, handleFrequency }) => {
           value="10"
           checked={frequency === '10'}
           onChange={handleFrequency}
-        /> 10 minutes
+        />
+        10 minutes
       </div>
       <div>
         <input
@@ -28,10 +28,11 @@ const RadioButtons = ({ frequency, handleFrequency }) => {
           value="15"
           checked={frequency === '15'}
           onChange={handleFrequency}
-        /> 15 minutes
+        />
+        15 minutes
       </div>
     </div>
-  )
+  );
 }
 
-export default RadioButtons
+export default RadioButtons;
