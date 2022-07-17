@@ -9,9 +9,9 @@ function Dropdown({
       <dt>{label}</dt>
       <dd>
         <select value={value} onChange={onChange}>
-          {options.map((option, idx) => (
+          {options.map((option) => (
             // eslint-disable-next-line react/no-array-index-key
-            <option key={idx} value={option.value}>{option.value}</option>
+            <option key={`${option.displayedName}${option.id}`} value={option.value}>{option.displayedName}</option>
           ))}
         </select>
       </dd>

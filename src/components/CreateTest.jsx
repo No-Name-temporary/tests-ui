@@ -1,33 +1,36 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from './form-components/Dropdown';
 import RadioButtons from './form-components/RadioButtons';
 import apiClient from '../services/ApiClient';
+import formatter from '../utils/dataFormatting';
 
 function CreateTest() {
-  const locations = [
-    { value: 'us-west-1' },
-    { value: 'eu-north-1' },
-    { value: 'us-east-1' },
-  ];
+  const [locations, setLocations] = useState([]);
+  const [sourceValue, setSourceValue] = useState('jsonBody');
+  const [comparisonTypes, setComparisonTypes] = useState([]);
+  // const [methods, setMethods] = useState('GET');
+
+  const getSideloadHook = () => {
+    const run = async () => {
+      const sideload = await apiClient.getSideload();
+
+      setLocations(formatter.formatRegion(sideload.regions));
+      // setMethods(formatter.formMethod(sideload.method));
+      setComparisonTypes(formatter.formatComparisonTypes(sideload.comparisonTypes));
+    };
+    run();
+  };
+
+  useEffect(getSideloadHook, []);
 
   const source = [
-    { value: 'jsonBody' },
-    { value: 'statusCode' },
-    { value: 'headers' },
-    { value: 'textBody' },
-    { value: 'responseTime' },
+    { id: '01', value: 'jsonBody', displayedName: 'Json' },
+    { id: '02', value: 'statusCode', displayedName: 'Status Code' },
+    { id: '03', value: 'headers', displayedName: 'Headers' },
+    { id: '04', value: 'textBody', displayedName: 'Text Body' },
+    { id: '05', value: 'responseTime', displayedName: 'Response Time' },
   ];
-
-  const comparison = [
-    { value: 'equal_to' },
-    { value: 'not_equal_to' },
-    { value: 'has_key' },
-  ];
-
-  const [locationValue, setLocationValue] = useState('us-west-1');
-  const [sourceValue, setSourceValue] = useState('jsonBody');
-  const [comparisonValue, setComparisonValue] = useState('equal_to');
 
   const [title, setTitle] = useState('');
   const [frequency, setFrequency] = useState('1');
@@ -36,6 +39,8 @@ function CreateTest() {
   const [body, setBody] = useState('1');
   const [property, setProperty] = useState('1');
   const [target, setTarget] = useState('1');
+  const [locationValue, setLocationValue] = useState('us-west-1');
+  const [comparisonValue, setComparisonValue] = useState('equal_to');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -62,7 +67,6 @@ function CreateTest() {
       },
     };
 
-    console.log(testData);
     const data = await apiClient.createTest(testData);
     console.log(data);
 
@@ -187,7 +191,7 @@ function CreateTest() {
           </dd>
           <Dropdown
             label="Comparison"
-            options={comparison}
+            options={comparisonTypes}
             value={comparisonValue}
             onChange={handleUpdateComparison}
           />
