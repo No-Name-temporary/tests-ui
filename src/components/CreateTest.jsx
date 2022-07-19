@@ -35,6 +35,19 @@ function CreateTest() {
   const [locationValue, setLocationValue] = useState('us-west-1');
   const [comparisonValue, setComparisonValue] = useState('equal_to');
 
+  const resetValues = () => {
+    setMethod('GET');
+    setLocationValue('us-west-1');
+    setSourceValue('jsonBody');
+    setComparisonValue('equal_to');
+    setTitle('');
+    setFrequency('1');
+    setUrl('');
+    setBody('');
+    setProperty('');
+    setTarget('');
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -60,19 +73,42 @@ function CreateTest() {
       },
     };
 
+    console.log("run now button doesn't have an endpoint yet");
     const data = await apiClient.createTest(testData);
     console.log(data);
 
-    setMethod('GET');
-    setLocationValue('us-west-1');
-    setSourceValue('jsonBody');
-    setComparisonValue('equal_to');
-    setTitle('');
-    setFrequency('1');
-    setUrl('');
-    setBody('');
-    setProperty('');
-    setTarget('');
+    resetValues();
+  };
+
+  const handleRunTestNow = async (event) => {
+    event.preventDefault();
+
+    const testData = {
+      test: {
+        title,
+        locations: [locationValue],
+        minutesBetweenRuns: 0,
+        type: 'API',
+        httpRequest: {
+          method,
+          url,
+          headers: {},
+          body: JSON.parse(body === '' ? '{}' : body),
+          assertions: {
+            [sourceValue]: {
+              comparison: comparisonValue,
+              property,
+              target,
+            },
+          },
+        },
+      },
+    };
+
+    const data = await apiClient.runTestNow(testData);
+    console.log(data);
+
+    resetValues();
   };
 
   const handleUpdateLocation = (event) => {
@@ -120,6 +156,11 @@ function CreateTest() {
       <Link to="/">
         <button type="button">Home</button>
       </Link>
+      <div>
+        <button className="button" type="button" onClick={handleRunTestNow}>
+          Run Now
+        </button>
+      </div>
       <h1>Create an API test</h1>
       <form onSubmit={handleSubmit}>
         <dl>

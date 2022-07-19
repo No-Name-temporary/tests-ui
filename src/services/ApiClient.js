@@ -1,9 +1,9 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
 
-// const URL = 'http://testscrud-env.eba-fpb5kcf8.us-east-1.elasticbeanstalk.com';
+const URL = 'http://testscrud-env.eba-fpb5kcf8.us-east-1.elasticbeanstalk.com';
 
-const testURL = 'http://localhost:5001';
+// const testURL = 'http://localhost:5001';
 
 function logError(errorResponse) {
   const { response } = errorResponse;
@@ -18,7 +18,7 @@ function logError(errorResponse) {
 const apiClient = {
   createTest: async (test) => {
     try {
-      const { data } = await axios.post(`${testURL}/api/tests`, test);
+      const { data } = await axios.post(`${URL}/api/tests`, test);
       return data;
     } catch (e) {
       logError(e);
@@ -26,7 +26,7 @@ const apiClient = {
   },
   getTests: async () => {
     try {
-      const { data } = await axios.get(`${testURL}/api/tests`);
+      const { data } = await axios.get(`${URL}/api/tests`);
       return data;
     } catch (e) {
       logError(e);
@@ -34,7 +34,7 @@ const apiClient = {
   },
   getTest: async (id) => {
     try {
-      const { data } = await axios.get(`${testURL}/api/tests/${id}`);
+      const { data } = await axios.get(`${URL}/api/tests/${id}`);
       return data;
     } catch (e) {
       logError(e);
@@ -42,7 +42,15 @@ const apiClient = {
   },
   getSideload: async () => {
     try {
-      const { data } = await axios.get(`${testURL}/api/sideload`);
+      const { data } = await axios.get(`${URL}/api/sideload`);
+      return data;
+    } catch (e) {
+      logError(e);
+    }
+  },
+  runTestNow: async () => {
+    try {
+      const { data } = await axios.get(`${URL}/api/test/run`);
       return data;
     } catch (e) {
       logError(e);
