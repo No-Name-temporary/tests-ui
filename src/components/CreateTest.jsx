@@ -3,42 +3,35 @@ import { Link } from 'react-router-dom';
 import Dropdown from './form-components/Dropdown';
 import RadioButtons from './form-components/RadioButtons';
 import apiClient from '../services/ApiClient';
-import formatter from '../utils/dataFormatting';
 
 function CreateTest() {
   const [locations, setLocations] = useState([]);
   const [sourceValue, setSourceValue] = useState('jsonBody');
   const [comparisonTypes, setComparisonTypes] = useState([]);
-  // const [methods, setMethods] = useState('GET');
+  const [assertionTypes, setAssertionTypes] = useState([]);
+  const [methods, setMethods] = useState([]);
 
   const getSideloadHook = () => {
     const run = async () => {
       const sideload = await apiClient.getSideload();
 
-      setLocations(formatter.formatRegion(sideload.regions));
-      // setMethods(formatter.formMethod(sideload.method));
-      setComparisonTypes(formatter.formatComparisonTypes(sideload.comparisonTypes));
+      setLocations(sideload.regions);
+      setComparisonTypes(sideload.comparisonTypes);
+      setAssertionTypes(sideload.assertionTypes);
+      setMethods(sideload.httpMethods);
     };
     run();
   };
 
   useEffect(getSideloadHook, []);
 
-  const source = [
-    { id: '01', value: 'jsonBody', displayedName: 'Json' },
-    { id: '02', value: 'statusCode', displayedName: 'Status Code' },
-    { id: '03', value: 'headers', displayedName: 'Headers' },
-    { id: '04', value: 'textBody', displayedName: 'Text Body' },
-    { id: '05', value: 'responseTime', displayedName: 'Response Time' },
-  ];
-
   const [title, setTitle] = useState('');
   const [frequency, setFrequency] = useState('1');
-  const [method, setMethod] = useState('1');
-  const [url, setUrl] = useState('1');
-  const [body, setBody] = useState('1');
-  const [property, setProperty] = useState('1');
-  const [target, setTarget] = useState('1');
+  const [method, setMethod] = useState('GET');
+  const [url, setUrl] = useState('https://example-website.com');
+  const [body, setBody] = useState('');
+  const [property, setProperty] = useState('');
+  const [target, setTarget] = useState('');
   const [locationValue, setLocationValue] = useState('us-west-1');
   const [comparisonValue, setComparisonValue] = useState('equal_to');
 
@@ -70,12 +63,12 @@ function CreateTest() {
     const data = await apiClient.createTest(testData);
     console.log(data);
 
+    setMethod('GET');
     setLocationValue('us-west-1');
     setSourceValue('jsonBody');
     setComparisonValue('equal_to');
     setTitle('');
     setFrequency('1');
-    setMethod('');
     setUrl('');
     setBody('');
     setProperty('');
@@ -140,15 +133,12 @@ function CreateTest() {
             />
           </dd>
           <h2>Make an HTTP request</h2>
-          <dt>Method</dt>
-          <dd>
-            <input
-              type="text"
-              placeholder="GET"
-              value={method}
-              onChange={handleUpdateMethod}
-            />
-          </dd>
+          <Dropdown
+            label="Method"
+            options={methods}
+            value={method}
+            onChange={handleUpdateMethod}
+          />
           <dt>URL</dt>
           <dd>
             <input
@@ -176,7 +166,7 @@ function CreateTest() {
           <h2>Add assertions</h2>
           <Dropdown
             label="Source"
-            options={source}
+            options={assertionTypes}
             value={sourceValue}
             onChange={handleUpdateSource}
           />
