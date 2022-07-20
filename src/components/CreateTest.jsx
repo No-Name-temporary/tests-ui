@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Dropdown from './form-components/Dropdown';
 import RadioButtons from './form-components/RadioButtons';
 import apiClient from '../services/ApiClient';
+import namesToCamelCase from '../utils/helpers';
 
 function CreateTest() {
   const [locations, setLocations] = useState([]);
@@ -17,7 +18,7 @@ function CreateTest() {
 
       setLocations(sideload.regions);
       setComparisonTypes(sideload.comparisonTypes);
-      setAssertionTypes(sideload.assertionTypes);
+      setAssertionTypes(namesToCamelCase(sideload.assertionTypes));
       setMethods(sideload.httpMethods);
     };
     run();
@@ -38,7 +39,7 @@ function CreateTest() {
   const resetValues = () => {
     setMethod('GET');
     setLocationValue('us-west-1');
-    setSourceValue('jsonBody');
+    setSourceValue('statusCode');
     setComparisonValue('equal_to');
     setTitle('');
     setFrequency('1');
@@ -73,7 +74,7 @@ function CreateTest() {
       },
     };
 
-    console.log("run now button doesn't have an endpoint yet");
+    console.log(testData);
     const data = await apiClient.createTest(testData);
     console.log(data);
 
@@ -107,7 +108,7 @@ function CreateTest() {
 
     const data = await apiClient.runTestNow(testData);
     console.log(data);
-
+    console.log("run now button doesn't have an endpoint yet");
     resetValues();
   };
 
