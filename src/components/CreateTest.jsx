@@ -163,7 +163,7 @@ function CreateTest() {
         </button>
       </div>
       <h1>Create an API test</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <dl>
           <dt>Test Name</dt>
           <dd>
@@ -238,7 +238,7 @@ function CreateTest() {
           </dd>
           <RadioButtons frequency={frequency} handleFrequency={handleUpdateFrequency} />
         </dl>
-        <button className="button" type="submit" onClick={handleSubmit}>
+        <button className="button" type="submit">
           Create
         </button>
       </form>
