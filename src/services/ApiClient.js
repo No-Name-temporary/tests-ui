@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
+import getTestRunsResponse from '../fixtures/getTestRuns';
 
 const URL = 'http://testscrud-env.eba-fpb5kcf8.us-east-1.elasticbeanstalk.com';
 
@@ -56,6 +57,8 @@ const apiClient = {
       logError(e);
     }
   },
+  // TODO: replace with call to /api/tests/:id/runs endpoint once implemented in tests-crud
+  getTestRuns: async () => getTestRunsResponse,
 };
 
 export default apiClient;
