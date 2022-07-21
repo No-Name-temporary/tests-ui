@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import apiClient from "../../services/ApiClient";
-import { formatDateLong } from "../../utils/helpers";
-import Button from "../shared/Button"; 
-import Table from "./Table";
+import { React, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import apiClient from '../../services/ApiClient';
+import { formatDateLong } from '../../utils/helpers';
+import Button from '../shared/Button';
+import Table from './Table';
 
-const TestRuns = () => {
+function TestRuns() {
   const testId = useParams().id;
-  
+
   const [testRuns, setTestRuns] = useState([]);
   const [testRegions, setTestRegions] = useState([]);
   const [testName, setTestName] = useState('');
@@ -30,21 +30,19 @@ const TestRuns = () => {
       } catch (err) {
         console.log(err);
       }
-    }
+    };
     run();
-  }
+  };
 
-  useEffect(getTestRunsHook, [])
-  
+  useEffect(getTestRunsHook, []);
+
   return (
     <div className="max-w-7xl mx-auto px-8">
       <div className="flex justify-between items-center">
         <div className="flex items-center">
-          <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>  
+          <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>
           <div className="flex">
-            { testRegions.map(region => {
-              return <div className="w-6 ml-2" key={region.id}><img src={region.flagUrl} /></div>
-            }) }
+            { testRegions.map((region) => <div className="w-6 ml-2" key={region.id}><img src={region.flagUrl} alt={region.name} /></div>) }
           </div>
         </div>
         <div className="justify-items-end">
@@ -52,11 +50,23 @@ const TestRuns = () => {
           <Button message="Run now" />
         </div>
       </div>
-      <div className="text-gray-400">{testHttpMethod} {testUrl}</div>
-      <div className="text-gray-400"><span className="font-bold">Created on:</span> {formatDateLong(testCreatedAt)} <span className="font-bold">Edited on:</span> {formatDateLong(testUpdatedAt)}</div>
-      <Table testRuns={testRuns}/>
+      <div className="text-gray-400">
+        {testHttpMethod}
+        {' '}
+        {testUrl}
+      </div>
+      <div className="text-gray-400">
+        <span className="font-bold">Created on:</span>
+        {' '}
+        {formatDateLong(testCreatedAt)}
+        {' '}
+        <span className="font-bold">Edited on:</span>
+        {' '}
+        {formatDateLong(testUpdatedAt)}
+      </div>
+      <Table testRuns={testRuns} />
     </div>
-  )
+  );
 }
 
 export default TestRuns;
