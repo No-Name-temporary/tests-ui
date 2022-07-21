@@ -1,4 +1,5 @@
 import { React } from 'react';
+import { useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
 import Toggle from './Toggle';
@@ -24,6 +25,9 @@ const configuredQueryParams = [
 ];
 
 function CreateNewTest() {
+  const sideloads = useSelector((state) => state.sideloads);
+  console.log('sideloads: ', sideloads);
+
   return (
     <div className="max-w-7xl mx-auto px-8">
       <div className="flex justify-between">

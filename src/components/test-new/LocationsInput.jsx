@@ -1,7 +1,9 @@
 import { React } from 'react';
 
-const LocationsInput = () => {
-
-};
+function LocationsInput() {
+  return (
+    <div>Locations!</div>
+  );
+}
 
 export default LocationsInput;
