@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Dropdown from './form-components/Dropdown';
 import RadioButtons from './form-components/RadioButtons';
 import apiClient from '../services/ApiClient';
-import { namesToCamelCase } from '../utils/helpers';
+import { namesToCamelCase, toDash } from '../utils/helpers';
 
 function CreateTest() {
   const [locations, setLocations] = useState([]);
@@ -55,7 +55,7 @@ function CreateTest() {
     const testData = {
       test: {
         title,
-        locations: [locationValue],
+        locations: [toDash(locationValue)],
         minutesBetweenRuns: Number(frequency),
         type: 'API',
         httpRequest: {

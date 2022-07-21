@@ -14,7 +14,12 @@ export const namesToCamelCase = (data) => {
   });
 };
 
+export const toDash = (str) => {
+  const RE = /_/g;
+  return str.replace(RE, '-');
+};
+
 export const formatDateLong = (dueDateStr) => {
-  const options = { month: "short", day: "numeric", year: "numeric" };
-  return new Date(Date.parse(dueDateStr, "YYYY-MM-DD")).toLocaleDateString("en-us", options);
-}
+  const options = { month: 'short', day: 'numeric', year: 'numeric' };
+  return new Date(Date.parse(dueDateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
+};
