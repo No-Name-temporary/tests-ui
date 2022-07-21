@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Dropdown from './form-components/Dropdown';
 import RadioButtons from './form-components/RadioButtons';
 import apiClient from '../services/ApiClient';
-import namesToCamelCase from '../utils/helpers';
+import { namesToCamelCase } from '../utils/helpers';
 
 function CreateTest() {
   const [locations, setLocations] = useState([]);

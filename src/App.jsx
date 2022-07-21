@@ -1,19 +1,26 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import './App.css';
 import Home from './components/Home';
 import CreateTest from './components/CreateTest';
 import TestResults from './components/TestResults';
+import TestRuns from './components/test-runs/TestRuns';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route index element={<Home />} />
-        <Route path="/tests/:id" element={<TestResults />} />
-        <Route path="/create/test" element={<CreateTest />} />
-      </Routes>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
+          <Route path="/tests/:id/runs" element={<TestRuns />} />
+          <Route path="/tests/:id" element={<TestResults />} />
+          <Route path="/create/test" element={<CreateTest />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 

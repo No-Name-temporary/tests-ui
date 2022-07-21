@@ -1,5 +1,5 @@
 /* eslint-disable arrow-body-style */
-const snakeToCamel = (str) => {
+export const snakeToCamel = (str) => {
   return str.toLowerCase().replace(/([-_][a-z])/g, (group) => {
     return group
       .toUpperCase()
@@ -8,10 +8,13 @@ const snakeToCamel = (str) => {
   });
 };
 
-const namesToCamelCase = (data) => {
+export const namesToCamelCase = (data) => {
   return data.map((item) => {
     return { ...item, name: snakeToCamel(item.name) };
   });
 };
 
-export default namesToCamelCase;
+export const formatDateLong = (dueDateStr) => {
+  const options = { month: "short", day: "numeric", year: "numeric" };
+  return new Date(Date.parse(dueDateStr, "YYYY-MM-DD")).toLocaleDateString("en-us", options);
+}
