@@ -15,6 +15,11 @@ export const namesToCamelCase = (data) => {
 };
 
 export const formatDateLong = (dueDateStr) => {
-  const options = { month: "short", day: "numeric", year: "numeric" };
-  return new Date(Date.parse(dueDateStr, "YYYY-MM-DD")).toLocaleDateString("en-us", options);
-}
+  const options = { month: 'short', day: 'numeric', year: 'numeric' };
+  return new Date(Date.parse(dueDateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
+};
+
+export const allKeysToCamelCase = (data) => {
+  console.log(data);
+  return data;
+};

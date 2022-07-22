@@ -1,11 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiClient from '../../services/ApiClient';
+import { allKeysToCamelCase } from '../../utils/helpers';
 
 const initialState = [];
 
 export const fetchSideloads = createAsyncThunk('sideloads/fetchSideloads', async () => {
-  console.log('INSIDE!!');
   const data = await apiClient.getSideload();
+  // data = allKeysToCamelCase(data);
   return data;
 });
 
@@ -15,7 +16,7 @@ const sideloadsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchSideloads.fulfilled, (state, action) => {
-      console.log('action.payload: ', action.payload);
+      console.log(action.payload);
       return action.payload;
     });
   },

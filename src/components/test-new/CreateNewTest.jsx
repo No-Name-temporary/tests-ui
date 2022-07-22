@@ -1,5 +1,5 @@
 import { React, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
 import Toggle from './Toggle';
@@ -8,13 +8,6 @@ import KeyValueInput from './KeyValueInput';
 import AssertionsInput from './AssertionsInput';
 import LocationsInput from './LocationsInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
-
-const httpMethods = [
-  { name: 'GET' },
-  { name: 'POST' },
-  { name: 'PUT' },
-  { name: 'DELETE' },
-];
 
 const configuredHeaders = [
   { name: 'Content-Type', value: 'application/json' },
@@ -27,6 +20,8 @@ const configuredQueryParams = [
 
 function CreateNewTest() {
   const dispatch = useDispatch();
+
+  const httpMethods = useSelector((state) => state.sideloads.httpMethods);
 
   useEffect(() => {
     dispatch(fetchSideloads());
