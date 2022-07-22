@@ -16,7 +16,7 @@ function Select({
             className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
             placeholder={placeholder}
           >
-            { options.map((option) => <option>{option.name}</option>)}
+            { options.map((option) => <option>{option.displayName}</option>)}
           </select>
         </div>
       </div>

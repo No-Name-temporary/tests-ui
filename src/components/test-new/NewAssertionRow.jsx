@@ -1,27 +1,11 @@
-import { React, useEffect, useState } from 'react';
+import { React } from 'react';
+import { useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
-import apiClient from '../../services/ApiClient';
 
 function NewAssertionRow() {
-  const [assertionTypes, setAssertionTypes] = useState([]);
-  const [comparisonTypes, setComparisonTypes] = useState([]);
-
-  const getSideloadsHook = () => {
-    const run = async () => {
-      try {
-        const sideloads = await apiClient.getSideload();
-        console.log(sideloads);
-        setAssertionTypes(sideloads.assertionTypes);
-        setComparisonTypes(sideloads.comparisonTypes);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    run();
-  };
-
-  useEffect(getSideloadsHook, []);
+  const assertionTypes = useSelector((state) => state.sideloads.assertionTypes);
+  const comparisonTypes = useSelector((state) => state.sideloads.comparisonTypes);
 
   return (
     <tr>

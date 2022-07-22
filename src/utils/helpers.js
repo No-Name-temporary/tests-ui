@@ -20,6 +20,15 @@ export const formatDateLong = (dueDateStr) => {
 };
 
 export const allKeysToCamelCase = (data) => {
-  console.log(data);
-  return data;
+  const keys = Object.keys(data);
+  for (let i = 0; i < keys.length; i += 1) {
+    if (typeof data[keys[i]] === 'object' && data[[keys[i]]] !== null) {
+      allKeysToCamelCase(data[keys[i]]);
+    } else {
+      const tmp = data[keys[i]];
+      const newKey = snakeToCamel(keys[i]);
+      delete data[keys[i]];
+      data[newKey] = tmp;
+    }
+  }
 };

@@ -6,7 +6,7 @@ const initialState = [];
 
 export const fetchSideloads = createAsyncThunk('sideloads/fetchSideloads', async () => {
   const data = await apiClient.getSideload();
-  // data = allKeysToCamelCase(data);
+  allKeysToCamelCase(data);
   return data;
 });
 
@@ -15,10 +15,7 @@ const sideloadsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchSideloads.fulfilled, (state, action) => {
-      console.log(action.payload);
-      return action.payload;
-    });
+    builder.addCase(fetchSideloads.fulfilled, (state, action) => action.payload);
   },
 });
 
