@@ -53,6 +53,10 @@ function CreateNewTest() {
     dispatch(addUrl(url));
   };
 
+  const handleSaveConfiguration = () => {
+    // get from redux store and send to DB?!
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-8 pb-20">
       <div className="flex justify-between">
@@ -84,7 +88,7 @@ function CreateNewTest() {
       <LocationsInput />
       <FrequencyInput />
       <div className="mt-5 flex">
-        <Button message="Save" save />
+        <Button onClick={handleSaveConfiguration} message="Save" save />
       </div>
     </div>
   );

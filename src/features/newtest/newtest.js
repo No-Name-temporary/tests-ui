@@ -62,14 +62,22 @@ export const newtestSlice = createSlice({
           console.log('Assertion type not found');
       }
     },
-    addLocation: (state, action) => {
-      state.locations.push(action.payload);
+    toggleLocation: (state, action) => {
+      const location = action.payload;
+      if (state.locations.includes(location)) {
+        state.locations.filter((l) => l !== location);
+      } else {
+        state.locations.push(location);
+      }
+    },
+    setMinutesBetweenRuns: (state, action) => {
+      state.minutesBetweenRuns = action.payload;
     },
   },
 });
 
 export const {
-  addTitle, addMethod, addLocation, addUrl, addAssertion,
+  addTitle, addMethod, toggleLocation, addUrl, addAssertion, setMinutesBetweenRuns,
 } = newtestSlice.actions;
 
 export default newtestSlice.reducer;

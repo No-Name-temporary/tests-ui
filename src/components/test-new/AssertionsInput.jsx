@@ -1,27 +1,9 @@
 import { React } from 'react';
 import { useSelector } from 'react-redux';
-import AssertionRow from './AssertionRow';
 import AssertionRows from './AssertionRows';
 import NewAssertionRow from './NewAssertionRow';
 
-// const configuredAssertions = [
-//   {
-//     id: 1, source: 'Status code', comparison: 'Equal to', target: '200',
-//   },
-//   {
-//     id: 2, source: 'Body', property: '$.title', comparison: 'Equal to', target: 'test board #1',
-//   },
-//   {
-//     id: 3, source: 'Headers', property: '$Content-Type', comparison: 'Equal to', target: 'application/json',
-//   },
-//   {
-//     id: 4, source: 'Response time', comparison: 'Less than', target: '400',
-//   },
-// ];
-
 function AssertionsInput() {
-  // const dispatch = useDispatch();
-
   const assertions = useSelector((state) => state.newtest.httpRequest.assertions);
 
   const keyValueToAssertion = (key, value) => ({

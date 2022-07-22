@@ -38,6 +38,9 @@ function NewAssertionRow() {
       comparisonType,
       target,
     };
+    setProperty('');
+    setTarget('');
+
     dispatch(addAssertion(newAssertion));
   };
 
@@ -59,7 +62,7 @@ function NewAssertionRow() {
         <TextSelect onChange={handleNewComparisonType} options={comparisonTypes} />
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        <TextInput onChange={handleTargetChange} type="text" />
+        <TextInput onChange={handleTargetChange} value={target} type="text" />
       </td>
       <td>
         <button type="button" onClick={handleNewAssertionSubmit}>Add</button>
