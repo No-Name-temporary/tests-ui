@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiClient from '../../services/ApiClient';
 
 const initialState = [];
-console.log('initialState');
 
 export const fetchSideloads = createAsyncThunk('sideloads/fetchSideloads', async () => {
   console.log('INSIDE!!');
@@ -10,7 +9,7 @@ export const fetchSideloads = createAsyncThunk('sideloads/fetchSideloads', async
   return data;
 });
 
-const sideloadSlice = createSlice({
+const sideloadsSlice = createSlice({
   name: 'sideloads',
   initialState,
   reducers: {},
@@ -22,4 +21,4 @@ const sideloadSlice = createSlice({
   },
 });
 
-export default sideloadSlice.reducer;
+export default sideloadsSlice.reducer;

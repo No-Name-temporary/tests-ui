@@ -1,5 +1,5 @@
-import { React } from 'react';
-import { useSelector } from 'react-redux';
+import { React, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
 import Toggle from './Toggle';
@@ -7,6 +7,7 @@ import TextBlockInput from '../shared/TextBlockInput';
 import KeyValueInput from './KeyValueInput';
 import AssertionsInput from './AssertionsInput';
 import LocationsInput from './LocationsInput';
+import { fetchSideloads } from '../../features/sideloads/sideloads';
 
 const httpMethods = [
   { name: 'GET' },
@@ -25,8 +26,11 @@ const configuredQueryParams = [
 ];
 
 function CreateNewTest() {
-  const sideloads = useSelector((state) => state.sideloads);
-  console.log('sideloads: ', sideloads);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSideloads());
+  }, [dispatch]);
 
   return (
     <div className="max-w-7xl mx-auto px-8">
