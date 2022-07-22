@@ -41,13 +41,19 @@ function NewAssertionRow() {
     dispatch(addAssertion(newAssertion));
   };
 
+  const propertyInput = () => {
+    if (['body', 'headers'].includes(type)) {
+      return <TextInput onChange={handlePropertyChange} type="text" />;
+    }
+  };
+
   return (
     <tr>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         <TextSelect onChange={handleNewType} options={assertionTypes} />
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        <TextInput onChange={handlePropertyChange} type="text" />
+        { propertyInput() }
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         <TextSelect onChange={handleNewComparisonType} options={comparisonTypes} />
