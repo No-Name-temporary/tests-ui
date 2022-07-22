@@ -59,10 +59,10 @@ function CreateNewTest() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Create a test</h1>
         </div>
-        <div className="flex">
+        {/* <div className="flex">
           <Toggle />
           <div className="pl-2">Activated</div>
-        </div>
+        </div> */}
       </div>
       <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
 
@@ -77,9 +77,9 @@ function CreateNewTest() {
         </div>
       </div>
 
-      <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
-      <KeyValueInput label="Headers" buttonLabel="Add header" data={configuredHeaders} />
-      <KeyValueInput label="Query params" buttonLabel="Add query param" data={configuredQueryParams} />
+      {/* <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" /> */}
+      {/* <KeyValueInput label="Headers" buttonLabel="Add header" data={configuredHeaders} />
+      <KeyValueInput label="Query params" buttonLabel="Add query param" data={configuredQueryParams} /> */}
       <AssertionsInput />
       <LocationsInput />
       <FrequencyInput />

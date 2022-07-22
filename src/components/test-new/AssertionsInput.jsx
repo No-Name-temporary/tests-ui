@@ -1,23 +1,56 @@
 import { React } from 'react';
+import { useSelector } from 'react-redux';
 import AssertionRow from './AssertionRow';
+import AssertionRows from './AssertionRows';
 import NewAssertionRow from './NewAssertionRow';
 
-const configuredAssertions = [
-  {
-    id: 1, source: 'Status code', comparison: 'Equal to', target: '200',
-  },
-  {
-    id: 2, source: 'Body', property: '$.title', comparison: 'Equal to', target: 'test board #1',
-  },
-  {
-    id: 3, source: 'Headers', property: '$Content-Type', comparison: 'Equal to', target: 'application/json',
-  },
-  {
-    id: 4, source: 'Response time', comparison: 'Less than', target: '400',
-  },
-];
+// const configuredAssertions = [
+//   {
+//     id: 1, source: 'Status code', comparison: 'Equal to', target: '200',
+//   },
+//   {
+//     id: 2, source: 'Body', property: '$.title', comparison: 'Equal to', target: 'test board #1',
+//   },
+//   {
+//     id: 3, source: 'Headers', property: '$Content-Type', comparison: 'Equal to', target: 'application/json',
+//   },
+//   {
+//     id: 4, source: 'Response time', comparison: 'Less than', target: '400',
+//   },
+// ];
 
 function AssertionsInput() {
+  // const dispatch = useDispatch();
+
+  const assertions = useSelector((state) => state.newtest.httpRequest.assertions);
+
+  const keyValueToAssertion = (key, value) => ({
+    key: `${key}${value.comparison}${value.target}`,
+    source: key,
+    property: value.property,
+    comparison: value.comparison,
+    target: value.target,
+  });
+
+  const assertionsToArray = (assertions) => {
+    const parsed = [];
+    const keys = Object.keys(assertions);
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
+      const value = assertions[key];
+      if (!Array.isArray(value)) {
+        parsed.push(keyValueToAssertion(key, value));
+      } else {
+        value.forEach((a) => {
+          parsed.push(keyValueToAssertion(key, a));
+        });
+      }
+    }
+    return parsed;
+  };
+
+  const assertionsArr = assertionsToArray(assertions);
+
   return (
     <div className="mt-8 flex flex-col">
       <h2>Assertions</h2>
@@ -39,17 +72,7 @@ function AssertionsInput() {
             <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900" />
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200">
-          {configuredAssertions.map((assertion) => (
-            <AssertionRow
-              key={assertion.id}
-              source={assertion.source}
-              property={assertion.property}
-              comparison={assertion.comparison}
-              target={assertion.target}
-            />
-          ))}
-        </tbody>
+        <AssertionRows assertions={assertionsArr} />
         <NewAssertionRow />
       </table>
     </div>
