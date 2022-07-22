@@ -14,7 +14,7 @@ function FrequencyInput() {
       <h2>Time between test runs?</h2>
       <div className="mt-4 flex">
         <div className="pr-3">
-          <TextInput label="Count" placeholder="#" type="text" name="frequency_count" id="frequency_count" />
+          <TextInput label="Value" placeholder="#" type="text" name="frequency_value" id="frequency_value" />
         </div>
         <div>
           <TextSelect label="Units" options={unitsOfTime} />

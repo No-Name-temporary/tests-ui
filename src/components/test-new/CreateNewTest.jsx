@@ -14,7 +14,7 @@ import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
 
 const configuredHeaders = [
   { name: 'Content-Type', value: 'application/json' },
-  { name: 'Content-Type', value: 'application/json' },
+  { name: 'Accept-Encoding', value: 'gzip, deflate' },
 ];
 
 const configuredQueryParams = [
@@ -61,7 +61,7 @@ function CreateNewTest() {
         </div>
         <div className="flex">
           <Toggle />
-          <div className="pl-2">Activated (doesn't work yet!)</div>
+          <div className="pl-2">Activated</div>
         </div>
       </div>
       <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
@@ -84,7 +84,7 @@ function CreateNewTest() {
       <LocationsInput />
       <FrequencyInput />
       <div className="mt-5 flex">
-        <Button message="Save" bgColor="bg-green-500" />
+        <Button message="Save" save />
       </div>
     </div>
   );

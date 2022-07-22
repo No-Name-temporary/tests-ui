@@ -50,8 +50,8 @@ function AssertionsInput() {
             />
           ))}
         </tbody>
+        <NewAssertionRow />
       </table>
-      <NewAssertionRow />
     </div>
   );
 }
