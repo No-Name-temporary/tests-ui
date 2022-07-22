@@ -2,7 +2,7 @@ import { React } from 'react';
 
 function Button({ message }) {
   return (
-    <button type="button" className="hover:bg-gray-300 ml-2 px-4 py-1 text-sm font-semibold rounded border text-gray-900">
+    <button type="button" className="hover:bg-gray-300 px-4 py-1 text-sm font-semibold rounded border text-gray-900">
       { message }
     </button>
   );

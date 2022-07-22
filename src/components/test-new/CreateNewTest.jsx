@@ -8,6 +8,8 @@ import KeyValueInput from './KeyValueInput';
 import AssertionsInput from './AssertionsInput';
 import LocationsInput from './LocationsInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
+import FrequencyInput from './FrequencyInput';
+import Button from '../shared/Button';
 
 const configuredHeaders = [
   { name: 'Content-Type', value: 'application/json' },
@@ -28,7 +30,7 @@ function CreateNewTest() {
   }, [dispatch]);
 
   return (
-    <div className="max-w-7xl mx-auto px-8">
+    <div className="max-w-7xl mx-auto px-8 pb-20">
       <div className="flex justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Create a test</h1>
@@ -54,6 +56,10 @@ function CreateNewTest() {
       <KeyValueInput label="Query params" buttonLabel="Add query param" data={configuredQueryParams} />
       <AssertionsInput />
       <LocationsInput />
+      <FrequencyInput />
+      <div className="mt-5 flex">
+        <Button message="Save" bgColor="bg-green-500" />
+      </div>
     </div>
   );
 }

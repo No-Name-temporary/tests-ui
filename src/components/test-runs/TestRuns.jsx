@@ -45,9 +45,13 @@ function TestRuns() {
             { testRegions.map((region) => <div className="w-6 ml-2" key={region.id}><img src={region.flagUrl} alt={region.name} /></div>) }
           </div>
         </div>
-        <div className="justify-items-end">
-          <Button message="Edit" />
-          <Button message="Run now" />
+        <div className="justify-items-end flex">
+          <div>
+            <Button message="Edit" />
+          </div>
+          <div className="ml-2">
+            <Button message="Run now" />
+          </div>
         </div>
       </div>
       <div className="text-gray-400">
