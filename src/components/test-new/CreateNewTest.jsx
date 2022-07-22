@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
 import Toggle from './Toggle';
-import TextBlockInput from '../shared/TextBlockInput';
+import TextBlockInput from './TextBlockInput';
 import KeyValueInput from './KeyValueInput';
 import AssertionsInput from './AssertionsInput';
 import LocationsInput from './LocationsInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
 import FrequencyInput from './FrequencyInput';
 import Button from '../shared/Button';
-import { addTitle } from '../../features/newtest/newtest';
+import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
 
 const configuredHeaders = [
   { name: 'Content-Type', value: 'application/json' },
@@ -31,13 +31,26 @@ function CreateNewTest() {
   }, [dispatch]);
 
   const [title, setTitle] = useState('');
+  const [url, setUrl] = useState('');
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleSubmitNewTitle = (e) => {
+  const handleSubmitNewTitle = () => {
     dispatch(addTitle(title));
+  };
+
+  const handleSubmitNewMethod = (e) => {
+    dispatch(addMethod(e.target.value));
+  };
+
+  const handleUrlChange = (e) => {
+    setUrl(e.target.value);
+  };
+
+  const handleSubmitNewUrl = () => {
+    dispatch(addUrl(url));
   };
 
   return (
@@ -48,21 +61,22 @@ function CreateNewTest() {
         </div>
         <div className="flex">
           <Toggle />
-          <div className="pl-2">Activated</div>
+          <div className="pl-2">Activated (doesn't work yet!)</div>
         </div>
       </div>
-
       <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
 
       <h2 className="text-1xl font-bold text-gray-900 pt-6">HTTP request</h2>
+
       <div className="flex py-2">
         <div className="flex-none">
-          <TextSelect label="Method" options={httpMethods} />
+          <TextSelect onChange={handleSubmitNewMethod} label="Method" options={httpMethods} />
         </div>
         <div className="flex-1 pl-4">
-          <TextInput label="URL" placeholder="My new test!" type="text" name="test_name" id="test_name" />
+          <TextInput onChange={handleUrlChange} onBlur={handleSubmitNewUrl} label="URL" placeholder="My new test!" type="text" name="test_name" id="test_name" />
         </div>
       </div>
+
       <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
       <KeyValueInput label="Headers" buttonLabel="Add header" data={configuredHeaders} />
       <KeyValueInput label="Query params" buttonLabel="Add query param" data={configuredQueryParams} />

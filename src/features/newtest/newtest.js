@@ -6,7 +6,7 @@ const initialState = {
   minutesBetweenRuns: '',
   type: 'API',
   httpRequest: {
-    method: '',
+    method: 'GET',
     url: '',
     headers: {},
     body: {},
@@ -24,12 +24,20 @@ export const newtestSlice = createSlice({
     addTitle: (state, action) => {
       state.title = action.payload;
     },
+    addMethod: (state, action) => {
+      state.httpRequest.method = action.payload;
+    },
+    addUrl: (state, action) => {
+      state.httpRequest.url = action.payload;
+    },
     addLocation: (state, action) => {
       state.locations.push(action.payload);
     },
   },
 });
 
-export const { addTitle, addLocation } = newtestSlice.actions;
+export const {
+  addTitle, addMethod, addLocation, addUrl,
+} = newtestSlice.actions;
 
 export default newtestSlice.reducer;

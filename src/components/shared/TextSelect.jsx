@@ -1,7 +1,7 @@
 import { React } from 'react';
 
 function Select({
-  label, placeholder, name, id, options,
+  label, placeholder, name, id, options, onChange,
 }) {
   if (options) {
     return (
@@ -15,6 +15,7 @@ function Select({
             id={id}
             className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
             placeholder={placeholder}
+            onChange={onChange}
           >
             { options.map((option) => <option>{option.displayName}</option>)}
           </select>
