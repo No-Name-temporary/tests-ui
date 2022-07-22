@@ -1,7 +1,7 @@
 import { React } from 'react';
 
 function TextInput({
-  label, placeholder, type, name, id, value,
+  label, placeholder, type, name, id, value, onChange, onBlur,
 }) {
   return (
     <div>
@@ -16,6 +16,8 @@ function TextInput({
           className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
           placeholder={placeholder}
           value={value}
+          onChange={onChange}
+          onBlur={onBlur}
         />
       </div>
     </div>

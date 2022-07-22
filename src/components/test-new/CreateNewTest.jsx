@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
@@ -10,6 +10,7 @@ import LocationsInput from './LocationsInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
 import FrequencyInput from './FrequencyInput';
 import Button from '../shared/Button';
+import { addTitle } from '../../features/newtest/newtest';
 
 const configuredHeaders = [
   { name: 'Content-Type', value: 'application/json' },
@@ -29,6 +30,16 @@ function CreateNewTest() {
     dispatch(fetchSideloads());
   }, [dispatch]);
 
+  const [title, setTitle] = useState('');
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleSubmitNewTitle = (e) => {
+    dispatch(addTitle(title));
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-8 pb-20">
       <div className="flex justify-between">
@@ -40,7 +51,9 @@ function CreateNewTest() {
           <div className="pl-2">Activated</div>
         </div>
       </div>
-      <TextInput label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
+
+      <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
+
       <h2 className="text-1xl font-bold text-gray-900 pt-6">HTTP request</h2>
       <div className="flex py-2">
         <div className="flex-none">
@@ -50,7 +63,6 @@ function CreateNewTest() {
           <TextInput label="URL" placeholder="My new test!" type="text" name="test_name" id="test_name" />
         </div>
       </div>
-
       <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
       <KeyValueInput label="Headers" buttonLabel="Add header" data={configuredHeaders} />
       <KeyValueInput label="Query params" buttonLabel="Add query param" data={configuredQueryParams} />
