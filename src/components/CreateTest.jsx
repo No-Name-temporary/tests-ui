@@ -74,9 +74,7 @@ function CreateTest() {
       },
     };
 
-    console.log(testData);
     const data = await apiClient.createTest(testData);
-    console.log(data);
 
     resetValues();
   };

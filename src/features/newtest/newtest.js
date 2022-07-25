@@ -10,10 +10,7 @@ const initialState = {
     url: '',
     headers: {},
     body: {},
-    assertions: {
-      headers: [],
-      jsonBody: [],
-    },
+    assertions: [],
   },
 };
 
@@ -30,14 +27,28 @@ export const newtestSlice = createSlice({
     addUrl: (state, action) => {
       state.httpRequest.url = action.payload;
     },
-    addLocation: (state, action) => {
-      state.locations.push(action.payload);
+    addAssertion: (state, action) => {
+      state.httpRequest.assertions.push(action.payload);
+    },
+    deleteAssertion: (state, action) => {
+      state.httpRequest.assertions = state.httpRequest.assertions.filter((a) => a.id !== action.payload);
+    },
+    toggleLocation: (state, action) => {
+      const location = action.payload;
+      if (state.locations.includes(location)) {
+        state.locations = state.locations.filter((l) => l !== location);
+      } else {
+        state.locations.push(location);
+      }
+    },
+    setMinutesBetweenRuns: (state, action) => {
+      state.minutesBetweenRuns = action.payload;
     },
   },
 });
 
 export const {
-  addTitle, addMethod, addLocation, addUrl,
+  addTitle, addMethod, toggleLocation, addUrl, addAssertion, deleteAssertion, setMinutesBetweenRuns,
 } = newtestSlice.actions;
 
 export default newtestSlice.reducer;

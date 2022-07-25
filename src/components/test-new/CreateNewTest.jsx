@@ -2,29 +2,19 @@ import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
-import Toggle from './Toggle';
-import TextBlockInput from './TextBlockInput';
-import KeyValueInput from './KeyValueInput';
 import AssertionsInput from './AssertionsInput';
 import LocationsInput from './LocationsInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
 import FrequencyInput from './FrequencyInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
-
-const configuredHeaders = [
-  { name: 'Content-Type', value: 'application/json' },
-  { name: 'Accept-Encoding', value: 'gzip, deflate' },
-];
-
-const configuredQueryParams = [
-  { name: 'age', value: '144d' },
-];
+import apiClient from '../../services/ApiClient';
 
 function CreateNewTest() {
   const dispatch = useDispatch();
 
   const httpMethods = useSelector((state) => state.sideloads.httpMethods);
+  const newTestConfiguration = useSelector((state) => state.newtest);
 
   useEffect(() => {
     dispatch(fetchSideloads());
@@ -53,15 +43,17 @@ function CreateNewTest() {
     dispatch(addUrl(url));
   };
 
+  const handleSaveConfiguration = () => {
+    // TODO: uncomment once test-crud and rest of the pipeline are migrated to new payload shape
+    // apiClient.createTest(newTestConfiguration);
+    console.log('newTestConfiguration: ', newTestConfiguration);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-8 pb-20">
       <div className="flex justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Create a test</h1>
-        </div>
-        <div className="flex">
-          <Toggle />
-          <div className="pl-2">Activated</div>
         </div>
       </div>
       <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
@@ -77,14 +69,11 @@ function CreateNewTest() {
         </div>
       </div>
 
-      <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
-      <KeyValueInput label="Headers" buttonLabel="Add header" data={configuredHeaders} />
-      <KeyValueInput label="Query params" buttonLabel="Add query param" data={configuredQueryParams} />
       <AssertionsInput />
       <LocationsInput />
       <FrequencyInput />
       <div className="mt-5 flex">
-        <Button message="Save" save />
+        <Button onClick={handleSaveConfiguration} message="Save" save />
       </div>
     </div>
   );

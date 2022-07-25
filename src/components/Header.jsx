@@ -11,7 +11,7 @@ function Header() {
               src="https://img.icons8.com/ios/344/lol--v1.png"
               alt="NoName"
             />
-            <div className="ml-3 text-2xl font-semibold text-gray-900">NoName</div>
+            <div className="ml-3 text-2xl font-semibold text-gray-900">Seymour</div>
           </div>
           <div className="flex">
             <button className="text-sm font-medium text-sky-600 hover:text-sky-700">Docs</button>
