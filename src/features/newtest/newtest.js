@@ -10,10 +10,7 @@ const initialState = {
     url: '',
     headers: {},
     body: {},
-    assertions: {
-      headers: [],
-      jsonBody: [],
-    },
+    assertions: [],
   },
 };
 
@@ -31,36 +28,10 @@ export const newtestSlice = createSlice({
       state.httpRequest.url = action.payload;
     },
     addAssertion: (state, action) => {
-      console.log('action.payload: ', action.payload);
-      switch (action.payload.name) {
-        case 'statusCode':
-        case 'responseTime':
-          state.httpRequest.assertions[action.payload.name] = {
-            comparison: action.payload.comparisonType,
-            target: action.payload.target,
-          };
-          break;
-        case 'body':
-          state.httpRequest.assertions.jsonBody.push(
-            {
-              comparison: action.payload.comparisonType,
-              property: action.payload.property,
-              target: action.payload.target,
-            },
-          );
-          break;
-        case 'headers':
-          state.httpRequest.assertions[action.payload.name].push(
-            {
-              comparison: action.payload.comparisonType,
-              property: action.payload.property,
-              target: action.payload.target,
-            },
-          );
-          break;
-        default:
-          console.log('Assertion type not found');
-      }
+      state.httpRequest.assertions.push(action.payload);
+    },
+    deleteAssertion: (state, action) => {
+      state.httpRequest.assertions = state.httpRequest.assertions.filter((a) => a.id !== action.payload);
     },
     toggleLocation: (state, action) => {
       const location = action.payload;
@@ -77,7 +48,7 @@ export const newtestSlice = createSlice({
 });
 
 export const {
-  addTitle, addMethod, toggleLocation, addUrl, addAssertion, setMinutesBetweenRuns,
+  addTitle, addMethod, toggleLocation, addUrl, addAssertion, deleteAssertion, setMinutesBetweenRuns,
 } = newtestSlice.actions;
 
 export default newtestSlice.reducer;

@@ -8,7 +8,8 @@ function AssertionRows({ assertions }) {
         {assertions.map((assertion) => (
           <AssertionRow
             key={assertion.id}
-            source={assertion.source}
+            id={assertion.id}
+            type={assertion.type}
             property={assertion.property}
             comparison={assertion.comparison}
             target={assertion.target}

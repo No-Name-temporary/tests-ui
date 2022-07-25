@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
 import { addAssertion } from '../../features/newtest/newtest';
@@ -19,7 +20,6 @@ function NewAssertionRow() {
   const [target, setTarget] = useState('');
 
   const handleNewType = (e) => {
-    console.log('new type:', e.target.value);
     setType(e.target.value);
   };
 
@@ -37,9 +37,10 @@ function NewAssertionRow() {
 
   const handleNewAssertionSubmit = () => {
     const newAssertion = {
-      name: type,
+      id: uuidv4(), // for assertion lookup and deletion
+      type,
       property,
-      comparisonType,
+      comparison: comparisonType,
       target,
     };
     setProperty('');
