@@ -2,9 +2,9 @@
 import axios from 'axios';
 import getTestRunsResponse from '../fixtures/getTestRuns';
 
-const URL = 'http://testscrud-env.eba-fpb5kcf8.us-east-1.elasticbeanstalk.com';
+const config = require('../config.json');
 
-// const testURL = 'http://localhost:5001';
+const URL = config.testsCrudUrl;
 
 function logError(errorResponse) {
   const { response } = errorResponse;
@@ -26,6 +26,7 @@ const apiClient = {
     }
   },
   getTests: async () => {
+    console.log('URL: ', URL);
     try {
       const { data } = await axios.get(`${URL}/api/tests`);
       return data;
