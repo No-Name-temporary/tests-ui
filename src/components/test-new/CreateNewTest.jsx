@@ -4,11 +4,11 @@ import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
 import AssertionsInput from './AssertionsInput';
 import LocationsInput from './LocationsInput';
+import TextBlockInput from './TextBlockInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
 import FrequencyInput from './FrequencyInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
-import apiClient from '../../services/ApiClient';
 
 function CreateNewTest() {
   const dispatch = useDispatch();
@@ -69,6 +69,7 @@ function CreateNewTest() {
         </div>
       </div>
 
+      <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
       <AssertionsInput />
       <LocationsInput />
       <FrequencyInput />
