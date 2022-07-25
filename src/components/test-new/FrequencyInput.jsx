@@ -1,57 +1,35 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setMinutesBetweenRuns } from '../../features/newtest/newtest';
-import TextInput from '../shared/TextInput';
 import TextSelect from '../shared/TextSelect';
 
-const unitsOfTime = [
-  { displayName: 'minutes' },
-  { displayName: 'hours' },
-  { displayName: 'days' },
+const frequencyOptions = [
+  { displayName: '1 minute', value: '1' },
+  { displayName: '5 minutes', value: '5' },
+  { displayName: '15 minutes', value: '15' },
+  { displayName: '30 minutes', value: '30' },
+  { displayName: '1 hour', value: '60' },
+  { displayName: '3 hours', value: '180' },
+  { displayName: '6 hours', value: '360' },
+  { displayName: '12 hours', value: '720' },
+  { displayName: '1 day', value: '1440' },
+  { displayName: '2 days', value: '2880' },
+  { displayName: '1 week', value: '10080' },
 ];
 
 function FrequencyInput() {
   const dispatch = useDispatch();
 
-  const [intervalValue, setIntervalValue] = useState(null);
-  const [intervalUnits, setIntervalUnits] = useState('minutes');
-
-  const minutes = (value, units) => {
-    switch (units) {
-      case 'minutes':
-        return value;
-      case 'hours':
-        return Number(value) * 60;
-      case 'days':
-        return Number(value) * 60 * 24;
-      default:
-        console.log('Unknown units of time');
-    }
-  };
-
-  const handleIntervalValueChange = (e) => {
-    setIntervalValue(e.target.value);
-    dispatch(setMinutesBetweenRuns(
-      String(minutes(intervalValue, intervalUnits)),
-    ));
-  };
-
-  const handleIntervalValueSelect = (e) => {
-    setIntervalUnits(e.target.value);
-    dispatch(setMinutesBetweenRuns(
-      String(minutes(intervalValue, intervalUnits)),
-    ));
+  const handleIntervalUnitsSelect = async (e) => {
+    dispatch(setMinutesBetweenRuns(e.target.value));
   };
 
   return (
     <div className="mt-8">
       <h2>Time between test runs?</h2>
       <div className="mt-4 flex">
-        <div className="pr-3">
-          <TextInput onChange={handleIntervalValueChange} label="Value" placeholder="#" type="text" name="frequency_value" id="frequency_value" />
-        </div>
         <div>
-          <TextSelect onChange={handleIntervalValueSelect} label="Units" options={unitsOfTime} />
+          <TextSelect onChange={handleIntervalUnitsSelect} options={frequencyOptions} />
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ function Select({
             placeholder={placeholder}
             onChange={onChange}
           >
-            { options.map((option) => <option value={option.name}>{option.displayName}</option>)}
+            { options.map((opt) => <option value={opt.value | opt.name}>{opt.displayName}</option>) }
           </select>
         </div>
       </div>

@@ -65,7 +65,7 @@ export const newtestSlice = createSlice({
     toggleLocation: (state, action) => {
       const location = action.payload;
       if (state.locations.includes(location)) {
-        state.locations.filter((l) => l !== location);
+        state.locations = state.locations.filter((l) => l !== location);
       } else {
         state.locations.push(location);
       }

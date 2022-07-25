@@ -25,6 +25,10 @@ function CreateNewTest() {
   const dispatch = useDispatch();
 
   const httpMethods = useSelector((state) => state.sideloads.httpMethods);
+  const configuration = useSelector((state) => {
+    console.log('newtest: ', state.newtest);
+    return state.newtest;
+  });
 
   useEffect(() => {
     dispatch(fetchSideloads());
@@ -54,7 +58,8 @@ function CreateNewTest() {
   };
 
   const handleSaveConfiguration = () => {
-    // get from redux store and send to DB?!
+    const currentState = getState().newtest;
+    console.log('currentState: ', currentState);
   };
 
   return (
