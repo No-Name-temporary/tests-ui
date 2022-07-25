@@ -8,10 +8,7 @@ import { addAssertion } from '../../features/newtest/newtest';
 function NewAssertionRow() {
   const dispatch = useDispatch();
 
-  const assertionTypes = useSelector((state) => {
-    console.log('assertionTypes: ', state.sideloads.assertionTypes);
-    return state.sideloads.assertionTypes;
-  });
+  const assertionTypes = useSelector((state) => state.sideloads.assertionTypes);
   const comparisonTypes = useSelector((state) => state.sideloads.comparisonTypes);
 
   const [type, setType] = useState('responseTime');

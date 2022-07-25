@@ -8,15 +8,13 @@ import { fetchSideloads } from '../../features/sideloads/sideloads';
 import FrequencyInput from './FrequencyInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
+import apiClient from '../../services/ApiClient';
 
 function CreateNewTest() {
   const dispatch = useDispatch();
 
   const httpMethods = useSelector((state) => state.sideloads.httpMethods);
-  const newTestConfiguration = useSelector((state) => {
-    console.log('newtest: ', state.newtest);
-    return state.newtest;
-  });
+  const newTestConfiguration = useSelector((state) => state.newtest);
 
   useEffect(() => {
     dispatch(fetchSideloads());
@@ -46,7 +44,9 @@ function CreateNewTest() {
   };
 
   const handleSaveConfiguration = () => {
-    console.log('currentState: ', newTestConfiguration);
+    // TODO: uncomment once test-crud and rest of the pipeline are migrated to new payload shape
+    // apiClient.createTest(newTestConfiguration);
+    console.log('newTestConfiguration: ', newTestConfiguration);
   };
 
   return (

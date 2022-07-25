@@ -1,9 +1,10 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { useDispatch } from 'react-redux';
 import { setMinutesBetweenRuns } from '../../features/newtest/newtest';
 import TextSelect from '../shared/TextSelect';
 
 const frequencyOptions = [
+  { displayName: 'Select value', value: '5' },
   { displayName: '1 minute', value: '1' },
   { displayName: '5 minutes', value: '5' },
   { displayName: '15 minutes', value: '15' },
