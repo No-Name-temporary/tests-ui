@@ -7,15 +7,19 @@ import { addAssertion } from '../../features/newtest/newtest';
 function NewAssertionRow() {
   const dispatch = useDispatch();
 
-  const assertionTypes = useSelector((state) => state.sideloads.assertionTypes);
+  const assertionTypes = useSelector((state) => {
+    console.log('assertionTypes: ', state.sideloads.assertionTypes);
+    return state.sideloads.assertionTypes;
+  });
   const comparisonTypes = useSelector((state) => state.sideloads.comparisonTypes);
 
-  const [type, setType] = useState('');
-  const [property, setProperty] = useState(null);
-  const [comparisonType, setComparisonType] = useState(null);
+  const [type, setType] = useState('responseTime');
+  const [property, setProperty] = useState('');
+  const [comparisonType, setComparisonType] = useState('equalTo');
   const [target, setTarget] = useState('');
 
   const handleNewType = (e) => {
+    console.log('new type:', e.target.value);
     setType(e.target.value);
   };
 

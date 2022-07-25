@@ -1,4 +1,5 @@
 import { React } from 'react';
+import { camelCaseToDisplayName } from '../../utils/helpers';
 
 function AssertionRow({
   source, property, comparison, target,
@@ -6,13 +7,13 @@ function AssertionRow({
   return (
     <tr>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        {source}
+        {camelCaseToDisplayName(source)}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {property}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        {comparison}
+        {camelCaseToDisplayName(comparison)}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {target}

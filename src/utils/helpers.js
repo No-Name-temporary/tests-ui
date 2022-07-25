@@ -41,3 +41,8 @@ export const allKeysToCamelCase = (data) => {
     }
   }
 };
+
+export const camelCaseToDisplayName = (str) => {
+  const newStr = str.replace(/[A-Z]/g, (letter) => ` ${letter.toLowerCase()}`);
+  return newStr[0].toUpperCase() + newStr.slice(1);
+};

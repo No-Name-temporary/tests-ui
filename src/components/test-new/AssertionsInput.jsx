@@ -28,6 +28,7 @@ function AssertionsInput() {
         });
       }
     }
+    console.log('parsed: ', parsed);
     return parsed;
   };
 

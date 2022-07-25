@@ -3,6 +3,13 @@ import { React } from 'react';
 function Select({
   label, placeholder, name, id, options, onChange,
 }) {
+  const optionValue = (opt) => {
+    if (opt.value) {
+      return opt.value;
+    }
+    return opt.name;
+  };
+
   if (options) {
     return (
       <div>
@@ -17,7 +24,7 @@ function Select({
             placeholder={placeholder}
             onChange={onChange}
           >
-            { options.map((opt) => <option value={opt.value | opt.name}>{opt.displayName}</option>) }
+            { options.map((opt) => <option value={optionValue(opt)}>{opt.displayName}</option>) }
           </select>
         </div>
       </div>

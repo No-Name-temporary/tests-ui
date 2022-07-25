@@ -2,9 +2,6 @@ import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
-import Toggle from './Toggle';
-import TextBlockInput from './TextBlockInput';
-import KeyValueInput from './KeyValueInput';
 import AssertionsInput from './AssertionsInput';
 import LocationsInput from './LocationsInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
@@ -12,20 +9,11 @@ import FrequencyInput from './FrequencyInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
 
-const configuredHeaders = [
-  { name: 'Content-Type', value: 'application/json' },
-  { name: 'Accept-Encoding', value: 'gzip, deflate' },
-];
-
-const configuredQueryParams = [
-  { name: 'age', value: '144d' },
-];
-
 function CreateNewTest() {
   const dispatch = useDispatch();
 
   const httpMethods = useSelector((state) => state.sideloads.httpMethods);
-  const configuration = useSelector((state) => {
+  const newTestConfiguration = useSelector((state) => {
     console.log('newtest: ', state.newtest);
     return state.newtest;
   });
@@ -58,8 +46,7 @@ function CreateNewTest() {
   };
 
   const handleSaveConfiguration = () => {
-    const currentState = getState().newtest;
-    console.log('currentState: ', currentState);
+    console.log('currentState: ', newTestConfiguration);
   };
 
   return (
@@ -68,10 +55,6 @@ function CreateNewTest() {
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Create a test</h1>
         </div>
-        {/* <div className="flex">
-          <Toggle />
-          <div className="pl-2">Activated</div>
-        </div> */}
       </div>
       <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
 
@@ -86,9 +69,6 @@ function CreateNewTest() {
         </div>
       </div>
 
-      {/* <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" /> */}
-      {/* <KeyValueInput label="Headers" buttonLabel="Add header" data={configuredHeaders} />
-      <KeyValueInput label="Query params" buttonLabel="Add query param" data={configuredQueryParams} /> */}
       <AssertionsInput />
       <LocationsInput />
       <FrequencyInput />
