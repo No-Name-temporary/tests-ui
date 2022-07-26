@@ -1,7 +1,5 @@
 import { React } from 'react';
-
-const CHECK_MARK_ICON = 'https://img.icons8.com/color/344/checked--v1.png';
-const X_ICON = 'https://img.icons8.com/color/344/cancel--v1.png';
+import { GREEN_CHECK_MARK, RED_X } from '../../constants/IconUrls';
 
 function Table({ testRuns }) {
   return (
@@ -34,12 +32,12 @@ function Table({ testRuns }) {
           {testRuns.map((testRun) => (
             <tr key={testRun.id}>
               <td>
-                <div className="w-6 ml-2"><img src={testRun.success ? CHECK_MARK_ICON : X_ICON} /></div>
+                <div className="w-6 ml-2"><img alt="result" src={testRun.success ? GREEN_CHECK_MARK : RED_X} /></div>
               </td>
               <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">
                 <div className="flex">
                   {testRun.location}
-                  <div className="object-contain w-6 ml-2"><img src={testRun.region.flagUrl} /></div>
+                  <div className="object-contain w-6 ml-2"><img alt="flag" src={testRun.region.flagUrl} /></div>
                 </div>
               </td>
               <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{testRun.status}</td>
