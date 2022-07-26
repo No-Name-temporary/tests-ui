@@ -1,12 +1,53 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addRequestBody } from '../../features/newtest/newtest';
 
-function CodeInput({}) {
+const SPACES_FOR_TAB = 2;
+const SAMPLE_JSON = `{
+  "key1": "value1",
+  "key2": "value2",
+  "key3": "value3",
+}
+`;
+
+function CodeInput() {
+  const dispatch = useDispatch();
+
+  const [requestBody, setRequestBody] = useState({ value: SAMPLE_JSON, caret: -1, target: null });
+
+  useEffect(() => {
+    if (requestBody.caret >= 0) {
+      requestBody.target.setSelectionRange(
+        requestBody.caret + SPACES_FOR_TAB,
+        requestBody.caret + SPACES_FOR_TAB,
+      );
+    }
+  }, [requestBody]);
+
+  const handleTab = (e) => {
+    const content = e.target.value;
+    const caret = e.target.selectionStart;
+
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const newRequestBody = content.substring(0, caret) + ' '.repeat(SPACES_FOR_TAB) + content.substring(caret);
+      setRequestBody({ value: newRequestBody, caret, target: e.target });
+    }
+  };
+
+  const handleRequestBodyChange = (e) => {
+    setRequestBody({ value: e.target.value, caret: -1, target: e.target });
+    dispatch(addRequestBody(requestBody.value));
+  };
+
   return (
     <div className="mt-1">
       <textarea
-        rows={4}
+        rows={6}
         className="shadow-sm bg-gray-900 text-blue-500 focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
-        defaultValue="...JSON"
+        onKeyDown={handleTab}
+        onChange={handleRequestBodyChange}
+        value={requestBody.value}
       />
     </div>
   );
