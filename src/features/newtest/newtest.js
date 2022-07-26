@@ -27,6 +27,9 @@ export const newtestSlice = createSlice({
     addUrl: (state, action) => {
       state.httpRequest.url = action.payload;
     },
+    addRequestBody: (state, action) => {
+      state.httpRequest.body = action.payload;
+    },
     addAssertion: (state, action) => {
       state.httpRequest.assertions.push(action.payload);
     },
@@ -48,7 +51,14 @@ export const newtestSlice = createSlice({
 });
 
 export const {
-  addTitle, addMethod, toggleLocation, addUrl, addAssertion, deleteAssertion, setMinutesBetweenRuns,
+  addTitle,
+  addMethod,
+  toggleLocation,
+  addUrl,
+  addRequestBody,
+  addAssertion,
+  deleteAssertion,
+  setMinutesBetweenRuns,
 } = newtestSlice.actions;
 
 export default newtestSlice.reducer;
