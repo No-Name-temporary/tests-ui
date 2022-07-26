@@ -22,10 +22,15 @@ function Tests() {
   useEffect(getTestsHook, []);
 
   return (
-    <div>
-      <Link to="/tests/new">
-        <Button message="Create test" />
-      </Link>
+    <div className="max-w-7xl mx-auto px-8">
+      <div className="flex justify-end">
+        <div>
+          <Link to="/tests/new">
+            <Button message="Create test" />
+          </Link>
+        </div>
+      </div>
+
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>

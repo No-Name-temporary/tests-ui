@@ -1,14 +1,24 @@
 import React from 'react';
+import {
+  GARBAGE_CAN, GREEN_CHECK_MARK, LIGHTNING, PENCIL, RED_X,
+} from '../../constants/IconUrls';
 
 function TestRow({ test }) {
-  console.log('test: ', test);
   return (
     <tr>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {test.name}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        last 3 results
+        <div className="flex">
+          {test.runs.map((run) => (
+            <img
+              className="h-6 w-auto ml-2"
+              src={run.success ? GREEN_CHECK_MARK : RED_X}
+              alt="result"
+            />
+          ))}
+        </div>
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {test.minutesBetweenRuns}
@@ -19,8 +29,8 @@ function TestRow({ test }) {
         <button type="button" className="pl-2">
           <img
             className="h-6 w-auto"
-            src="https://img.icons8.com/external-others-iconmarket/344/external-delete-essential-others-iconmarket-3.png"
-            alt="NoName"
+            src={GARBAGE_CAN}
+            alt="delete"
           />
         </button>
       </td>
@@ -28,8 +38,8 @@ function TestRow({ test }) {
         <button type="button" className="pl-2">
           <img
             className="h-6 w-auto"
-            src="https://img.icons8.com/ios/2x/edit.png"
-            alt="NoName"
+            src={PENCIL}
+            alt="edit"
           />
         </button>
       </td>
@@ -37,8 +47,8 @@ function TestRow({ test }) {
         <button type="button" className="pl-2">
           <img
             className="h-6 w-auto"
-            src="https://img.icons8.com/ios/2x/lightning-bolt.png"
-            alt="NoName"
+            src={LIGHTNING}
+            alt="run now"
           />
         </button>
       </td>
