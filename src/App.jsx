@@ -7,6 +7,7 @@ import CreateNewTest from './components/test-new/CreateNewTest';
 import TestResults from './components/TestResults';
 import TestRuns from './components/test-runs/TestRuns';
 import Header from './components/Header';
+import Tests from './components/tests/Tests';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/tests/new" element={<CreateNewTest />} />
           <Route path="/tests/:id" element={<TestResults />} />
           <Route path="/create/test" element={<CreateTest />} />
+          <Route path="/tests" element={<Tests />} />
         </Routes>
       </main>
     </>

@@ -33,6 +33,9 @@ function NewAssertionRow() {
   };
 
   const handleNewAssertionSubmit = () => {
+    setProperty('');
+    setTarget('');
+
     const newAssertion = {
       id: uuidv4(), // for assertion lookup and deletion
       type,
@@ -40,15 +43,13 @@ function NewAssertionRow() {
       comparison: comparisonType,
       target,
     };
-    setProperty('');
-    setTarget('');
 
     dispatch(addAssertion(newAssertion));
   };
 
   const propertyInput = () => {
     if (['body', 'headers'].includes(type)) {
-      return <TextInput onChange={handlePropertyChange} type="text" />;
+      return <TextInput onChange={handlePropertyChange} value={property} type="text" />;
     }
   };
 

@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
 import getTestRunsResponse from '../fixtures/getTestRuns';
+import getTestsResponse from '../fixtures/getTests';
 
 const URL = 'http://testscrud-env.eba-fpb5kcf8.us-east-1.elasticbeanstalk.com';
 
@@ -33,6 +34,7 @@ const apiClient = {
       logError(e);
     }
   },
+  getTestsTemp: async () => getTestsResponse,
   getTest: async (id) => {
     try {
       const { data } = await axios.get(`${URL}/api/tests/${id}`);
