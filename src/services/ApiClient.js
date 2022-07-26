@@ -2,6 +2,7 @@
 import axios from 'axios';
 import getTestRunsResponse from '../fixtures/getTestRuns';
 import getTestsResponse from '../fixtures/getTests';
+import getTestRunResponse from '../fixtures/getTestRun';
 
 const config = require('../config.json');
 
@@ -62,6 +63,10 @@ const apiClient = {
   },
   // TODO: replace with call to /api/tests/:id/runs endpoint once implemented in tests-crud
   getTestRuns: async () => getTestRunsResponse,
+  getTestRun: async ({ testName, testRunId }) => {
+    console.log(`fetching test run ${testRunId} for test: ${testName}`);
+    return getTestRunResponse;
+  },
 };
 
 export default apiClient;
