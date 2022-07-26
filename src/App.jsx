@@ -8,6 +8,7 @@ import TestResults from './components/TestResults';
 import TestRuns from './components/test-runs/TestRuns';
 import Header from './components/Header';
 import Tests from './components/tests/Tests';
+import TestRun from './components/test-run/TestRun';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route index element={<Home />} />
+          <Route path="/tests/:testId/runs/:runId" element={<TestRun />} />
           <Route path="/tests/:id/runs" element={<TestRuns />} />
           <Route path="/tests/new" element={<CreateNewTest />} />
           <Route path="/tests/:id" element={<TestResults />} />
