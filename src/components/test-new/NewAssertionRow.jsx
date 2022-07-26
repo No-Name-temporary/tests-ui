@@ -9,7 +9,7 @@ function NewAssertionRow() {
   const dispatch = useDispatch();
 
   const assertionTypes = useSelector((state) => state.sideloads.assertionTypes);
-  const comparisonTypes = useSelector((state) => state.sideloads.comparisonTypes);
+  const comparisonTypes = useSelector((state) => state.sideloads.comparisons);
 
   const [type, setType] = useState('responseTime');
   const [property, setProperty] = useState('');

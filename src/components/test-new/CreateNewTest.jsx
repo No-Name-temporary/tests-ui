@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
 import AssertionsInput from './AssertionsInput';
@@ -9,9 +10,11 @@ import { fetchSideloads } from '../../features/sideloads/sideloads';
 import FrequencyInput from './FrequencyInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
+import apiClient from '../../services/ApiClient';
 
 function CreateNewTest() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const httpMethods = useSelector((state) => state.sideloads.httpMethods);
   const newTestConfiguration = useSelector((state) => state.newtest);
@@ -44,9 +47,8 @@ function CreateNewTest() {
   };
 
   const handleSaveConfiguration = () => {
-    // TODO: uncomment once test-crud and rest of the pipeline are migrated to new payload shape
-    // apiClient.createTest(newTestConfiguration);
-    console.log('newTestConfiguration: ', newTestConfiguration);
+    apiClient.createTest({ test: newTestConfiguration });
+    navigate('/tests');
   };
 
   return (
