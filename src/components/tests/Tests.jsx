@@ -10,7 +10,7 @@ function Tests() {
   const getTestsHook = () => {
     const run = async () => {
       try {
-        const testsData = await apiClient.getTestsTemp();
+        const testsData = await apiClient.getTests();
         setTests(testsData.tests);
       } catch (err) {
         console.log(err);
