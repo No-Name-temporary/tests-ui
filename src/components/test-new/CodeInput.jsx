@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addRequestBody } from '../../features/newtest/newtest';
 
 const SPACES_FOR_TAB = 2;
@@ -12,7 +12,6 @@ const SAMPLE_JSON = `{
 
 function CodeInput() {
   const dispatch = useDispatch();
-  const newTestConfiguration = useSelector((state) => state.newtest);
 
   const [requestBody, setRequestBody] = useState({ value: SAMPLE_JSON, caret: -1, target: null });
 
