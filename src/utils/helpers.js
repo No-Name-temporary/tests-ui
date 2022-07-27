@@ -46,3 +46,12 @@ export const camelCaseToDisplayName = (str) => {
   const newStr = str.replace(/[A-Z]/g, (letter) => ` ${letter.toLowerCase()}`);
   return newStr[0].toUpperCase() + newStr.slice(1);
 };
+
+export const sortTestsAndTestRuns = (tests) => {
+  const testsCopy = JSON.parse(JSON.stringify(tests));
+  testsCopy.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  testsCopy.forEach((test) => {
+    test.runs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  });
+  return testsCopy;
+};
