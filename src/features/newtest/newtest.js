@@ -1,12 +1,13 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   title: '',
   locations: [],
   minutesBetweenRuns: '',
-  type: 'API',
+  type: 'api',
   httpRequest: {
-    method: 'GET',
+    method: 'get',
     url: '',
     headers: {},
     body: {},
@@ -34,7 +35,8 @@ export const newtestSlice = createSlice({
       state.httpRequest.assertions.push(action.payload);
     },
     deleteAssertion: (state, action) => {
-      state.httpRequest.assertions = state.httpRequest.assertions.filter((a) => a.id !== action.payload);
+      state.httpRequest.assertions = state.httpRequest.assertions
+        .filter((a) => a.id !== action.payload);
     },
     toggleLocation: (state, action) => {
       const location = action.payload;
