@@ -29,7 +29,7 @@ export const newtestSlice = createSlice({
       state.httpRequest.url = action.payload;
     },
     addRequestBody: (state, action) => {
-      state.httpRequest.body = action.payload;
+      state.httpRequest.body = JSON.parse(action.payload);
     },
     addAssertion: (state, action) => {
       state.httpRequest.assertions.push(action.payload);
