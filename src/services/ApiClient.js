@@ -28,7 +28,6 @@ const apiClient = {
     }
   },
   getTests: async () => {
-    console.log('URL: ', URL);
     try {
       const { data } = await axios.get(`${URL}/api/tests`);
       return data;
