@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { GREEN_CHECK_MARK, RED_X, STOPWATCH } from '../../constants/IconUrls';
 import apiClient from '../../services/ApiClient';
 import { formatDateLong } from '../../utils/helpers';
@@ -39,7 +39,7 @@ function TestRun() {
         setRegionDisplayName(testRunData.runs[0].regionDisplayName);
         setRegionFlagUrl(testRunData.runs[0].regionFlagUrl);
         setStatusCode(testRunData.runs[0].responseStatus);
-        setResponseTime(testRunData.runs[0].responsTime);
+        setResponseTime(testRunData.runs[0].responseTime);
         setCompletedAt(testRunData.runs[0].completedAt);
         setResponseBody(testRunData.runs[0].responseBody);
         setResponseHeaders(testRunData.runs[0].responseHeaders);
@@ -59,7 +59,9 @@ function TestRun() {
         <div className="w-6 mr-2">
           <img src={success ? GREEN_CHECK_MARK : RED_X} alt="success" />
         </div>
-        <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>
+        <Link to={`/tests/${testId}/runs`}>
+          <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>
+        </Link>
         <div className="ml-4 text-gray-400">
           {`${success ? 'Passed' : 'Failed'} on ${formatDateLong(completedAt)} from ${regionDisplayName}`}
         </div>

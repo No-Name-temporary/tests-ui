@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   GARBAGE_CAN, GREEN_CHECK_MARK, LIGHTNING, PENCIL, RED_X,
 } from '../../constants/IconUrls';
@@ -6,18 +7,22 @@ import {
 function TestRow({ test }) {
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        {test.name}
-      </td>
+      <Link to={`/tests/${test.id}/runs`}>
+        <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+          {test.name}
+        </td>
+      </Link>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         <div className="flex">
           {test.runs.map((run) => (
-            <img
-              key={run.id}
-              className="h-6 w-auto ml-2"
-              src={run.success ? GREEN_CHECK_MARK : RED_X}
-              alt="result"
-            />
+            <Link to={`/tests/${run.testId}/runs/${run.id}`}>
+              <img
+                key={run.id}
+                className="h-6 w-auto ml-2"
+                src={run.success ? GREEN_CHECK_MARK : RED_X}
+                alt="result"
+              />
+            </Link>
           ))}
         </div>
       </td>
