@@ -34,6 +34,7 @@ function NewAlertChannelRow() {
   const handleNewAlertChannelSubmit = () => {
     setType('slack');
     setDestination('');
+
     const newAlertChannel = {
       id: uuidv4(), // for assertion lookup and deletion
       type,
@@ -49,7 +50,7 @@ function NewAlertChannelRow() {
         <TextSelect onChange={handleNewType} options={alertChannelTypes} />
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        <TextInput onChange={handleNewDestination} />
+        <TextInput onChange={handleNewDestination} value={destination} type="text" />
       </td>
       <td>
         <button type="button" onClick={handleNewAlertChannelSubmit}>Add</button>
