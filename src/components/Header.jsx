@@ -17,7 +17,8 @@ function Header() {
               <div className="ml-3 text-2xl font-semibold text-gray-900">Seymour</div>
             </div>
             <div className="flex">
-              <button className="text-sm font-medium text-sky-600 hover:text-sky-700">Docs</button>
+              <button className="text-sm font-medium text-sky-600 hover:text-sky-700">Home</button>
+              <button className="ml-4 text-sm font-medium text-sky-600 hover:text-sky-700">Docs</button>
             </div>
           </div>
         </div>
