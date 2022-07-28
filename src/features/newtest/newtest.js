@@ -50,6 +50,12 @@ export const newtestSlice = createSlice({
     setMinutesBetweenRuns: (state, action) => {
       state.minutesBetweenRuns = action.payload;
     },
+    addAlertChannel: (state, action) => {
+      state.alertChannels.push(action.payload);
+    },
+    deleteAlertChannel: (state, action) => {
+      state.alertChannels = state.alertChannels.filter((a) => a.id !== action.payload);
+    },
   },
 });
 
@@ -62,6 +68,8 @@ export const {
   addAssertion,
   deleteAssertion,
   setMinutesBetweenRuns,
+  addAlertChannel,
+  deleteAlertChannel,
 } = newtestSlice.actions;
 
 export default newtestSlice.reducer;
