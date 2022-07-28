@@ -60,8 +60,14 @@ const apiClient = {
       logError(e);
     }
   },
-  // TODO: replace with call to /api/tests/:id/runs endpoint once implemented in tests-crud
-  getTestRuns: async () => getTestRunsResponse,
+  getTestRuns: async ({ testId }) => {
+    try {
+      const { data } = await axios.get(`${URL}/api/tests/${testId}/runs`);
+      return data;
+    } catch (e) {
+      logError(e);
+    }
+  },
   getTestRun: async ({ testId, runId }) => {
     try {
       const { data } = await axios.get(`${URL}/api/tests/${testId}/runs/${runId}`);

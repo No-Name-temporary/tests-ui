@@ -39,7 +39,7 @@ function TestRun() {
         setRegionDisplayName(testRunData.runs[0].regionDisplayName);
         setRegionFlagUrl(testRunData.runs[0].regionFlagUrl);
         setStatusCode(testRunData.runs[0].responseStatus);
-        setResponseTime(testRunData.runs[0].responsTime);
+        setResponseTime(testRunData.runs[0].responseTime);
         setCompletedAt(testRunData.runs[0].completedAt);
         setResponseBody(testRunData.runs[0].responseBody);
         setResponseHeaders(testRunData.runs[0].responseHeaders);
