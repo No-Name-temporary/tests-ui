@@ -13,6 +13,7 @@ const initialState = {
     body: {},
     assertions: [],
   },
+  alertChannels: [],
 };
 
 export const newtestSlice = createSlice({

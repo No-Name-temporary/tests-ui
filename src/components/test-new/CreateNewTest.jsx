@@ -8,6 +8,7 @@ import LocationsInput from './LocationsInput';
 import TextBlockInput from './TextBlockInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
 import FrequencyInput from './FrequencyInput';
+import AlertChannelsInput from './AlertChannelsInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
 import apiClient from '../../services/ApiClient';
@@ -75,6 +76,7 @@ function CreateNewTest() {
       <AssertionsInput />
       <LocationsInput />
       <FrequencyInput />
+      <AlertChannelsInput />
       <div className="mt-5 flex">
         <Button onClick={handleSaveConfiguration} message="Save" save />
       </div>
