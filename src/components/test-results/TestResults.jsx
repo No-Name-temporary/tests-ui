@@ -1,13 +1,15 @@
-import { React, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import TestRuns from '../../entities/TestRuns';
 import apiClient from '../../services/ApiClient';
-import {
-  flagUrls, objectsCreatedAtDifference, run1BeforeRun2, testRunsCompletedAtDifference,
-} from '../../utils/helpers';
+import { flagUrls, testRunsCompletedAtDifference } from '../../utils/helpers';
 import TestBanner from '../shared/TestBanner';
 import TestRunsTable from '../shared/TestRunsTable';
+import ResultCards from './ResultCards';
 
-function TestRuns() {
+const RUNS_TO_DISPLAY = 3;
+
+function TestResults() {
   const testId = useParams().id;
   const [testRuns, setTestRuns] = useState([]);
   const [testBannerData, setTestBannerData] = useState({});
@@ -21,16 +23,22 @@ function TestRuns() {
     setTestRuns(shapedRuns);
   };
 
+  const processTestRunDataSummary = (runs) => {
+    const runsEntity = new TestRuns(runs);
+    runsEntity.process();
+    return runsEntity.summary();
+  };
+
   const getTestRunsHook = () => {
     const run = async () => {
       try {
         const testData = await apiClient.getTestRuns({ testId });
         addAssertionCountsAndSetRuns(testData.runs);
         const {
-          id, name, method, url, createdAt, updatedAt,
+          name, method, url, createdAt, updatedAt,
         } = testData;
         setTestBannerData({
-          id, name, method, url, createdAt, updatedAt,
+          name, method, url, createdAt, updatedAt,
         });
       } catch (err) {
         console.log(err);
@@ -41,18 +49,26 @@ function TestRuns() {
 
   useEffect(getTestRunsHook, []);
 
+  const mostRecentTestRuns = ({ testRuns, count }) => testRuns.sort(
+    testRunsCompletedAtDifference,
+  ).slice(0, count);
+
   return (
     <div className="max-w-7xl mx-auto px-8">
       <TestBanner
         testData={testBannerData}
         flagUrls={flagUrls(testRuns)}
       />
+      <ResultCards summaryData={processTestRunDataSummary(testRuns)} />
       <div className="flex items-center mb-1">
-        <h1 className="mr-5 text-xl font-bold text-gray-900">Test runs</h1>
+        <h1 className="mr-5 text-xl font-bold text-gray-900">{`Last ${RUNS_TO_DISPLAY} results`}</h1>
+        <Link to={`/tests/${testId}/runs`}>
+          <div className="text-sky-600 hover:text-sky-700">See all test runs</div>
+        </Link>
       </div>
-      <TestRunsTable testRuns={testRuns.sort(testRunsCompletedAtDifference)} />
+      <TestRunsTable testRuns={mostRecentTestRuns({ testRuns, count: RUNS_TO_DISPLAY })} />
     </div>
   );
 }
 
-export default TestRuns;
+export default TestResults;

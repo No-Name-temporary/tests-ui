@@ -2,9 +2,9 @@ import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { GREEN_CHECK_MARK, RED_X } from '../../constants/IconUrls';
 
-function Table({ testRuns }) {
+function TestRunsTable({ testRuns }) {
   return (
-    <div className="mt-8 flex flex-col">
+    <div className="flex flex-col">
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>
@@ -64,4 +64,4 @@ function Table({ testRuns }) {
   );
 }
 
-export default Table;
+export default TestRunsTable;
