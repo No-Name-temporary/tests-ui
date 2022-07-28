@@ -13,6 +13,7 @@ function TestRow({ test }) {
         <div className="flex">
           {test.runs.map((run) => (
             <img
+              key={run.id}
               className="h-6 w-auto ml-2"
               src={run.success ? GREEN_CHECK_MARK : RED_X}
               alt="result"

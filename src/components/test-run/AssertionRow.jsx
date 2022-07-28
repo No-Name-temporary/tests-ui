@@ -21,10 +21,10 @@ function AssertionRow({ assertion }) {
         {assertion.property}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        {camelCaseToDisplayName(assertion.comparisonType)}
+        {camelCaseToDisplayName(assertion.comparison)}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        {assertion.targetValue}
+        {assertion.expectedValue}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {assertion.actualValue}
