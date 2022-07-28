@@ -50,7 +50,12 @@ function NewAlertChannelRow() {
         <TextSelect onChange={handleNewType} options={alertChannelTypes} />
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        <TextInput onChange={handleNewDestination} value={destination} type="text" />
+        <TextInput
+          onChange={handleNewDestination}
+          value={destination}
+          type="text"
+          placeholder="webhook URL or e-mail address"
+        />
       </td>
       <td>
         <button type="button" onClick={handleNewAlertChannelSubmit}>Add</button>
