@@ -62,9 +62,13 @@ const apiClient = {
   },
   // TODO: replace with call to /api/tests/:id/runs endpoint once implemented in tests-crud
   getTestRuns: async () => getTestRunsResponse,
-  getTestRun: async ({ testName, testRunId }) => {
-    console.log(`fetching test run ${testRunId} for test: ${testName}`);
-    return getTestRunResponse;
+  getTestRun: async ({ testId, runId }) => {
+    try {
+      const { data } = await axios.get(`${URL}/api/tests/${testId}/runs/${runId}`);
+      return data;
+    } catch (e) {
+      logError(e);
+    }
   },
 };
 

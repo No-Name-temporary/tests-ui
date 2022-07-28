@@ -6,7 +6,7 @@ function AssertionRows({ assertions }) {
     return (
       <tbody className="divide-y divide-gray-200">
         {assertions.map((assertion) => (
-          <AssertionRow assertion={assertion} />
+          <AssertionRow key={assertion.id} assertion={assertion} />
         ))}
       </tbody>
     );

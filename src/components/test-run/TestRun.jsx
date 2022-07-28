@@ -1,11 +1,13 @@
 import { React, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { GREEN_CHECK_MARK, RED_X, STOPWATCH } from '../../constants/IconUrls';
 import apiClient from '../../services/ApiClient';
 import { formatDateLong } from '../../utils/helpers';
-import Button from '../shared/Button';
 import Assertions from './Assertions';
 
 function TestRun() {
+  const { testId, runId } = useParams();
+
   // test data
   const [testName, setTestName] = useState('');
   const [testHttpMethod, setTestHttpMethod] = useState('');
@@ -14,7 +16,9 @@ function TestRun() {
 
   // test run data
   const [assertions, setAssertions] = useState([]);
-  const [location, setLocation] = useState({});
+  const [regionName, setRegionName] = useState('');
+  const [regionDisplayName, setRegionDisplayName] = useState('');
+  const [regionFlagUrl, setRegionFlagUrl] = useState('');
   const [completedAt, setCompletedAt] = useState('');
   const [statusCode, setStatusCode] = useState('');
   const [responseTime, setResponseTime] = useState('');
@@ -22,27 +26,24 @@ function TestRun() {
   const [responseHeaders, setResponseHeaders] = useState({});
   const [success, setSuccess] = useState(null);
 
-  // eslint-disable-next-line arrow-body-style
-  const testRunSuccess = (assertions) => {
-    return assertions.filter((assertion) => !assertion.success).length === 0;
-  };
-
   const getTestRunHook = () => {
     const run = async () => {
       try {
-        const testRunData = await apiClient.getTestRun({ testName: 'sample', testRunId: 12 });
+        const testRunData = await apiClient.getTestRun({ testId, runId });
         setTestName(testRunData.name);
         setTestHttpMethod(testRunData.method);
         setTestUrl(testRunData.url);
-        setTestCreatedAt(testRunData.testCreatedAt);
-        setAssertions(testRunData.assertions);
-        setLocation(testRunData.location);
-        setStatusCode(testRunData.statusCode);
-        setResponseTime(testRunData.responseTime);
-        setCompletedAt(testRunData.completedAt);
-        setResponseBody(testRunData.responseBody);
-        setResponseHeaders(testRunData.responseHeaders);
-        setSuccess(testRunSuccess(testRunData.assertions));
+        setTestCreatedAt(testRunData.createdAt);
+        setAssertions(testRunData.runs[0].assertions);
+        setRegionName(testRunData.runs[0].regionName);
+        setRegionDisplayName(testRunData.runs[0].regionDisplayName);
+        setRegionFlagUrl(testRunData.runs[0].regionFlagUrl);
+        setStatusCode(testRunData.runs[0].responseStatus);
+        setResponseTime(testRunData.runs[0].responsTime);
+        setCompletedAt(testRunData.runs[0].completedAt);
+        setResponseBody(testRunData.runs[0].responseBody);
+        setResponseHeaders(testRunData.runs[0].responseHeaders);
+        setSuccess(testRunData.runs[0].success);
       } catch (err) {
         console.log(err);
       }
@@ -56,14 +57,14 @@ function TestRun() {
     <div className="max-w-7xl mx-auto px-8">
       <div className="flex items-center">
         <div className="w-6 mr-2">
-          <img src={success ? GREEN_CHECK_MARK : RED_X} alt={location.name} />
+          <img src={success ? GREEN_CHECK_MARK : RED_X} alt="success" />
         </div>
         <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>
         <div className="ml-4 text-gray-400">
-          {`${testRunSuccess ? 'Passed' : 'Failed'} on ${formatDateLong(completedAt)} from ${location.displayName}`}
+          {`${success ? 'Passed' : 'Failed'} on ${formatDateLong(completedAt)} from ${regionDisplayName}`}
         </div>
         <div className="w-6 ml-2">
-          <img src={location.flagUrl} alt={location.name} />
+          <img src={regionFlagUrl} alt={regionName} />
         </div>
       </div>
       <div className="text-gray-400">

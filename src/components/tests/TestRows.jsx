@@ -6,7 +6,7 @@ function TestRows({ tests }) {
     return (
       <tbody className="divide-y divide-gray-200">
         {tests.map((test) => (
-          <TestRow test={test} />
+          <TestRow key={test.id} test={test} />
         ))}
       </tbody>
     );
