@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import apiClient from '../../services/ApiClient';
 import Button from '../shared/Button';
 import TestRows from './TestRows';
+import { sortTestsAndTestRuns } from '../../utils/helpers';
 
 function Tests() {
   const [tests, setTests] = useState([]);
@@ -11,7 +12,7 @@ function Tests() {
     const run = async () => {
       try {
         const testsData = await apiClient.getTests();
-        setTests(testsData.tests);
+        setTests(sortTestsAndTestRuns(testsData.tests));
       } catch (err) {
         console.log(err);
       }
