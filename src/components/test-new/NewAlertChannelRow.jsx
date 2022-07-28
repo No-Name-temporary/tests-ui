@@ -39,6 +39,8 @@ function NewAlertChannelRow() {
       id: uuidv4(), // for assertion lookup and deletion
       type,
       destination,
+      alertsOnRecovery: false,
+      alertsOnFailure: true,
     };
 
     dispatch(addAlertChannel(newAlertChannel));
