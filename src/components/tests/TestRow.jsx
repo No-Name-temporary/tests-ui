@@ -7,7 +7,7 @@ import {
 function TestRow({ test }) {
   return (
     <tr>
-      <Link to={`/tests/${test.id}/runs`}>
+      <Link to={`/tests/${test.id}`}>
         <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
           {test.name}
         </td>

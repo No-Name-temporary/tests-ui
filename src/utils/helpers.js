@@ -1,4 +1,6 @@
 /* eslint-disable arrow-body-style */
+const CAMEL_CASE_REGEX = /^([a-z_]+)$/;
+
 export const snakeToCamel = (str) => {
   return str.toLowerCase().replace(/([-_][a-z])/g, (group) => {
     return group
@@ -14,15 +16,8 @@ export const namesToCamelCase = (data) => {
   });
 };
 
-export const formatDateLong = (dueDateStr) => {
-  const options = { month: 'short', day: 'numeric', year: 'numeric' };
-  return new Date(Date.parse(dueDateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
-};
-
-const camelCaseRegex = /^([a-z_]+)$/;
-
 const isCamelCase = (value) => {
-  return (typeof value === 'string' && camelCaseRegex.test(value));
+  return (typeof value === 'string' && CAMEL_CASE_REGEX.test(value));
 };
 
 export const allKeysToCamelCase = (data) => {
@@ -47,11 +42,46 @@ export const camelCaseToDisplayName = (str) => {
   return newStr[0].toUpperCase() + newStr.slice(1);
 };
 
+export const formatDateLong = (dateStr) => {
+  const options = { month: 'short', day: 'numeric', year: 'numeric' };
+  return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
+};
+
+export const formatDateAndTimeLong = (dateStr) => {
+  const options = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+    timeZoneName: 'short',
+  };
+  return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
+};
+
+export const testRunsCompletedAtDifference = (a, b) => {
+  return new Date(b.completedAt) - new Date(a.completedAt);
+};
+
 export const sortTestsAndTestRuns = (tests) => {
   const testsCopy = JSON.parse(JSON.stringify(tests));
   testsCopy.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   testsCopy.forEach((test) => {
-    test.runs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    test.runs.sort(testRunsCompletedAtDifference);
   });
   return testsCopy;
+};
+
+export const flagUrls = (runs) => {
+  const urls = [];
+  if (runs.length > 0) {
+    runs.forEach((run) => {
+      if (!urls.includes(run.regionFlagUrl)) {
+        urls.push(run.regionFlagUrl);
+      }
+    });
+  }
+  return urls;
 };

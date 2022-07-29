@@ -25,6 +25,7 @@ function AssertionsInput() {
               Target
             </th>
             <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900" />
+            <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900" />
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">

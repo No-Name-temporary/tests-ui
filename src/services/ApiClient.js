@@ -1,8 +1,5 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
-import getTestRunsResponse from '../fixtures/getTestRuns';
-import getTestsResponse from '../fixtures/getTests';
-import getTestRunResponse from '../fixtures/getTestRun';
 
 const config = require('../config.json');
 
@@ -35,7 +32,6 @@ const apiClient = {
       logError(e);
     }
   },
-  getTestsTemp: async () => getTestsResponse,
   getTest: async (id) => {
     try {
       const { data } = await axios.get(`${URL}/api/tests/${id}`);

@@ -1,10 +1,11 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { GREEN_CHECK_MARK, RED_X } from '../../constants/IconUrls';
+import { formatDateAndTimeLong } from '../../utils/helpers';
 
-function Table({ testRuns }) {
+function TestRunsTable({ testRuns }) {
   return (
-    <div className="mt-8 flex flex-col">
+    <div className="flex flex-col">
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>
@@ -45,6 +46,7 @@ function Table({ testRuns }) {
               <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{testRun.responseStatus}</td>
               <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
                 {testRun.responseTime}
+                {' '}
                 ms
               </td>
               <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
@@ -52,7 +54,7 @@ function Table({ testRuns }) {
                 /
                 {testRun.assertionsTotalCount}
               </td>
-              <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{testRun.completedAt}</td>
+              <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{formatDateAndTimeLong(testRun.completedAt)}</td>
               <Link to={`/tests/${testRun.testId}/runs/${testRun.id}`}>
                 <td className="whitespace-nowrap py-4 px-3 text-sm text-sky-600 hover:text-sky-700">see details</td>
               </Link>
@@ -64,4 +66,4 @@ function Table({ testRuns }) {
   );
 }
 
-export default Table;
+export default TestRunsTable;

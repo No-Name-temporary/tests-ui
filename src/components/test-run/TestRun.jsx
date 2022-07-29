@@ -55,28 +55,35 @@ function TestRun() {
 
   return (
     <div className="max-w-7xl mx-auto px-8">
-      <div className="flex items-center">
-        <div className="w-6 mr-2">
-          <img src={success ? GREEN_CHECK_MARK : RED_X} alt="success" />
+      <div className="mb-6">
+        <div className="flex items-center">
+          <div className="w-6 mr-2">
+            <img src={success ? GREEN_CHECK_MARK : RED_X} alt="success" />
+          </div>
+          <Link to={`/tests/${testId}/runs`}>
+            <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>
+          </Link>
+          <div className="ml-4 text-gray-400">
+            {`${success ? 'Passed' : 'Failed'} on ${formatDateLong(completedAt)} from ${regionDisplayName}`}
+          </div>
+          <div className="w-6 ml-2">
+            <img src={regionFlagUrl} alt={regionName} />
+          </div>
         </div>
-        <Link to={`/tests/${testId}/runs`}>
-          <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>
-        </Link>
-        <div className="ml-4 text-gray-400">
-          {`${success ? 'Passed' : 'Failed'} on ${formatDateLong(completedAt)} from ${regionDisplayName}`}
-        </div>
-        <div className="w-6 ml-2">
-          <img src={regionFlagUrl} alt={regionName} />
+        <div className="pl-8">
+          <div className="text-gray-400">
+            {testHttpMethod.toUpperCase()}
+            {' '}
+            {testUrl}
+          </div>
+          <div className="text-gray-400">
+            {`Created on ${formatDateLong(testCreatedAt)}`}
+          </div>
         </div>
       </div>
-      <div className="text-gray-400">
-        {`Created on ${formatDateLong(testCreatedAt)}`}
-      </div>
-      <div className="flex justify-between items-center mt-4">
-        <div>
-          { `${testHttpMethod} ${testUrl}` }
-        </div>
-        <div className="justify-items-end flex">
+      <div className="justify-between items-center flex">
+        <h2 className="text-xl font-bold text-gray-900">Assertions</h2>
+        <div className="flex justify-end">
           <div>
             {statusCode}
           </div>
@@ -91,7 +98,6 @@ function TestRun() {
             </div>
           </div>
         </div>
-        <div />
       </div>
       <Assertions assertions={assertions} />
 
