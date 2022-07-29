@@ -66,7 +66,7 @@ function LineChart({ testRuns }) {
       .x((i) => xScale(X[i]))
       .y((i) => yScale(Y[i]));
 
-    const svg = d3.create('svg')
+    const svg = d3.select('#chart').append('svg')
       .attr('width', width)
       .attr('height', height)
       .attr('viewBox', [0, 0, width, height])
@@ -153,27 +153,25 @@ function LineChart({ testRuns }) {
       svg.dispatch('input', { bubbles: true });
     }
     console.log('here!');
-    console.log(Object.assign(svg.node(), { value: null }));
-    return Object.assign(svg.node(), { value: null });
+    // console.log(Object.assign(svg.node(), { value: null }));
+    // return Object.assign(svg.node(), { value: null });
   }
 
-  // useEffect(() => {
-  //   createGraph();
-  // });
+  useEffect(() => {
+    createGraph(testRuns, {
+      x: (d) => new Date(d.completedAt),
+      y: (d) => d.responseTime,
+      z: (d) => d.regionDisplayName,
+      width,
+      yLabel: '↑ Response time (ms)',
+      height: 500,
+      color: 'steelblue',
+    });
+  });
 
   if (testRuns.length > 0) {
     return (
-      <div id="chart">
-        { createGraph(testRuns, {
-          x: (d) => new Date(d.completedAt),
-          y: (d) => d.responseTime,
-          z: (d) => d.regionDisplayName,
-          yLabel: '↑ Response time (ms)',
-          width: 700,
-          height: 500,
-          color: 'steelblue',
-        }) }
-      </div>
+      <div id="chart" />
     );
   }
 }
