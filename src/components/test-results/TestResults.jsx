@@ -5,6 +5,7 @@ import apiClient from '../../services/ApiClient';
 import { flagUrls, testRunsCompletedAtDifference } from '../../utils/helpers';
 import TestBanner from '../shared/TestBanner';
 import TestRunsTable from '../shared/TestRunsTable';
+import LineChart from './LineChart';
 import ResultCards from './ResultCards';
 
 const RUNS_TO_DISPLAY = 3;
@@ -67,6 +68,9 @@ function TestResults() {
         </Link>
       </div>
       <TestRunsTable testRuns={mostRecentTestRuns({ testRuns, count: RUNS_TO_DISPLAY })} />
+      <h1 className="mr-5 text-xl font-bold text-gray-900">Performance</h1>
+      <h1 className="mr-5 text-l font-bold text-gray-500">Response time</h1>
+      <LineChart testRuns={testRuns} />
     </div>
   );
 }

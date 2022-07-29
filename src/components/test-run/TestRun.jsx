@@ -60,7 +60,7 @@ function TestRun() {
           <div className="w-6 mr-2">
             <img src={success ? GREEN_CHECK_MARK : RED_X} alt="success" />
           </div>
-          <Link to={`/tests/${testId}/runs`}>
+          <Link to={`/tests/${testId}`}>
             <h1 className="text-3xl font-bold text-gray-900">{testName}</h1>
           </Link>
           <div className="ml-4 text-gray-400">
