@@ -35,60 +35,44 @@ function LineChart({ widthPixels, testRuns }) {
     y,
     z,
     labelFxn,
-    defined, // for gaps in data
-    curve = d3.curveLinear, // method of interpolation between points
-    marginTop = 20, // top margin, in pixels
-    marginRight = 30, // right margin, in pixels
-    marginBottom = 30, // bottom margin, in pixels
-    marginLeft = 40, // left margin, in pixels
-    width = 640, // outer width, in pixels
-    height = 400, // outer height, in pixels
-    xDomain, // [xmin, xmax]
-    xRange = [marginLeft, width - marginRight], // [left, right]
-    yType = d3.scaleLinear, // type of y-scale
-    yDomain, // [ymin, ymax]
-    yRange = [height - marginBottom, marginTop], // [bottom, top]
-    yFormat, // a format specifier string for the y-axis
-    yLabel, // a label for the y-axis
-    zDomain, // array of z-values
-    color, // stroke color of line, as a constant or a function of *z*
-    strokeLinecap, // stroke line cap of line
-    strokeLinejoin, // stroke line join of line
-    strokeWidth = 1.5, // stroke width of line
-    strokeOpacity, // stroke opacity of line
-    mixBlendMode = 'multiply', // blend mode of lines
+    marginTop = 20,
+    marginRight = 30,
+    marginBottom = 30,
+    marginLeft = 40,
+    width = 640,
+    height = 400,
+    color,
+    strokeWidth = 1.5,
+    mixBlendMode = 'multiply',
   } = {}) {
-    // Compute values.
     const X = d3.map(data, x);
     const Y = d3.map(data, y);
     const Z = d3.map(data, z);
     const L = d3.map(data, labelFxn);
     const O = d3.map(data, (d) => d);
-    if (defined === undefined) defined = (d, i) => !isNaN(X[i]) && !isNaN(Y[i]);
+    const defined = (d, i) => !isNaN(X[i]) && !isNaN(Y[i]);
     const D = d3.map(data, defined);
+    const xRange = [marginLeft, width - marginRight];
+    const yRange = [height - marginBottom, marginTop];
 
-    // Compute default domains, and unique the z-domain.
-    if (xDomain === undefined) xDomain = d3.extent(X);
-    if (yDomain === undefined) yDomain = [0, d3.max(Y, (d) => (typeof d === 'string' ? +d : d))];
-    if (zDomain === undefined) zDomain = Z;
+    const xDomain = d3.extent(X);
+    const yDomain = [0, d3.max(Y, (d) => (typeof d === 'string' ? +d : d))];
+    let zDomain = Z;
     zDomain = new d3.InternSet(zDomain);
 
-    // Omit any data not present in the z-domain.
+    // Omit any data without a z value
     const I = d3.range(X.length).filter((i) => zDomain.has(Z[i]));
 
-    // Construct scales and axes.
+    // Construct scales and axes
     const xScale = d3.scaleTime(xDomain, xRange).nice();
-    const yScale = yType(yDomain, yRange);
+    const yScale = d3.scaleLinear(yDomain, yRange);
     const xAxis = d3.axisBottom(xScale).ticks(width / 80).tickSizeOuter(0);
-    const yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
+    const yAxis = d3.axisLeft(yScale).ticks(height / 60);
 
-    // Set data point label
-    const T = L;
-
-    // Construct a line generator.
+    // Construct a line generator
     const line = d3.line()
       .defined((i) => D[i])
-      .curve(curve)
+      .curve(d3.curveLinear)
       .x((i) => xScale(X[i]))
       .y((i) => yScale(Y[i]));
 
@@ -118,16 +102,12 @@ function LineChart({ widthPixels, testRuns }) {
         .attr('x', -marginLeft)
         .attr('y', 10)
         .attr('fill', 'currentColor')
-        .attr('text-anchor', 'start')
-        .text(yLabel));
+        .attr('text-anchor', 'start'));
 
     const path = svg.append('g')
       .attr('fill', 'none')
       .attr('stroke', typeof color === 'string' ? color : null)
-      .attr('stroke-linecap', strokeLinecap)
-      .attr('stroke-linejoin', strokeLinejoin)
       .attr('stroke-width', strokeWidth)
-      .attr('stroke-opacity', strokeOpacity)
       .selectAll('path')
       .data(d3.group(I, (i) => Z[i]))
       .join('path')
@@ -152,7 +132,7 @@ function LineChart({ widthPixels, testRuns }) {
       const i = d3.least(I, (i) => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
       path.style('stroke', ([z]) => (Z[i] === z ? null : '#ddd')).filter(([z]) => Z[i] === z).raise();
       dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
-      if (T) dot.select('text').text(T[i]);
+      if (L) dot.select('text').text(L[i]);
       svg.property('value', O[i]).dispatch('input', { bubbles: true });
     }
 
@@ -170,7 +150,6 @@ function LineChart({ widthPixels, testRuns }) {
   }
 
   useEffect(() => {
-    console.log(testRuns);
     createGraph(testRuns, {
       x: (d) => Date.parse(d.completedAt),
       y: (d) => d.responseTime,
