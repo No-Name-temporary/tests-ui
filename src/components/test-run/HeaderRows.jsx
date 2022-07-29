@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import HeaderRow from './HeaderRow';
 
 function HeaderRows({ headers }) {
@@ -6,7 +7,7 @@ function HeaderRows({ headers }) {
     return (
       <tbody className="divide-y divide-gray-200">
         {headers.map((header, index) => (
-          <HeaderRow header={header} headerNum={index} />
+          <HeaderRow key={uuidv4()} header={header} headerNum={index} />
         ))}
       </tbody>
     );
