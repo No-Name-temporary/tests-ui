@@ -1,14 +1,40 @@
 import React, {
-  useEffect, useLayoutEffect, useRef, useState,
+  useEffect,
 } from 'react';
 import * as d3 from 'd3';
+import { formatDateLong } from '../../utils/helpers';
 
 function LineChart({ widthPixels, testRuns }) {
+  const regionToColor = (regionDisplayName) => ({
+    'N. Virginia': 'rgb(18,31,146)',
+    Ohio: 'rgb(18,31,146)',
+    'N. California': 'rgb(18,31,146)',
+    Oregon: 'rgb(18,31,146)',
+    Montreal: 'rgb(255,0,0)',
+    'São Paulo': 'rgb(0,155,58)',
+    Stockholm: 'rgb(0,106,167)',
+    Paris: 'rgb(0,35,149)',
+    London: 'rgb(200,16,46)',
+    Dublin: 'rgb(22,155,98)',
+    Frankfurt: 'rgb(255,206,0)',
+    Milan: 'rgb(0,146,70)',
+    Bahrain: 'rgb(206,17,38)',
+    'Cape Town': 'rgb(237,41,57)',
+    Singapore: 'rgb(237,41,57)',
+    Tokyo: 'rgb(188,0,45)',
+    Osaka: 'rgb(188,0,45)',
+    'Hong Kong': 'rgb(222,41,16)',
+    Sydney: 'rgb(1,33,105)',
+    Jakarta: 'rgb(255,0,0)',
+    Seoul: 'rgb(0,71,160)',
+    Mumbai: 'rgb(255,153,51)',
+  }[regionDisplayName]);
+
   function createGraph(data, {
-    x = ([x]) => x, // given d in data, returns the (temporal) x-value
-    y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
-    z = () => 1, // given d in data, returns the (categorical) z-value
-    title, // given d in data, returns the title text
+    x,
+    y,
+    z,
+    labelFxn,
     defined, // for gaps in data
     curve = d3.curveLinear, // method of interpolation between points
     marginTop = 20, // top margin, in pixels
@@ -17,7 +43,6 @@ function LineChart({ widthPixels, testRuns }) {
     marginLeft = 40, // left margin, in pixels
     width = 640, // outer width, in pixels
     height = 400, // outer height, in pixels
-    xType = d3.scaleUtc, // type of x-scale
     xDomain, // [xmin, xmax]
     xRange = [marginLeft, width - marginRight], // [left, right]
     yType = d3.scaleLinear, // type of y-scale
@@ -26,18 +51,18 @@ function LineChart({ widthPixels, testRuns }) {
     yFormat, // a format specifier string for the y-axis
     yLabel, // a label for the y-axis
     zDomain, // array of z-values
-    color = 'currentColor', // stroke color of line, as a constant or a function of *z*
+    color, // stroke color of line, as a constant or a function of *z*
     strokeLinecap, // stroke line cap of line
     strokeLinejoin, // stroke line join of line
     strokeWidth = 1.5, // stroke width of line
     strokeOpacity, // stroke opacity of line
     mixBlendMode = 'multiply', // blend mode of lines
-    voronoi, // show a Voronoi overlay? (for debugging)
   } = {}) {
     // Compute values.
     const X = d3.map(data, x);
     const Y = d3.map(data, y);
     const Z = d3.map(data, z);
+    const L = d3.map(data, labelFxn);
     const O = d3.map(data, (d) => d);
     if (defined === undefined) defined = (d, i) => !isNaN(X[i]) && !isNaN(Y[i]);
     const D = d3.map(data, defined);
@@ -52,13 +77,13 @@ function LineChart({ widthPixels, testRuns }) {
     const I = d3.range(X.length).filter((i) => zDomain.has(Z[i]));
 
     // Construct scales and axes.
-    const xScale = xType(xDomain, xRange);
+    const xScale = d3.scaleTime(xDomain, xRange).nice();
     const yScale = yType(yDomain, yRange);
     const xAxis = d3.axisBottom(xScale).ticks(width / 80).tickSizeOuter(0);
     const yAxis = d3.axisLeft(yScale).ticks(height / 60, yFormat);
 
-    // Compute titles.
-    const T = title === undefined ? Z : title === null ? null : d3.map(data, title);
+    // Set data point label
+    const T = L;
 
     // Construct a line generator.
     const line = d3.line()
@@ -78,17 +103,6 @@ function LineChart({ widthPixels, testRuns }) {
       .on('pointerleave', pointerleft)
       .on('touchstart', (event) => event.preventDefault());
 
-    // An optional Voronoi display (for fun).
-    if (voronoi) {
-      svg.append('path')
-        .attr('fill', 'none')
-        .attr('stroke', '#ccc')
-        .attr('d', d3.Delaunay
-          .from(I, (i) => xScale(X[i]), (i) => yScale(Y[i]))
-          .voronoi([0, 0, width, height])
-          .render());
-    }
-
     svg.append('g')
       .attr('transform', `translate(0,${height - marginBottom})`)
       .call(xAxis);
@@ -97,7 +111,7 @@ function LineChart({ widthPixels, testRuns }) {
       .attr('transform', `translate(${marginLeft},0)`)
       .call(yAxis)
       .call((g) => g.select('.domain').remove())
-      .call(voronoi ? () => {} : (g) => g.selectAll('.tick line').clone()
+      .call((g) => g.selectAll('.tick line').clone()
         .attr('x2', width - marginLeft - marginRight)
         .attr('stroke-opacity', 0.1))
       .call((g) => g.append('text')
@@ -129,14 +143,13 @@ function LineChart({ widthPixels, testRuns }) {
 
     dot.append('text')
       .attr('font-family', 'sans-serif')
-      .attr('font-size', 10)
+      .attr('font-size', 13)
       .attr('text-anchor', 'middle')
       .attr('y', -8);
 
     function pointermoved(event) {
       const [xm, ym] = d3.pointer(event);
-      // closest point
-      const i = d3.least(I, (i) => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym));
+      const i = d3.least(I, (i) => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
       path.style('stroke', ([z]) => (Z[i] === z ? null : '#ddd')).filter(([z]) => Z[i] === z).raise();
       dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
       if (T) dot.select('text').text(T[i]);
@@ -157,20 +170,24 @@ function LineChart({ widthPixels, testRuns }) {
   }
 
   useEffect(() => {
+    console.log(testRuns);
     createGraph(testRuns, {
-      x: (d) => new Date(d.completedAt),
+      x: (d) => Date.parse(d.completedAt),
       y: (d) => d.responseTime,
       z: (d) => d.regionDisplayName,
-      yLabel: '↑ Response time (ms)',
+      labelFxn: (d) => `${d.regionDisplayName} | ${d.responseTime} ms | ${formatDateLong(d.completedAt)}`,
       width: widthPixels || 1200,
       height: 500,
-      color: 'steelblue',
+      color: regionToColor,
     });
   });
 
   if (testRuns.length > 0) {
     return (
-      <div id="chart" />
+      <>
+        <p className="text-sm">↑ (ms)</p>
+        <div id="chart" className="pb-20" />
+      </>
     );
   }
 }

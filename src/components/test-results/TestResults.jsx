@@ -7,7 +7,6 @@ import apiClient from '../../services/ApiClient';
 import { flagUrls, testRunsCompletedAtDifference } from '../../utils/helpers';
 import TestBanner from '../shared/TestBanner';
 import TestRunsTable from '../shared/TestRunsTable';
-import Demo from './Demo';
 import LineChart from './LineChart';
 import ResultCards from './ResultCards';
 
