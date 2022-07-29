@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import apiClient from '../../services/ApiClient';
 import { formatDateLong } from '../../utils/helpers';
 import Button from './Button';
 
@@ -20,6 +21,10 @@ function TestBanner({
     return '';
   };
 
+  const handleRunNowClick = (testId) => {
+    apiClient.runTestNow(testId);
+  };
+
   return (
     <div className="mb-6">
       <div className="flex justify-between items-center">
@@ -36,7 +41,7 @@ function TestBanner({
             <Button message="Edit" />
           </div>
           <div className="ml-2">
-            <Button message="Run now" />
+            <Button onClick={() => handleRunNowClick(testData.id)} message="Run now" />
           </div>
         </div>
       </div>

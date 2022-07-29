@@ -3,8 +3,22 @@ import { Link } from 'react-router-dom';
 import {
   GARBAGE_CAN, GREEN_CHECK_MARK, LIGHTNING, PENCIL, RED_X,
 } from '../../constants/IconUrls';
+import apiClient from '../../services/ApiClient';
 
 function TestRow({ test }) {
+  const reloadPage = () => {
+    window.location.reload();
+  };
+
+  const handleDeleteTest = async (testId) => {
+    await apiClient.deleteTest(testId);
+    reloadPage();
+  };
+
+  const handleRunTest = async (testId) => {
+    await apiClient.runTestNow(testId);
+  };
+
   return (
     <tr>
       <Link to={`/tests/${test.id}`}>
@@ -32,13 +46,14 @@ function TestRow({ test }) {
         mins
       </td>
       <td>
-        <button type="button" className="pl-2">
+        <button onClick={() => handleDeleteTest(test.id)} type="button" className="pl-2">
           <img
             className="h-6 w-auto"
             src={GARBAGE_CAN}
             alt="delete"
           />
         </button>
+
       </td>
       <td>
         <button type="button" className="pl-2">
@@ -50,7 +65,7 @@ function TestRow({ test }) {
         </button>
       </td>
       <td>
-        <button type="button" className="pl-2">
+        <button onClick={() => handleRunTest(test.id)} type="button" className="pl-2">
           <img
             className="h-6 w-auto"
             src={LIGHTNING}

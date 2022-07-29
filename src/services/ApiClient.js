@@ -40,6 +40,14 @@ const apiClient = {
       logError(e);
     }
   },
+  deleteTest: async (id) => {
+    try {
+      const { data } = await axios.delete(`${URL}/api/tests/${id}`);
+      return data;
+    } catch (e) {
+      logError(e);
+    }
+  },
   getSideload: async () => {
     try {
       const { data } = await axios.get(`${URL}/api/sideload`);
@@ -48,9 +56,9 @@ const apiClient = {
       logError(e);
     }
   },
-  runTestNow: async () => {
+  runTestNow: async (testId) => {
     try {
-      const { data } = await axios.get(`${URL}/api/test/run`);
+      const { data } = await axios.post(`${URL}/api/tests/${testId}/run`);
       return data;
     } catch (e) {
       logError(e);
