@@ -5,6 +5,7 @@ import apiClient from '../../services/ApiClient';
 import { formatDateLong } from '../../utils/helpers';
 import Assertions from './Assertions';
 import Headers from './Headers';
+import Body from './Body';
 
 function TestRun() {
   const { testId, runId } = useParams();
@@ -101,6 +102,10 @@ function TestRun() {
         </div>
       </div>
       <Assertions assertions={assertions} />
+      <div className="justify-between items-center flex mt-6">
+        <h2 className="text-xl font-bold text-gray-900">Response Body</h2>
+      </div>
+      <Body body={responseBody} />
       <div className="justify-between items-center flex mt-6">
         <h2 className="text-xl font-bold text-gray-900">Response Headers</h2>
       </div>
