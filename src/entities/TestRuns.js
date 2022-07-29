@@ -17,7 +17,6 @@ class TestRuns {
     this._runs.forEach((run) => {
       this._responseTimes.push(run.responseTime);
       if (Number(run.responseCode) > 400) {
-        console.log('run: ', run);
         this._runsWithFailedRequests += 1;
       }
       if (!run.success) {
