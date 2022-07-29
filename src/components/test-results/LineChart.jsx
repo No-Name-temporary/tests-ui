@@ -6,6 +6,7 @@ function LineChart({ testRuns }) {
     const data = [];
     testRuns.forEach((run) => {
       const runDataForChart = {
+        region: run.region,
         date: new Date(run.completedAt),
         value: run.responseTime,
       };
@@ -37,26 +38,28 @@ function LineChart({ testRuns }) {
     svg.append('g')
       .call(d3.axisLeft(y));
 
-    // // add the Line
-    // const valueLine = d3.line()
-    //   .x((d) => x(d.date))
-    //   .y((d) => y(d.value));
-    // svg.append('path')
-    //   .data([data])
-    //   .attr('class', 'line')
-    //   .attr('fill', 'none')
-    //   .attr('stroke', 'steelblue')
-    //   .attr('stroke-width', 1.5)
-    //   .attr('d', valueLine);
+    // add the Line
+    const valueLine = d3.line()
+      .x((d) => x(d.date))
+      .y((d) => y(d.value));
+    svg.append('path')
+      .data([data])
+      .attr('class', 'line')
+      .attr('fill', 'none')
+      .attr('stroke', 'steelblue')
+      .attr('stroke-width', 1.5)
+      .attr('d', valueLine);
   };
 
   useEffect(() => {
     createGraph();
   });
 
-  return (
-    <div id="chart" />
-  );
+  if (testRuns.length > 0) {
+    return (
+      <div id="chart" />
+    );
+  }
 }
 
 export default LineChart;
