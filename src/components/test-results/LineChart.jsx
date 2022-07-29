@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect, useLayoutEffect, useRef, useState,
+} from 'react';
 import * as d3 from 'd3';
 
-function LineChart({ testRuns }) {
-  console.log(testRuns);
+function LineChart({ widthPixels, testRuns }) {
   function createGraph(data, {
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
     y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
@@ -134,7 +135,8 @@ function LineChart({ testRuns }) {
 
     function pointermoved(event) {
       const [xm, ym] = d3.pointer(event);
-      const i = d3.least(I, (i) => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym)); // closest point
+      // closest point
+      const i = d3.least(I, (i) => Math.hypot(xScale(X[i]) - xm, yScale(Y[i]) - ym));
       path.style('stroke', ([z]) => (Z[i] === z ? null : '#ddd')).filter(([z]) => Z[i] === z).raise();
       dot.attr('transform', `translate(${xScale(X[i])},${yScale(Y[i])})`);
       if (T) dot.select('text').text(T[i]);
@@ -152,9 +154,6 @@ function LineChart({ testRuns }) {
       svg.node().value = null;
       svg.dispatch('input', { bubbles: true });
     }
-    console.log('here!');
-    // console.log(Object.assign(svg.node(), { value: null }));
-    // return Object.assign(svg.node(), { value: null });
   }
 
   useEffect(() => {
@@ -162,8 +161,8 @@ function LineChart({ testRuns }) {
       x: (d) => new Date(d.completedAt),
       y: (d) => d.responseTime,
       z: (d) => d.regionDisplayName,
-      width,
       yLabel: '↑ Response time (ms)',
+      width: widthPixels || 1200,
       height: 500,
       color: 'steelblue',
     });

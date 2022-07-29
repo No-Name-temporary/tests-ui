@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect, useLayoutEffect, useRef, useState,
+} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import TestRuns from '../../entities/TestRuns';
 import apiClient from '../../services/ApiClient';
 import { flagUrls, testRunsCompletedAtDifference } from '../../utils/helpers';
 import TestBanner from '../shared/TestBanner';
 import TestRunsTable from '../shared/TestRunsTable';
+import Demo from './Demo';
 import LineChart from './LineChart';
 import ResultCards from './ResultCards';
 
 const RUNS_TO_DISPLAY = 3;
 
 function TestResults() {
+  const ref = useRef(null);
   const testId = useParams().id;
   const [testRuns, setTestRuns] = useState([]);
   const [testBannerData, setTestBannerData] = useState({});
+  const [width, setWidth] = useState(1200);
+
+  useLayoutEffect(() => {
+    setWidth(ref?.current?.offsetWidth);
+  }, []);
 
   const addAssertionCountsAndSetRuns = (runs) => {
     const shapedRuns = runs.map((run) => {
@@ -69,8 +78,8 @@ function TestResults() {
       </div>
       <TestRunsTable testRuns={mostRecentTestRuns({ testRuns, count: RUNS_TO_DISPLAY })} />
       <h1 className="mr-5 text-xl font-bold text-gray-900">Performance</h1>
-      <h1 className="mr-5 text-l font-bold text-gray-500">Response time</h1>
-      <LineChart testRuns={testRuns} />
+      <h1 className="mb-4 mr-5 text-l font-semibold text-gray-500">Response time</h1>
+      <LineChart widthPixels={width} testRuns={testRuns} />
     </div>
   );
 }
