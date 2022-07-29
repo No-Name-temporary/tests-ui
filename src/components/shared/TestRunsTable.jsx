@@ -1,6 +1,7 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
 import { GREEN_CHECK_MARK, RED_X } from '../../constants/IconUrls';
+import { formatDateAndTimeLong } from '../../utils/helpers';
 
 function TestRunsTable({ testRuns }) {
   return (
@@ -52,7 +53,7 @@ function TestRunsTable({ testRuns }) {
                 /
                 {testRun.assertionsTotalCount}
               </td>
-              <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{testRun.completedAt}</td>
+              <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{formatDateAndTimeLong(testRun.completedAt)}</td>
               <Link to={`/tests/${testRun.testId}/runs/${testRun.id}`}>
                 <td className="whitespace-nowrap py-4 px-3 text-sm text-sky-600 hover:text-sky-700">see details</td>
               </Link>

@@ -7,7 +7,7 @@ function ResultCards({ summaryData }) {
       <div className="flex mb-8">
         <div className="mr-8">
           <h3 className="text-grey-900 font-semibold text-lg">Monitoring results</h3>
-          <ResultCard label="Availability" value={`${summaryData.availability}%`} />
+          <ResultCard label="Availability" value={`${Math.round(summaryData.availability * 100) / 100}%`} />
         </div>
         <div className="mr-8">
           <h3 className="text-grey-900 font-semibold text-lg">Alerts</h3>

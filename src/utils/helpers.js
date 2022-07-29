@@ -19,8 +19,17 @@ export const formatDateLong = (dateStr) => {
   return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
 };
 
-export const formatDatetimeLong = (dateStr) => {
-  const options = { month: 'short', day: 'numeric', year: 'numeric' };
+export const formatDateAndTimeLong = (dateStr) => {
+  const options = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+    timeZoneName: 'short',
+  };
   return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
 };
 
