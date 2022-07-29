@@ -4,7 +4,17 @@ import theme from '../../constants/jsonTreeTheme';
 
 function Body({ body }) {
   return (
-    <JSONTree data={body} theme={theme} invertTheme={false} />
+    <JSONTree
+      data={body}
+      theme={{
+        extend: theme,
+        tree: {
+          borderRadius: '6px',
+          padding: '1em',
+        },
+      }}
+      invertTheme={false}
+    />
   );
 }
 
