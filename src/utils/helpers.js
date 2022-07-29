@@ -1,4 +1,6 @@
 /* eslint-disable arrow-body-style */
+const CAMEL_CASE_REGEX = /^([a-z_]+)$/;
+
 export const snakeToCamel = (str) => {
   return str.toLowerCase().replace(/([-_][a-z])/g, (group) => {
     return group
@@ -14,29 +16,8 @@ export const namesToCamelCase = (data) => {
   });
 };
 
-export const formatDateLong = (dateStr) => {
-  const options = { month: 'short', day: 'numeric', year: 'numeric' };
-  return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
-};
-
-export const formatDateAndTimeLong = (dateStr) => {
-  const options = {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    hour12: false,
-    timeZoneName: 'short',
-  };
-  return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
-};
-
-const camelCaseRegex = /^([a-z_]+)$/;
-
 const isCamelCase = (value) => {
-  return (typeof value === 'string' && camelCaseRegex.test(value));
+  return (typeof value === 'string' && CAMEL_CASE_REGEX.test(value));
 };
 
 export const allKeysToCamelCase = (data) => {
@@ -59,6 +40,25 @@ export const allKeysToCamelCase = (data) => {
 export const camelCaseToDisplayName = (str) => {
   const newStr = str.replace(/[A-Z]/g, (letter) => ` ${letter.toLowerCase()}`);
   return newStr[0].toUpperCase() + newStr.slice(1);
+};
+
+export const formatDateLong = (dateStr) => {
+  const options = { month: 'short', day: 'numeric', year: 'numeric' };
+  return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
+};
+
+export const formatDateAndTimeLong = (dateStr) => {
+  const options = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+    timeZoneName: 'short',
+  };
+  return new Date(Date.parse(dateStr, 'YYYY-MM-DD')).toLocaleDateString('en-us', options);
 };
 
 export const testRunsCompletedAtDifference = (a, b) => {

@@ -41,7 +41,7 @@ function TestBanner({
         </div>
       </div>
       <div className="text-gray-400">
-        {testData.method}
+        {testData.method ? testData.method.toUpperCase() : ''}
         {' '}
         {testData.url}
       </div>

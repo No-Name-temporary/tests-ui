@@ -3,7 +3,7 @@ import AssertionRows from './AssertionRows';
 
 function Assertions({ assertions }) {
   return (
-    <table className="mt-5 min-w-full divide-y divide-gray-300">
+    <table className="min-w-full divide-y divide-gray-300">
       <thead>
         <tr>
           <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900" />

@@ -25,7 +25,10 @@ function AssertionRow({
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {target}
+        {' '}
+        {type === 'responseTime' ? 'ms' : ''}
       </td>
+      <td />
       <td>
         <button type="button" className="pl-2" onClick={handleDeleteAssertion}>
           <img

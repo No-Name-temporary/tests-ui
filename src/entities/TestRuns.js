@@ -9,13 +9,18 @@ class TestRuns {
     this._responseTimes = [];
   }
 
+  sortResponseTimesAscending() {
+    this._responseTimes.sort((t1, t2) => t1 - t2);
+  }
+
   percentileResponseTime(p) {
+    this.sortResponseTimesAscending();
     return percentile(p, this._responseTimes);
   }
 
   process() {
     this._runs.forEach((run) => {
-      this._responseTimes.push(run.responseTime);
+      this._responseTimes.push(Number(run.responseTime));
       if (Number(run.responseCode) > 400) {
         this._runsWithFailedRequests += 1;
       }

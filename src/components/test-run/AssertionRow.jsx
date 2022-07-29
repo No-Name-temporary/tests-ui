@@ -25,9 +25,13 @@ function AssertionRow({ assertion }) {
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {assertion.expectedValue}
+        {' '}
+        {assertion.type === 'responseTime' ? 'ms' : ''}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         {assertion.actualValue}
+        {' '}
+        {assertion.type === 'responseTime' ? 'ms' : ''}
       </td>
     </tr>
   );

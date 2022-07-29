@@ -67,6 +67,9 @@ function NewAssertionRow() {
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
         <TextInput onChange={handleTargetChange} value={target} type="text" />
       </td>
+      <td className="text-sm text-gray-500">
+        { type === 'responseTime' ? 'ms' : ''}
+      </td>
       <td>
         <button type="button" onClick={handleNewAssertionSubmit}>Add</button>
       </td>
