@@ -4,6 +4,7 @@ import { GREEN_CHECK_MARK, RED_X, STOPWATCH } from '../../constants/IconUrls';
 import apiClient from '../../services/ApiClient';
 import { formatDateLong } from '../../utils/helpers';
 import Assertions from './Assertions';
+import Headers from './Headers';
 
 function TestRun() {
   const { testId, runId } = useParams();
@@ -100,7 +101,10 @@ function TestRun() {
         </div>
       </div>
       <Assertions assertions={assertions} />
-
+      <div className="justify-between items-center flex mt-6">
+        <h2 className="text-xl font-bold text-gray-900">Response Headers</h2>
+      </div>
+      <Headers headers={responseHeaders} />
     </div>
   );
 }
