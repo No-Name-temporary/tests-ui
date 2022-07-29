@@ -1,12 +1,8 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
-import getTestRunsResponse from '../fixtures/getTestRuns';
 import getTestsResponse from '../fixtures/getTests';
-import getTestRunResponse from '../fixtures/getTestRun';
 
-const config = require('../config.json');
-
-const URL = config.testsCrudUrl;
+const baseUrl = '/api';
 
 function logError(errorResponse) {
   const { response } = errorResponse;
@@ -21,7 +17,7 @@ function logError(errorResponse) {
 const apiClient = {
   createTest: async (test) => {
     try {
-      const { data } = await axios.post(`${URL}/api/tests`, test);
+      const { data } = await axios.post(`${baseUrl}/tests`, test);
       return data;
     } catch (e) {
       logError(e);
@@ -29,7 +25,7 @@ const apiClient = {
   },
   getTests: async () => {
     try {
-      const { data } = await axios.get(`${URL}/api/tests`);
+      const { data } = await axios.get(`${baseUrl}/tests`);
       return data;
     } catch (e) {
       logError(e);
@@ -38,7 +34,7 @@ const apiClient = {
   getTestsTemp: async () => getTestsResponse,
   getTest: async (id) => {
     try {
-      const { data } = await axios.get(`${URL}/api/tests/${id}`);
+      const { data } = await axios.get(`${baseUrl}/tests/${id}`);
       return data;
     } catch (e) {
       logError(e);
@@ -46,7 +42,7 @@ const apiClient = {
   },
   getSideload: async () => {
     try {
-      const { data } = await axios.get(`${URL}/api/sideload`);
+      const { data } = await axios.get(`${baseUrl}/sideload`);
       return data;
     } catch (e) {
       logError(e);
@@ -54,7 +50,7 @@ const apiClient = {
   },
   runTestNow: async () => {
     try {
-      const { data } = await axios.get(`${URL}/api/test/run`);
+      const { data } = await axios.get(`${baseUrl}/test/run`);
       return data;
     } catch (e) {
       logError(e);
@@ -62,7 +58,7 @@ const apiClient = {
   },
   getTestRuns: async ({ testId }) => {
     try {
-      const { data } = await axios.get(`${URL}/api/tests/${testId}/runs`);
+      const { data } = await axios.get(`${baseUrl}/tests/${testId}/runs`);
       return data;
     } catch (e) {
       logError(e);
@@ -70,7 +66,7 @@ const apiClient = {
   },
   getTestRun: async ({ testId, runId }) => {
     try {
-      const { data } = await axios.get(`${URL}/api/tests/${testId}/runs/${runId}`);
+      const { data } = await axios.get(`${baseUrl}/tests/${testId}/runs/${runId}`);
       return data;
     } catch (e) {
       logError(e);
