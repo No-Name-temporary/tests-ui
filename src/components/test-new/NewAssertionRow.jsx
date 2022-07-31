@@ -48,7 +48,7 @@ function NewAssertionRow() {
   };
 
   const propertyInput = () => {
-    if (['body', 'headers'].includes(type)) {
+    if (['body', 'header'].includes(type)) {
       return <TextInput onChange={handlePropertyChange} value={property} type="text" />;
     }
   };
