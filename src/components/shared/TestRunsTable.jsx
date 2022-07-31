@@ -5,7 +5,7 @@ import { formatDateAndTimeLong } from '../../utils/helpers';
 
 function TestRunsTable({ testRuns }) {
   return (
-    <div className="flex flex-col">
+    <div className="mb-6 flex flex-col">
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>
