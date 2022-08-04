@@ -56,6 +56,18 @@ export const newtestSlice = createSlice({
     deleteAlertChannel: (state, action) => {
       state.alertChannels = state.alertChannels.filter((a) => a.id !== action.payload);
     },
+    addHeader: (state, action) => {
+      const headersCopy = JSON.parse(JSON.stringify(state.httpRequest.headers));
+      headersCopy[action.payload.headerKey] = action.payload.headerValue;
+      state.httpRequest.headers = headersCopy;
+    },
+    deleteHeader: (state, action) => {
+      const headersCopy = JSON.parse(JSON.stringify(state.httpRequest.headers));
+      const filteredHeaders = Object.fromEntries(
+        Object.entries(headersCopy).filter(([key]) => key !== action.payload),
+      );
+      state.httpRequest.headers = filteredHeaders;
+    },
   },
 });
 
@@ -70,6 +82,8 @@ export const {
   setMinutesBetweenRuns,
   addAlertChannel,
   deleteAlertChannel,
+  addHeader,
+  deleteHeader,
 } = newtestSlice.actions;
 
 export default newtestSlice.reducer;

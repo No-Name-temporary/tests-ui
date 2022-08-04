@@ -1,4 +1,5 @@
 import { React } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import HeaderRow from './HeaderRow';
 
 function HeaderRows({ headers }) {
@@ -7,8 +8,9 @@ function HeaderRows({ headers }) {
       <>
         {headers.map((header) => (
           <HeaderRow
-            headerKey={header.key}
-            headerValue={header.value}
+            key={uuidv4()}
+            headerKey={header[0]}
+            headerValue={header[1]}
           />
         ))}
       </>

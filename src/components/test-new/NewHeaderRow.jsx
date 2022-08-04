@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import TextInput from '../shared/TextInput';
 import { addHeader } from '../../features/newtest/newtest';
 
@@ -21,15 +20,12 @@ function NewHeaderRow() {
     setHeaderKey('');
     setHeaderValue('');
 
-    const newAlertChannel = {
-      id: uuidv4(), // for assertion lookup and deletion
-      type,
-      destination,
-      alertsOnRecovery: false,
-      alertsOnFailure: true,
+    const newHeader = {
+      headerKey,
+      headerValue,
     };
 
-    dispatch(addAlertChannel(newAlertChannel));
+    dispatch(addHeader(newHeader));
   };
 
   return (
@@ -39,7 +35,7 @@ function NewHeaderRow() {
           onChange={handleNewHeaderKey}
           value={headerKey}
           type="text"
-          placeholder="key placeholder"
+          placeholder="X-My-Header"
         />
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
@@ -47,7 +43,7 @@ function NewHeaderRow() {
           onChange={handleNewHeaderValue}
           value={headerValue}
           type="text"
-          placeholder="value placeholder"
+          placeholder="Value"
         />
       </td>
       <td>
