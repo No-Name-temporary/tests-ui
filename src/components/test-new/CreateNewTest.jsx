@@ -12,6 +12,7 @@ import AlertChannelsInput from './AlertChannelsInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
 import apiClient from '../../services/ApiClient';
+import HeadersInput from './HeadersInput';
 
 function CreateNewTest() {
   const dispatch = useDispatch();
@@ -73,6 +74,7 @@ function CreateNewTest() {
       </div>
 
       <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
+      <HeadersInput />
       <AssertionsInput />
       <LocationsInput />
       <FrequencyInput />
