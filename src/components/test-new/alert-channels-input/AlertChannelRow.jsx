@@ -2,6 +2,7 @@ import { React } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteAlertChannel } from '../../../features/newtest/newtest';
 import { camelCaseToDisplayName } from '../../../utils/helpers';
+import Garbage from '../../../assets/images/icons/garbage_can_slate.png';
 
 function AlertChannelRow({ id, type, destination }) {
   const dispatch = useDispatch();
@@ -11,20 +12,22 @@ function AlertChannelRow({ id, type, destination }) {
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {camelCaseToDisplayName(type)}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {destination}
       </td>
       <td>
-        <button type="button" className="pl-2" onClick={handleDeleteAlertChannel}>
-          <img
-            className="h-6 w-auto"
-            src="https://img.icons8.com/external-others-iconmarket/344/external-delete-essential-others-iconmarket-3.png"
-            alt="NoName"
-          />
-        </button>
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" className="pl-2" onClick={handleDeleteAlertChannel}>
+            <img
+              className="h-6 w-auto"
+              src={Garbage}
+              alt="NoName"
+            />
+          </button>
+        </div>
       </td>
     </tr>
 

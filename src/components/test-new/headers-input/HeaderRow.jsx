@@ -18,13 +18,15 @@ function HeaderRow({ headerKey, headerValue }) {
         {headerValue}
       </td>
       <td>
-        <button type="button" className="pl-2" onClick={handleDeleteHeader}>
-          <img
-            className="h-6 w-auto"
-            src={Garbage}
-            alt="NoName"
-          />
-        </button>
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" className="pl-2" onClick={handleDeleteHeader}>
+            <img
+              className="h-6 w-auto"
+              src={Garbage}
+              alt="NoName"
+            />
+          </button>
+        </div>
       </td>
     </tr>
   );

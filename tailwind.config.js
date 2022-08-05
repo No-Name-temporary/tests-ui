@@ -51,7 +51,7 @@ module.exports = {
         // sky blue
         700: '#c4ddff',
         600: '#f0a824',
-        200: '#c4ddff',
+        200: '#dae6f7',
       },
       tertiary: {
         900: '#fafafa',

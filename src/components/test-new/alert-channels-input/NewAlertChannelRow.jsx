@@ -59,8 +59,10 @@ function NewAlertChannelRow() {
           placeholder="webhook URL or e-mail address"
         />
       </td>
-      <td className="text-label-input">
-        <button type="button" onClick={handleNewAlertChannelSubmit}>Add</button>
+      <td className="text-heading-h4">
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" onClick={handleNewAlertChannelSubmit}>Add</button>
+        </div>
       </td>
     </tr>
   );

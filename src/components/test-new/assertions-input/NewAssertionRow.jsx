@@ -71,7 +71,9 @@ function NewAssertionRow() {
         { type === 'responseTime' ? 'ms' : ''}
       </td>
       <td className="text-heading-h4">
-        <button type="button" onClick={handleNewAssertionSubmit}>Add</button>
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" onClick={handleNewAssertionSubmit}>Add</button>
+        </div>
       </td>
     </tr>
   );
