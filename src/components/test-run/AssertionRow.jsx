@@ -14,21 +14,21 @@ function AssertionRow({ assertion }) {
           alt="result"
         />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {camelCaseToDisplayName(assertion.type)}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {assertion.property}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {camelCaseToDisplayName(assertion.comparison)}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {assertion.expectedValue}
         {' '}
         {assertion.type === 'responseTime' ? 'ms' : ''}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {assertion.actualValue}
         {' '}
         {assertion.type === 'responseTime' ? 'ms' : ''}

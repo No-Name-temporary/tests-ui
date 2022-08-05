@@ -5,7 +5,7 @@ import HeaderRow from './HeaderRow';
 function HeaderRows({ headers }) {
   if (headers) {
     return (
-      <tbody className="divide-y divide-primary-200">
+      <tbody className="divide-y divide-slate-200">
         {headers.map((header, index) => (
           <HeaderRow key={uuidv4()} header={header} headerNum={index} />
         ))}

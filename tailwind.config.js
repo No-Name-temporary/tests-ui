@@ -49,6 +49,7 @@ module.exports = {
         // 200: '#ddd6fe',
 
         // sky blue
+        800: '#5c9ef7',
         700: '#c4ddff',
         600: '#f0a824',
         200: '#dae6f7',
@@ -62,6 +63,7 @@ module.exports = {
         h2: '#011e6f',
         h3: '#011e6f',
         h4: '#1e293b',
+        h5: '#64748b',
       },
       input: {
         placeholder: '#64748b',

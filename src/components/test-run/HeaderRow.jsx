@@ -1,7 +1,7 @@
 import React from 'react';
 
 function HeaderRow({ header, headerNum }) {
-  const className = 'whitespace-nowrap py-2 px-2 text-sm text-primary-700';
+  const className = 'whitespace-nowrap py-2 px-2 text-sm text-table-value';
   return (
     <tr>
 

@@ -45,12 +45,12 @@ function TestBanner({
           </div>
         </div>
       </div>
-      <div className="text-primary-700">
+      <div className="text-heading-h5">
         {testData.method ? testData.method.toUpperCase() : ''}
         {' '}
         {testData.url}
       </div>
-      <div className="text-primary-700">
+      <div className="text-heading-h5">
         <span className="font-bold">Created on:</span>
         {' '}
         { formatDateLong(testData.createdAt) }
