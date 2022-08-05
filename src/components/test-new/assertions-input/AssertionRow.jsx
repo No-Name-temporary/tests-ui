@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteAssertion } from '../../features/newtest/newtest';
-import { camelCaseToDisplayName } from '../../utils/helpers';
+import { deleteAssertion } from '../../../features/newtest/newtest';
+import { camelCaseToDisplayName } from '../../../utils/helpers';
 
 function AssertionRow({
   id, type, property, comparison, target,

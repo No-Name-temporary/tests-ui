@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteHeader } from '../../features/newtest/newtest';
+import { deleteHeader } from '../../../features/newtest/newtest';
 
 function HeaderRow({ headerKey, headerValue }) {
   const dispatch = useDispatch();

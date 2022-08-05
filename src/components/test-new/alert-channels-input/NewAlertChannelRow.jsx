@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import TextSelect from '../shared/TextSelect';
-import TextInput from '../shared/TextInput';
-import { addAlertChannel } from '../../features/newtest/newtest';
+import TextSelect from '../../shared/TextSelect';
+import TextInput from '../../shared/TextInput';
+import { addAlertChannel } from '../../../features/newtest/newtest';
 
 function NewAlertChannelRow() {
   const dispatch = useDispatch();

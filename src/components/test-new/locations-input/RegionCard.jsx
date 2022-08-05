@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { toggleLocation } from '../../features/newtest/newtest';
+import { toggleLocation } from '../../../features/newtest/newtest';
 
 function RegionCard({ region }) {
   const dispatch = useDispatch();

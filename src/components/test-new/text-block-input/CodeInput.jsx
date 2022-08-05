@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addRequestBody } from '../../features/newtest/newtest';
+import { addRequestBody } from '../../../features/newtest/newtest';
 
 const SPACES_FOR_TAB = 2;
 const SAMPLE_JSON = `{

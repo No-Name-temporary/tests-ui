@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import TextInput from '../shared/TextInput';
-import { addHeader } from '../../features/newtest/newtest';
+import TextInput from '../../shared/TextInput';
+import { addHeader } from '../../../features/newtest/newtest';
 
 function NewHeaderRow() {
   const dispatch = useDispatch();

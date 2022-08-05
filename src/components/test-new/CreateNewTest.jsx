@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import TextSelect from '../shared/TextSelect';
 import TextInput from '../shared/TextInput';
-import AssertionsInput from './AssertionsInput';
-import LocationsInput from './LocationsInput';
-import TextBlockInput from './TextBlockInput';
+import AssertionsInput from './assertions-input/AssertionsInput';
+import LocationsInput from './locations-input/LocationsInput';
+import TextBlockInput from './text-block-input/TextBlockInput';
 import { fetchSideloads } from '../../features/sideloads/sideloads';
-import FrequencyInput from './FrequencyInput';
-import AlertChannelsInput from './AlertChannelsInput';
+import FrequencyInput from './frequency-input/FrequencyInput';
+import AlertChannelsInput from './alert-channels-input/AlertChannelsInput';
 import Button from '../shared/Button';
 import { addMethod, addTitle, addUrl } from '../../features/newtest/newtest';
 import apiClient from '../../services/ApiClient';
-import HeadersInput from './HeadersInput';
+import HeadersInput from './headers-input/HeadersInput';
 
 function CreateNewTest() {
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ function CreateNewTest() {
           <h1 className="text-2xl font-bold text-heading-h1">Create a test</h1>
         </div>
       </div>
-      <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My new test" type="text" name="test_name" id="test_name" />
+      <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My-new-test" type="text" name="test_name" id="test_name" />
 
       <h2 className="text-1xl font-bold text-heading-h2 pt-6">HTTP request</h2>
 
@@ -70,7 +70,7 @@ function CreateNewTest() {
           <TextSelect onChange={handleSubmitNewMethod} label="Method" options={httpMethods} />
         </div>
         <div className="flex-1 pl-4">
-          <TextInput onChange={handleUrlChange} onBlur={handleSubmitNewUrl} label="URL" placeholder="My new test!" type="text" name="test_name" id="test_name" />
+          <TextInput onChange={handleUrlChange} onBlur={handleSubmitNewUrl} label="URL" placeholder="https://..." type="text" name="test_name" id="test_name" />
         </div>
       </div>
 

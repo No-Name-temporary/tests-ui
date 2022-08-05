@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import TextSelect from '../shared/TextSelect';
-import TextInput from '../shared/TextInput';
-import { addAssertion } from '../../features/newtest/newtest';
+import TextSelect from '../../shared/TextSelect';
+import TextInput from '../../shared/TextInput';
+import { addAssertion } from '../../../features/newtest/newtest';
 
 function NewAssertionRow() {
   const dispatch = useDispatch();

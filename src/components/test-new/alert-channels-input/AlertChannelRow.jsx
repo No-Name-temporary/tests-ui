@@ -1,7 +1,7 @@
 import { React } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteAlertChannel } from '../../features/newtest/newtest';
-import { camelCaseToDisplayName } from '../../utils/helpers';
+import { deleteAlertChannel } from '../../../features/newtest/newtest';
+import { camelCaseToDisplayName } from '../../../utils/helpers';
 
 function AlertChannelRow({ id, type, destination }) {
   const dispatch = useDispatch();
