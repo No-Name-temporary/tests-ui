@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import TextInput from '../shared/TextInput';
-import { addHeader } from '../../features/newtest/newtest';
+import TextInput from '../../shared/TextInput';
+import { addHeader } from '../../../features/newtest/newtest';
 
 function NewHeaderRow() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function NewHeaderRow() {
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         <TextInput
           onChange={handleNewHeaderKey}
           value={headerKey}
@@ -38,7 +38,7 @@ function NewHeaderRow() {
           placeholder="X-My-Header"
         />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         <TextInput
           onChange={handleNewHeaderValue}
           value={headerValue}
@@ -46,8 +46,10 @@ function NewHeaderRow() {
           placeholder="Value"
         />
       </td>
-      <td>
-        <button type="button" onClick={handleNewHeaderSubmit}>Add</button>
+      <td className="pl-2 text-heading-h4">
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" onClick={handleNewHeaderSubmit}>Add</button>
+        </div>
       </td>
     </tr>
   );

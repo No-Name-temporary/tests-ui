@@ -70,14 +70,14 @@ function TestResults() {
       />
       <ResultCards summaryData={processTestRunDataSummary(testRuns)} />
       <div className="flex items-center mb-1">
-        <h1 className="mr-5 text-xl font-bold text-gray-900">{`Last ${RUNS_TO_DISPLAY} results`}</h1>
+        <h1 className="mr-5 text-xl font-bold text-primary-900">{`Last ${RUNS_TO_DISPLAY} results`}</h1>
         <Link to={`/tests/${testId}/runs`}>
-          <div className="text-sky-600 hover:text-sky-700">See all test runs</div>
+          <div className="text-secondary-800 hover:text-secondary-700">See all test runs</div>
         </Link>
       </div>
       <TestRunsTable testRuns={mostRecentTestRuns({ testRuns, count: RUNS_TO_DISPLAY })} />
-      <h1 className="mr-5 text-xl font-bold text-gray-900">Performance</h1>
-      <h1 className="mb-4 mr-5 text-l font-semibold text-gray-500">Response time</h1>
+      <h3 className="mr-5 text-xl font-bold text-heading-h3">Performance</h3>
+      <h5 className="mb-4 mr-5 text-l font-semibold text-heading-h5">Response time</h5>
       <LineChart widthPixels={width} testRuns={testRuns} />
     </div>
   );

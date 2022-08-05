@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import TextSelect from '../shared/TextSelect';
-import TextInput from '../shared/TextInput';
-import { addAlertChannel } from '../../features/newtest/newtest';
+import TextSelect from '../../shared/TextSelect';
+import TextInput from '../../shared/TextInput';
+import { addAlertChannel } from '../../../features/newtest/newtest';
 
 function NewAlertChannelRow() {
   const dispatch = useDispatch();
@@ -48,10 +48,10 @@ function NewAlertChannelRow() {
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         <TextSelect onChange={handleNewType} options={alertChannelTypes} />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         <TextInput
           onChange={handleNewDestination}
           value={destination}
@@ -59,8 +59,10 @@ function NewAlertChannelRow() {
           placeholder="webhook URL or e-mail address"
         />
       </td>
-      <td>
-        <button type="button" onClick={handleNewAlertChannelSubmit}>Add</button>
+      <td className="text-heading-h4">
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" onClick={handleNewAlertChannelSubmit}>Add</button>
+        </div>
       </td>
     </tr>
   );

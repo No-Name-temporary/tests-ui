@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import TextSelect from '../shared/TextSelect';
-import TextInput from '../shared/TextInput';
-import { addAssertion } from '../../features/newtest/newtest';
+import TextSelect from '../../shared/TextSelect';
+import TextInput from '../../shared/TextInput';
+import { addAssertion } from '../../../features/newtest/newtest';
 
 function NewAssertionRow() {
   const dispatch = useDispatch();
@@ -55,23 +55,25 @@ function NewAssertionRow() {
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         <TextSelect onChange={handleNewType} options={assertionTypes} />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         { propertyInput() }
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         <TextSelect onChange={handleNewComparisonType} options={comparisonTypes} />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         <TextInput onChange={handleTargetChange} value={target} type="text" />
       </td>
-      <td className="text-sm text-gray-500">
+      <td className="text-sm text-table-value">
         { type === 'responseTime' ? 'ms' : ''}
       </td>
-      <td>
-        <button type="button" onClick={handleNewAssertionSubmit}>Add</button>
+      <td className="text-heading-h4">
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" onClick={handleNewAssertionSubmit}>Add</button>
+        </div>
       </td>
     </tr>
   );

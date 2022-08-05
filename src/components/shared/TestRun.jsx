@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { GREEN_CHECK_MARK, RED_X } from '../../constants/IconUrls';
-import Clock from '../../assets/images/icons/clock_slate.png';
+import { GREEN_CHECK_MARK, RED_X, STOPWATCH } from '../../constants/IconUrls';
 import apiClient from '../../services/ApiClient';
 import { formatDateLong } from '../../utils/helpers';
 import Assertions from './Assertions';
@@ -57,16 +56,16 @@ function TestRun() {
   useEffect(getTestRunHook, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-8 mb-10">
+    <div className="max-w-7xl mx-auto px-8">
       <div className="mb-6">
-        <div className="flex items-center mb-1">
+        <div className="flex items-center">
           <div className="w-6 mr-2">
             <img src={success ? GREEN_CHECK_MARK : RED_X} alt="success" />
           </div>
           <Link to={`/tests/${testId}`}>
-            <h1 className="text-3xl font-bold text-heading-h1">{testName}</h1>
+            <h1 className="text-3xl font-bold text-primary-900">{testName}</h1>
           </Link>
-          <div className="ml-4 text-heading-h5">
+          <div className="ml-4 text-primary-700">
             {`${success ? 'Passed' : 'Failed'} on ${formatDateLong(completedAt)} from ${regionDisplayName}`}
           </div>
           <div className="w-6 ml-2">
@@ -74,20 +73,19 @@ function TestRun() {
           </div>
         </div>
         <div className="pl-8">
-          <div className="text-heading-h5">
+          <div className="text-primary-700">
             {testHttpMethod.toUpperCase()}
             {' '}
             {testUrl}
           </div>
-          <div className="text-heading-h5">
-            <span className="font-bold">Created on:</span>
-            {` ${formatDateLong(testCreatedAt)}`}
+          <div className="text-primary-700">
+            {`Created on ${formatDateLong(testCreatedAt)}`}
           </div>
         </div>
       </div>
       <div className="justify-between items-center flex">
-        <h2 className="text-xl font-bold text-heading-h2">Assertions</h2>
-        <div className="flex justify-end text-heading-h5">
+        <h2 className="text-xl font-bold text-primary-900">Assertions</h2>
+        <div className="flex justify-end text-primary-900">
           <div>
             {statusCode}
           </div>
@@ -98,18 +96,18 @@ function TestRun() {
               ms
             </div>
             <div className="w-6 ml-2">
-              <img src={Clock} alt="clock" />
+              <img src={STOPWATCH} alt="text-primary-700" />
             </div>
           </div>
         </div>
       </div>
       <Assertions assertions={assertions} />
       <div className="justify-between items-center flex mt-6">
-        <h2 className="text-xl font-bold text-heading-h1">Response Body</h2>
+        <h2 className="text-xl font-bold text-primary-900">Response Body</h2>
       </div>
       <Body body={responseBody} />
       <div className="justify-between items-center flex mt-6">
-        <h2 className="text-xl font-bold text-heading-h1">Response Headers</h2>
+        <h2 className="text-xl font-bold text-primary-900">Response Headers</h2>
       </div>
       <Headers headers={responseHeaders} />
     </div>

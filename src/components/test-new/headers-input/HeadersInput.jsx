@@ -11,9 +11,9 @@ function HeadersInput() {
 
   return (
     <div className="mt-8 flex flex-col">
-      <h2>Headers</h2>
-      <table className="min-w-full divide-y divide-gray-300">
-        <tbody className="divide-y divide-gray-200">
+      <h4 className="text-heading-h4">Headers</h4>
+      <table className="min-w-full divide-y divide-slate-300">
+        <tbody className="divide-y divide-slate-200">
           <HeaderRows headers={headers} />
           <NewHeaderRow />
         </tbody>

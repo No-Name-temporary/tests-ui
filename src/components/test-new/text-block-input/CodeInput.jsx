@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addRequestBody } from '../../features/newtest/newtest';
+import { addRequestBody } from '../../../features/newtest/newtest';
 
 const SPACES_FOR_TAB = 2;
 const SAMPLE_JSON = `{
@@ -44,7 +44,7 @@ function CodeInput() {
     <div className="mt-1">
       <textarea
         rows={6}
-        className="shadow-sm bg-gray-900 text-blue-500 focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        className="shadow-sm bg-slate-800 text-secondary-700 focus:ring-slate-500 focus:border-slate-500 block w-full sm:text-sm border-slate-300 rounded-md"
         onKeyDown={handleTab}
         onChange={handleRequestBodyChange}
         value={requestBody.value}

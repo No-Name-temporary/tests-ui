@@ -1,8 +1,8 @@
 import { React } from 'react';
 
-function Button({ message, save = false, onClick }) {
+function Button({ message, save = true, onClick }) {
   return (
-    <button onClick={onClick} type="button" className={`${save ? 'bg-green-600 hover:bg-green-600 text-white w-full' : ''} hover:bg-gray-300 px-4 py-1 text-sm font-semibold rounded border text-gray-900`}>
+    <button onClick={onClick} type="button" className={`${save ? 'bg-button-still hover:bg-button-hover text-white w-full' : 'hover:bg-gray-300'} px-4 py-1 text-sm font-semibold rounded border text-primary-900`}>
       { message }
     </button>
   );
