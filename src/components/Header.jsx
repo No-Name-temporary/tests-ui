@@ -6,11 +6,11 @@ function Header() {
   return (
     <header>
       <Link to="/tests">
-        <div className="max-w-7xl mx-auto px-8 py-4">
+        <div className="max-w-7xl mx-auto px-8 py-4 mt-4">
           <div className="flex justify-between h-16">
             <div className="flex flex-shrink-0 items-center">
               <img
-                className="h-12 w-auto"
+                className="h-14 w-auto"
                 src={SeymoreLogo}
                 alt="NoName"
               />

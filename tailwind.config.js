@@ -60,16 +60,20 @@ module.exports = {
       heading: {
         h1: '#011e6f',
         h2: '#011e6f',
-        h3: '#334155',
+        h3: '#011e6f',
+        h4: '#334155',
       },
-      label: {
-        input: '#334155',
-        column: '#334155',
-        card: '#334155',
+      input: {
+        placeholder: '#64748b',
+        value: '#334155',
       },
       button: {
         still: '#011e6f',
-        hover: '#1f3166',
+        hover: '#495a8a',
+      },
+      table: {
+        label: '#334155',
+        value: '#64748b',
       },
     },
   },

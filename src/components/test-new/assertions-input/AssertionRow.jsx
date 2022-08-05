@@ -2,6 +2,7 @@ import { React } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteAssertion } from '../../../features/newtest/newtest';
 import { camelCaseToDisplayName } from '../../../utils/helpers';
+import Garbage from '../../../assets/images/icons/garbage_can_slate.png';
 
 function AssertionRow({
   id, type, property, comparison, target,
@@ -14,16 +15,16 @@ function AssertionRow({
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         {camelCaseToDisplayName(type)}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         {property}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         {camelCaseToDisplayName(comparison)}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         {target}
         {' '}
         {type === 'responseTime' ? 'ms' : ''}
@@ -33,7 +34,7 @@ function AssertionRow({
         <button type="button" className="pl-2" onClick={handleDeleteAssertion}>
           <img
             className="h-6 w-auto"
-            src="https://img.icons8.com/external-others-iconmarket/344/external-delete-essential-others-iconmarket-3.png"
+            src={Garbage}
             alt="NoName"
           />
         </button>

@@ -27,7 +27,7 @@ function FrequencyInput() {
 
   return (
     <div className="mt-8">
-      <h3 className="text-heading-h3">Time between test runs?</h3>
+      <h2 className="text-1xl font-bold text-heading-h2">Time between test runs?</h2>
       <div className="mt-4 flex">
         <div>
           <TextSelect onChange={handleIntervalUnitsSelect} options={frequencyOptions} />

@@ -58,12 +58,12 @@ function CreateNewTest() {
     <div className="max-w-7xl mx-auto px-8 pb-20">
       <div className="flex justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-heading-h1">Create a test</h1>
+          <h2 className="text-2xl font-bold text-heading-h2 mb-3">Create a test</h2>
         </div>
       </div>
       <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My-new-test" type="text" name="test_name" id="test_name" />
 
-      <h2 className="text-1xl font-bold text-heading-h2 pt-6">HTTP request</h2>
+      <h3 className="text-1xl font-bold text-heading-h3 pt-6">HTTP request</h3>
 
       <div className="flex py-2">
         <div className="flex-none">

@@ -46,7 +46,7 @@ function NewHeaderRow() {
           placeholder="Value"
         />
       </td>
-      <td className="text-label-input">
+      <td className="text-heading-h4">
         <button type="button" onClick={handleNewHeaderSubmit}>Add</button>
       </td>
     </tr>

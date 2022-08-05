@@ -8,7 +8,7 @@ function AlertChannelsInput() {
 
   return (
     <div className="mt-8 flex flex-col">
-      <h3 className="text-heading-h3">Alert Channels</h3>
+      <h2 className="text-1xl font-bold text-heading-h2">Alert Channels</h2>
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>

@@ -5,15 +5,15 @@ function TextInput({
 }) {
   return (
     <div>
-      <label htmlFor="email" className="block text-label-input">
+      <label htmlFor="text" className="block text-heading-h4">
         { label }
       </label>
-      <div className="mt-1">
+      <div className="mt-1 text-input-placeholder">
         <input
           type={type}
           name={name}
           id={id}
-          className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+          className="text-input-value shadow-sm focus:ring-slate-500 focus:border-slate-500 block w-full sm:text-sm border-slate-300 rounded-md"
           placeholder={placeholder}
           value={value}
           onChange={onChange}

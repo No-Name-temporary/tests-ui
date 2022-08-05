@@ -12,15 +12,15 @@ function Select({
 
   if (options) {
     return (
-      <div className="text-label-input">
-        <label htmlFor="text" className="block">
+      <div className="text-input-value">
+        <label htmlFor="text" className="block text-heading-h4">
           { label }
         </label>
-        <div className="mt-1 text-label-input">
+        <div className="mt-1">
           <select
             name={name}
             id={id}
-            className="shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+            className="shadow-sm focus:ring-slate-500 focus:border-slate-500 block w-full sm:text-sm border-slate-300 rounded-md"
             placeholder={placeholder}
             onChange={onChange}
           >
