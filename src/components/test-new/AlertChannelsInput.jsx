@@ -8,17 +8,17 @@ function AlertChannelsInput() {
 
   return (
     <div className="mt-8 flex flex-col">
-      <h2>Alert Channels</h2>
+      <h3 className="text-heading-h3">Alert Channels</h3>
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>
-            <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+            <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-label-column">
               Type
             </th>
-            <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+            <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-label-column">
               Destination
             </th>
-            <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-gray-900" />
+            <th scope="col" className="py-3.5 px-3 text-left text-sm font-semibold text-label-column" />
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200">

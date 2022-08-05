@@ -30,7 +30,7 @@ function NewHeaderRow() {
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         <TextInput
           onChange={handleNewHeaderKey}
           value={headerKey}
@@ -38,7 +38,7 @@ function NewHeaderRow() {
           placeholder="X-My-Header"
         />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm">
         <TextInput
           onChange={handleNewHeaderValue}
           value={headerValue}
@@ -46,7 +46,7 @@ function NewHeaderRow() {
           placeholder="Value"
         />
       </td>
-      <td>
+      <td className="text-label-input">
         <button type="button" onClick={handleNewHeaderSubmit}>Add</button>
       </td>
     </tr>

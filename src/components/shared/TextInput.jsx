@@ -5,7 +5,7 @@ function TextInput({
 }) {
   return (
     <div>
-      <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+      <label htmlFor="email" className="block text-label-input">
         { label }
       </label>
       <div className="mt-1">

@@ -4,7 +4,7 @@ import TestRow from './TestRow';
 function TestRows({ tests }) {
   if (tests) {
     return (
-      <tbody className="divide-y divide-gray-200">
+      <tbody className="divide-y divide-primary-200">
         {tests.map((test) => (
           <TestRow key={test.id} test={test} />
         ))}

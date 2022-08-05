@@ -48,7 +48,7 @@ function TestRuns() {
         flagUrls={flagUrls(testRuns)}
       />
       <div className="flex items-center mb-1">
-        <h1 className="mr-5 text-xl font-bold text-gray-900">Test runs</h1>
+        <h1 className="mr-5 text-xl font-bold text-primary-900">Test runs</h1>
       </div>
       <TestRunsTable testRuns={testRuns.sort(testRunsCompletedAtDifference)} />
     </div>

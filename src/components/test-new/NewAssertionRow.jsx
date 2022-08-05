@@ -55,22 +55,22 @@ function NewAssertionRow() {
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         <TextSelect onChange={handleNewType} options={assertionTypes} />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         { propertyInput() }
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         <TextSelect onChange={handleNewComparisonType} options={comparisonTypes} />
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         <TextInput onChange={handleTargetChange} value={target} type="text" />
       </td>
-      <td className="text-sm text-gray-500">
+      <td className="text-sm text-primary-700">
         { type === 'responseTime' ? 'ms' : ''}
       </td>
-      <td>
+      <td className="text-label-input">
         <button type="button" onClick={handleNewAssertionSubmit}>Add</button>
       </td>
     </tr>

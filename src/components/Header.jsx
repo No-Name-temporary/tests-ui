@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { Link } from 'react-router-dom';
-import { SMILEY } from '../constants/IconUrls';
+import SeymoreLogo from '../assets/images/logos/seymour_drkblue_logoPNG.png';
 
 function Header() {
   return (
@@ -11,14 +11,13 @@ function Header() {
             <div className="flex flex-shrink-0 items-center">
               <img
                 className="h-12 w-auto"
-                src={SMILEY}
+                src={SeymoreLogo}
                 alt="NoName"
               />
-              <div className="ml-3 text-2xl font-semibold text-gray-900">Seymour</div>
             </div>
             <div className="flex">
-              <button className="text-sm font-medium text-sky-600 hover:text-sky-700">Home</button>
-              <button className="ml-4 text-sm font-medium text-sky-600 hover:text-sky-700">Docs</button>
+              <button className="text-sm font-medium text-primary-900 hover:text-secondary-700">Home</button>
+              <button className="ml-4 text-sm font-medium text-primary-900 hover:text-secondary-700">Docs</button>
             </div>
           </div>
         </div>

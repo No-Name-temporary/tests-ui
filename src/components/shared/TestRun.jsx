@@ -1,7 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { GREEN_CHECK_MARK, RED_X } from '../../constants/IconUrls';
-import Clock from '../../assets/images/icons/clock_drkblue.png';
+import { GREEN_CHECK_MARK, RED_X, STOPWATCH } from '../../constants/IconUrls';
 import apiClient from '../../services/ApiClient';
 import { formatDateLong } from '../../utils/helpers';
 import Assertions from './Assertions';
@@ -97,7 +96,7 @@ function TestRun() {
               ms
             </div>
             <div className="w-6 ml-2">
-              <img src={Clock} alt="clock" />
+              <img src={STOPWATCH} alt="text-primary-700" />
             </div>
           </div>
         </div>

@@ -14,16 +14,16 @@ function AssertionRow({
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         {camelCaseToDisplayName(type)}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         {property}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         {camelCaseToDisplayName(comparison)}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         {target}
         {' '}
         {type === 'responseTime' ? 'ms' : ''}

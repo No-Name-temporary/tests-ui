@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  GARBAGE_CAN, GREEN_CHECK_MARK, LIGHTNING, PENCIL, RED_X,
+  GREEN_CHECK_MARK, RED_X,
 } from '../../constants/IconUrls';
+import Pen from '../../assets/images/icons/pen_drkblue.png';
+import Lightning from '../../assets/images/icons/lightning_drkblue.png';
+import GarbageCan from '../../assets/images/icons/garbage_can_drkblue.png';
 import apiClient from '../../services/ApiClient';
 
 function TestRow({ test }) {
@@ -22,11 +25,11 @@ function TestRow({ test }) {
   return (
     <tr>
       <Link to={`/tests/${test.id}`}>
-        <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+        <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
           {test.name}
         </td>
       </Link>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         <div className="flex">
           {test.runs.map((run) => (
             <Link to={`/tests/${run.testId}/runs/${run.id}`}>
@@ -40,7 +43,7 @@ function TestRow({ test }) {
           ))}
         </div>
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
         {test.minutesBetweenRuns}
         {' '}
         mins
@@ -49,7 +52,7 @@ function TestRow({ test }) {
         <button onClick={() => handleDeleteTest(test.id)} type="button" className="pl-2">
           <img
             className="h-6 w-auto"
-            src={GARBAGE_CAN}
+            src={GarbageCan}
             alt="delete"
           />
         </button>
@@ -59,7 +62,7 @@ function TestRow({ test }) {
         <button type="button" className="pl-2">
           <img
             className="h-6 w-auto"
-            src={PENCIL}
+            src={Pen}
             alt="edit"
           />
         </button>
@@ -68,7 +71,7 @@ function TestRow({ test }) {
         <button onClick={() => handleRunTest(test.id)} type="button" className="pl-2">
           <img
             className="h-6 w-auto"
-            src={LIGHTNING}
+            src={Lightning}
             alt="run now"
           />
         </button>

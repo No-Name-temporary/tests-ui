@@ -6,15 +6,15 @@ function ResultCards({ summaryData }) {
     return (
       <div className="flex mb-8">
         <div className="mr-8">
-          <h3 className="text-grey-900 font-semibold text-lg">Monitoring results</h3>
+          <h3 className="text-primary-900 font-semibold text-lg">Monitoring results</h3>
           <ResultCard label="Availability" value={`${Math.round(summaryData.availability * 100) / 100}%`} />
         </div>
         <div className="mr-8">
-          <h3 className="text-grey-900 font-semibold text-lg">Alerts</h3>
+          <h3 className="text-primary-900 font-semibold text-lg">Alerts</h3>
           <ResultCard label="Failures" value={`${summaryData.runsWithFailedAssertions}`} />
         </div>
         <div className="mr-8">
-          <h3 className="text-grey-900 font-semibold text-lg">Performance</h3>
+          <h3 className="text-primary-900 font-semibold text-lg">Performance</h3>
           <div className="flex">
             <div className="mr-4">
               <ResultCard label="P50" value={`${summaryData.responseTimeP50} ms`} />

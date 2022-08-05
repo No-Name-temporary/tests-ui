@@ -12,11 +12,11 @@ function Select({
 
   if (options) {
     return (
-      <div>
-        <label htmlFor="text" className="block text-sm font-medium text-gray-700">
+      <div className="text-label-input">
+        <label htmlFor="text" className="block">
           { label }
         </label>
-        <div className="mt-1">
+        <div className="mt-1 text-label-input">
           <select
             name={name}
             id={id}

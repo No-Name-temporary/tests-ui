@@ -30,7 +30,7 @@ function TestBanner({
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <Link to={`/tests/${testData.id}`}>
-            <h1 className="text-3xl font-bold text-gray-900">{testData.name}</h1>
+            <h1 className="text-3xl font-bold text-primary-900">{testData.name}</h1>
           </Link>
           <div className="flex">
             { flagUrls.map((url) => <div className="w-6 ml-2" key={url}><img src={url} alt={url} /></div>) }
@@ -45,12 +45,12 @@ function TestBanner({
           </div>
         </div>
       </div>
-      <div className="text-gray-400">
+      <div className="text-primary-700">
         {testData.method ? testData.method.toUpperCase() : ''}
         {' '}
         {testData.url}
       </div>
-      <div className="text-gray-400">
+      <div className="text-primary-700">
         <span className="font-bold">Created on:</span>
         {' '}
         { formatDateLong(testData.createdAt) }
