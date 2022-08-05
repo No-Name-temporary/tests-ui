@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import {
   GREEN_CHECK_MARK, RED_X,
 } from '../../constants/IconUrls';
-import Pen from '../../assets/images/icons/pen_drkblue.png';
-import Lightning from '../../assets/images/icons/lightning_drkblue.png';
-import GarbageCan from '../../assets/images/icons/garbage_can_drkblue.png';
+import Pen from '../../assets/images/icons/pen_slate.png';
+import Lightning from '../../assets/images/icons/lightning_slate.png';
+import GarbageCan from '../../assets/images/icons/garbage_can_slate.png';
 import apiClient from '../../services/ApiClient';
 
 function TestRow({ test }) {
@@ -25,11 +25,11 @@ function TestRow({ test }) {
   return (
     <tr>
       <Link to={`/tests/${test.id}`}>
-        <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+        <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
           {test.name}
         </td>
       </Link>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         <div className="flex">
           {test.runs.map((run) => (
             <Link to={`/tests/${run.testId}/runs/${run.id}`}>
@@ -43,38 +43,43 @@ function TestRow({ test }) {
           ))}
         </div>
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-primary-700">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {test.minutesBetweenRuns}
         {' '}
         mins
       </td>
       <td>
-        <button onClick={() => handleDeleteTest(test.id)} type="button" className="pl-2">
-          <img
-            className="h-6 w-auto"
-            src={GarbageCan}
-            alt="delete"
-          />
-        </button>
-
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button onClick={() => handleDeleteTest(test.id)} type="button" className="pl-2">
+            <img
+              className="h-6 w-auto"
+              src={GarbageCan}
+              alt="delete"
+            />
+          </button>
+        </div>
       </td>
       <td>
-        <button type="button" className="pl-2">
-          <img
-            className="h-6 w-auto"
-            src={Pen}
-            alt="edit"
-          />
-        </button>
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button type="button" className="pl-2">
+            <img
+              className="h-6 w-auto"
+              src={Pen}
+              alt="edit"
+            />
+          </button>
+        </div>
       </td>
       <td>
-        <button onClick={() => handleRunTest(test.id)} type="button" className="pl-2">
-          <img
-            className="h-6 w-auto"
-            src={Lightning}
-            alt="run now"
-          />
-        </button>
+        <div className="grid align-items-end justify-items-end mr-4">
+          <button onClick={() => handleRunTest(test.id)} type="button" className="pl-2">
+            <img
+              className="h-6 w-auto"
+              src={Lightning}
+              alt="run now"
+            />
+          </button>
+        </div>
       </td>
     </tr>
   );

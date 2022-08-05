@@ -18,7 +18,6 @@ function RegionCard({ region }) {
 
   return (
     <button
-      className="text-heading-h4"
       onClick={handleRegionClick}
       type="button"
       value={region.name}
@@ -28,7 +27,7 @@ function RegionCard({ region }) {
           <div className="w-8 ml-2 pr-2">
             <img src={region.flagUrl} alt={region.name} />
           </div>
-          <div className="text-center">
+          <div className="text-center text-heading-h4">
             <div>{region.displayName}</div>
             <div className="text-sm">{region.awsName}</div>
           </div>

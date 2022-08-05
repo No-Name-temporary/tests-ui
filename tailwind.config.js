@@ -61,7 +61,7 @@ module.exports = {
         h1: '#011e6f',
         h2: '#011e6f',
         h3: '#011e6f',
-        h4: '#334155',
+        h4: '#1e293b',
       },
       input: {
         placeholder: '#64748b',
@@ -73,7 +73,7 @@ module.exports = {
       },
       table: {
         label: '#334155',
-        value: '#64748b',
+        value: '#334155',
       },
     },
   },

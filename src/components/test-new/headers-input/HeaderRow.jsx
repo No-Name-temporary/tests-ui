@@ -11,10 +11,10 @@ function HeaderRow({ headerKey, headerValue }) {
 
   return (
     <tr>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-slate-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {headerKey}
       </td>
-      <td className="whitespace-nowrap py-4 px-3 text-sm text-slate-500">
+      <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {headerValue}
       </td>
       <td>
