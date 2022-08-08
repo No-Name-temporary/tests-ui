@@ -6,8 +6,10 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    fontFamily: {
-      sans: ['Lexend', 'sans-serif'],
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
     },
     colors: {
       green: colors.green,
