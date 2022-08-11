@@ -2,7 +2,7 @@ import React from 'react';
 import {
   GREEN_CHECK_MARK, RED_X,
 } from '../../constants/IconUrls';
-import { camelCaseToDisplayName } from '../../utils/helpers';
+import { camelCaseToDisplayName, shortenString } from '../../utils/helpers';
 
 function AssertionRow({ assertion }) {
   return (
@@ -29,7 +29,7 @@ function AssertionRow({ assertion }) {
         {assertion.type === 'responseTime' ? 'ms' : ''}
       </td>
       <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
-        {assertion.actualValue}
+        {shortenString(String(assertion.actualValue), 40)}
         {' '}
         {assertion.type === 'responseTime' ? 'ms' : ''}
       </td>

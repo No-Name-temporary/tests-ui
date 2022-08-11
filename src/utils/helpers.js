@@ -85,3 +85,11 @@ export const flagUrls = (runs) => {
   }
   return urls;
 };
+
+export const shortenString = (string, maxLength) => {
+  let shortened = string;
+  if (string.length > maxLength) {
+    shortened = `${shortened.slice(0, maxLength)}...`;
+  }
+  return shortened;
+};
