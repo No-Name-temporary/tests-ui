@@ -46,7 +46,7 @@ function TestRow({ test }) {
       <td className="whitespace-nowrap py-4 px-3 text-sm text-table-value">
         {test.minutesBetweenRuns}
         {' '}
-        mins
+        {test.minutesBetweenRuns === 1 ? 'min' : 'mins'}
       </td>
       <td>
         <div className="grid align-items-end justify-items-end mr-4">
