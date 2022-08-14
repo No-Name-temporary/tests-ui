@@ -31,7 +31,11 @@ function TestEdit() {
         setTitle(data.test.title);
         setMethod(data.test.httpRequest.method);
         setUrl(data.test.httpRequest.url);
-        setRequestBody(data.test.httpRequest.body);
+        setRequestBody({
+          value: JSON.stringify(data.test.httpRequest.body),
+          caret: -1,
+          target: null,
+        });
         setHeaders(data.test.httpRequest.headers);
         setAssertions(data.test.httpRequest.assertions);
         setRegions(data.test.locations);
@@ -55,7 +59,7 @@ function TestEdit() {
       method,
       url,
       headers,
-      body: requestBody,
+      body: requestBody.value,
       assertions,
     },
     alertChannels,

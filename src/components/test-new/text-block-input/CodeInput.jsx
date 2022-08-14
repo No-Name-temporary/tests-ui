@@ -35,7 +35,6 @@ function CodeInput({ requestBody, setRequestBody }) {
 
   const handleRequestBodyChange = (e) => {
     setRequestBody({ value: e.target.value, caret: -1, target: e.target });
-    // dispatch(addRequestBody(e.target.value));
   };
 
   return (
