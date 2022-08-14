@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import apiClient from '../../services/ApiClient';
 import TestForm from './TestForm';
 
 const SAMPLE_JSON = `{
@@ -10,10 +11,10 @@ const SAMPLE_JSON = `{
 `;
 
 function TestNew() {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
-  const [method, setMethod] = useState('');
+  const [method, setMethod] = useState('get');
   const [url, setUrl] = useState('');
   const [requestBody, setRequestBody] = useState({ value: SAMPLE_JSON, caret: -1, target: null });
   const [headers, setHeaders] = useState({});
@@ -22,10 +23,31 @@ function TestNew() {
   const [minutesBetweenRuns, setMinutesBetweenRuns] = useState(1);
   const [alertChannels, setAlertChannels] = useState([]);
 
+  const createTestConfiguration = () => ({
+    title,
+    locations: regions,
+    minutesBetweenRuns,
+    type: 'api',
+    httpRequest: {
+      method,
+      url,
+      headers,
+      body: requestBody,
+      assertions,
+    },
+    alertChannels,
+  });
+
+  const handleSaveTest = () => {
+    apiClient.createTest({ test: createTestConfiguration() });
+    navigate('/tests');
+  };
+
   return (
     <div>
       <TestForm
         mode="create"
+        heading="Create new test"
         title={title}
         setTitle={setTitle}
         method={method}
@@ -44,6 +66,7 @@ function TestNew() {
         setMinutesBetweenRuns={setMinutesBetweenRuns}
         alertChannels={alertChannels}
         setAlertChannels={setAlertChannels}
+        handleSubmitForm={handleSaveTest}
       />
     </div>
   );
