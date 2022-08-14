@@ -107,7 +107,7 @@ function TestForm({
       <TextBlockInput requestBody={requestBody} setRequestBody={setRequestBody} label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
       <HeadersInput headers={headers} setHeaders={setHeaders} />
       <AssertionsInput assertions={assertions} setAssertions={setAssertions} />
-      <LocationsInput />
+      <LocationsInput locations={regions} setLocations={setRegions} />
       <FrequencyInput />
       <AlertChannelsInput />
       <div className="mt-5 flex text-tertiary-900">
