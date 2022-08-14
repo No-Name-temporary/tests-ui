@@ -18,11 +18,9 @@ const frequencyOptions = [
   { displayName: '1 week', value: '10080' },
 ];
 
-function FrequencyInput() {
-  const dispatch = useDispatch();
-
-  const handleIntervalUnitsSelect = async (e) => {
-    dispatch(setMinutesBetweenRuns(e.target.value));
+function FrequencyInput({ minutesBetweenRuns, setMinutesBetweenRuns }) {
+  const handleSetMinutesBetweenRuns = async (e) => {
+    setMinutesBetweenRuns(e.target.value);
   };
 
   return (
@@ -30,7 +28,7 @@ function FrequencyInput() {
       <h2 className="text-1xl font-bold text-heading-h2">Time between test runs?</h2>
       <div className="mt-4 flex">
         <div>
-          <TextSelect onChange={handleIntervalUnitsSelect} options={frequencyOptions} />
+          <TextSelect onChange={handleSetMinutesBetweenRuns} options={frequencyOptions} />
         </div>
       </div>
     </div>

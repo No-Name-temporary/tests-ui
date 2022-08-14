@@ -108,7 +108,10 @@ function TestForm({
       <HeadersInput headers={headers} setHeaders={setHeaders} />
       <AssertionsInput assertions={assertions} setAssertions={setAssertions} />
       <LocationsInput locations={regions} setLocations={setRegions} />
-      <FrequencyInput />
+      <FrequencyInput
+        minutesBetweenRuns={minutesBetweenRuns}
+        setMinutesBetweenRuns={setMinutesBetweenRuns}
+      />
       <AlertChannelsInput />
       <div className="mt-5 flex text-tertiary-900">
         <Button onClick={() => console.log('save!')} message="Save" save />
