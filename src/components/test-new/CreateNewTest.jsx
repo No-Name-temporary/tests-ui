@@ -54,6 +54,18 @@ function CreateNewTest() {
     navigate('/tests');
   };
 
+  const validationName = {
+    required: true,
+    pattern:'[A-Za-z0-9-_]+'
+  };
+
+  const validationURL = {
+    required: true,
+    minLength:"1",
+    pattern:'^http[s]?:\/\/(www\.)?(.*)?\/?(.)*'
+  };
+
+
   return (
     <div className="max-w-7xl mx-auto px-8 pb-20">
       <div className="flex justify-between">
@@ -61,28 +73,28 @@ function CreateNewTest() {
           <h2 className="text-2xl font-bold text-heading-h2 mb-3">Create a test</h2>
         </div>
       </div>
-      <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} label="Test name" placeholder="My-new-test" type="text" name="test_name" id="test_name" />
+      <form onSubmit={handleSaveConfiguration}>
+        <TextInput onChange={handleTitleChange} onBlur={handleSubmitNewTitle} validation={validationName} label="Test name" placeholder="My-new-test" type="text" name="test_name" id="test_name" />
+        <h3 className="text-1xl font-bold text-heading-h3 pt-6">HTTP request</h3>
 
-      <h3 className="text-1xl font-bold text-heading-h3 pt-6">HTTP request</h3>
-
-      <div className="flex py-2">
-        <div className="flex-none">
-          <TextSelect onChange={handleSubmitNewMethod} label="Method" options={httpMethods} />
+        <div className="flex py-2">
+          <div className="flex-none">
+            <TextSelect onChange={handleSubmitNewMethod} label="Method" options={httpMethods} />
+          </div>
+          <div className="flex-1 pl-4">
+            <TextInput onChange={handleUrlChange} onBlur={handleSubmitNewUrl} validation={validationURL} label="URL" placeholder="https://..." type="text" name="test_name" id="test_name" />
+          </div>
         </div>
-        <div className="flex-1 pl-4">
-          <TextInput onChange={handleUrlChange} onBlur={handleSubmitNewUrl} label="URL" placeholder="https://..." type="text" name="test_name" id="test_name" />
+        <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
+        <HeadersInput />
+        <AssertionsInput />
+        <LocationsInput />
+        <FrequencyInput />
+        <AlertChannelsInput />
+        <div className="mt-5 flex text-tertiary-900">
+          <Button message="Save" save submit={true} />
         </div>
-      </div>
-
-      <TextBlockInput label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
-      <HeadersInput />
-      <AssertionsInput />
-      <LocationsInput />
-      <FrequencyInput />
-      <AlertChannelsInput />
-      <div className="mt-5 flex text-tertiary-900">
-        <Button onClick={handleSaveConfiguration} message="Save" save />
-      </div>
+      </form>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { React } from 'react';
 
 function TextInput({
-  label, placeholder, type, name, id, value, onChange, onBlur,
+  label, placeholder, type, name, id, value, onChange, onBlur, validation
 }) {
   return (
     <div>
@@ -18,6 +18,9 @@ function TextInput({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+					required={validation?validation.required:''}
+					min={validation?validation.min:''}
+					pattern={validation?validation.pattern:""}
         />
       </div>
     </div>
