@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import TextSelect from '../shared/TextSelect';
 
@@ -11,7 +11,7 @@ function MethodInput({ method, setMethod }) {
 
   return (
     <div className="flex-none">
-      <TextSelect onChange={handleSubmitNewMethod} label="Method" options={httpMethods} />
+      <TextSelect onChange={handleSubmitNewMethod} label="Method" options={httpMethods} selected={method} />
     </div>
   );
 }
