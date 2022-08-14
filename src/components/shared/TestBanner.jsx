@@ -8,6 +8,7 @@ function TestBanner({
   flagUrls,
   testData,
 }) {
+  console.log('testData: ', testData);
   const editedOnMarkup = () => {
     if (testData.updatedAt) {
       return (
@@ -38,7 +39,9 @@ function TestBanner({
         </div>
         <div className="justify-items-end flex">
           <div>
-            <Button message="Edit" />
+            <Link to={`/tests/${testData.id}/edit`}>
+              <Button message="Edit" />
+            </Link>
           </div>
           <div className="ml-2">
             <Button onClick={() => handleRunNowClick(testData.id)} message="Run now" />

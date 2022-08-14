@@ -61,13 +61,15 @@ function TestRow({ test }) {
       </td>
       <td>
         <div className="grid align-items-end justify-items-end mr-4">
-          <button type="button" className="pl-2">
-            <img
-              className="h-6 w-auto"
-              src={Pen}
-              alt="edit"
-            />
-          </button>
+          <Link to={`/tests/${test.id}/edit`}>
+            <button type="button" className="pl-2">
+              <img
+                className="h-6 w-auto"
+                src={Pen}
+                alt="edit"
+              />
+            </button>
+          </Link>
         </div>
       </td>
       <td>

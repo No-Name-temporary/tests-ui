@@ -9,6 +9,7 @@ import TestRuns from './components/test-runs/TestRuns';
 import Header from './components/Header';
 import Tests from './components/tests/Tests';
 import TestRun from './components/test-run/TestRun';
+import TestEdit from './components/test-edit/TestEdit';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/tests/:testId/runs/:runId" element={<TestRun />} />
           <Route path="/tests/:id/runs" element={<TestRuns />} />
           <Route path="/tests/:id/results" element={<TestResults />} />
+          <Route path="/tests/:id/edit" element={<TestEdit />} />
           <Route path="/tests/new" element={<CreateNewTest />} />
           <Route path="/tests/:id" element={<TestResults />} />
           <Route path="/create/test" element={<CreateTest />} />

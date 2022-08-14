@@ -47,7 +47,7 @@ function TestResults() {
           name, method, url, createdAt, updatedAt,
         } = testData;
         setTestBannerData({
-          name, method, url, createdAt, updatedAt,
+          id: testId, name, method, url, createdAt, updatedAt,
         });
       } catch (err) {
         console.log(err);

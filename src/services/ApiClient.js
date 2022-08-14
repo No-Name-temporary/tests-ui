@@ -32,7 +32,7 @@ const apiClient = {
       logError(e);
     }
   },
-  getTest: async (id) => {
+  getTest: async ({ id }) => {
     try {
       const { data } = await axios.get(`${URL}/api/tests/${id}`);
       return data;
