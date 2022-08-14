@@ -32,7 +32,7 @@ function TestNew() {
       method,
       url,
       headers,
-      body: requestBody,
+      body: requestBody.value,
       assertions,
     },
     alertChannels,
