@@ -3,17 +3,15 @@ import { useDispatch } from 'react-redux';
 import { addRequestBody } from '../../../features/newtest/newtest';
 
 const SPACES_FOR_TAB = 2;
-const SAMPLE_JSON = `{
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3",
-}
-`;
+// const SAMPLE_JSON = `{
+//   "key1": "value1",
+//   "key2": "value2",
+//   "key3": "value3",
+// }
+// `;
 
-function CodeInput() {
+function CodeInput({ requestBody, setRequestBody }) {
   const dispatch = useDispatch();
-
-  const [requestBody, setRequestBody] = useState({ value: SAMPLE_JSON, caret: -1, target: null });
 
   useEffect(() => {
     if (requestBody.caret >= 0) {
@@ -37,7 +35,7 @@ function CodeInput() {
 
   const handleRequestBodyChange = (e) => {
     setRequestBody({ value: e.target.value, caret: -1, target: e.target });
-    dispatch(addRequestBody(e.target.value));
+    // dispatch(addRequestBody(e.target.value));
   };
 
   return (

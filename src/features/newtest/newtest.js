@@ -20,6 +20,14 @@ export const newtestSlice = createSlice({
   name: 'newtest',
   initialState,
   reducers: {
+    replaceConfiguration: (state, action) => {
+      if (action.payload && state.title === '') {
+        state.title = action.payload.title;
+        state.minutesBetweenRuns = String(action.payload.minutesBetweenRuns);
+        state.locations = action.payload.locations;
+        state.httpRequest = action.payload.httpRequest;
+      }
+    },
     addTitle: (state, action) => {
       state.title = action.payload;
     },
@@ -72,6 +80,7 @@ export const newtestSlice = createSlice({
 });
 
 export const {
+  replaceConfiguration,
   addTitle,
   addMethod,
   toggleLocation,

@@ -1,16 +1,18 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import apiClient from '../../services/ApiClient';
-import CreateNewTest from '../test-new/CreateNewTest';
+import TestForm from '../test-new/TestForm';
 
 function TestEdit() {
   const { id } = useParams();
+
+  const [configuration, setConfiguration] = useState({});
 
   const getTestHook = () => {
     const run = async () => {
       try {
         const testData = await apiClient.getTest({ id });
-        console.log(testData);
+        setConfiguration(testData);
       } catch (err) {
         console.log(err);
       }
@@ -22,7 +24,7 @@ function TestEdit() {
 
   return (
     <div>
-      <CreateNewTest />
+      <TestForm mode="edit" testId={id} configuration={configuration} />
     </div>
   );
 }
