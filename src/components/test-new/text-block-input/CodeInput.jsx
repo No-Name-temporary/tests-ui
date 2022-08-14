@@ -1,18 +1,8 @@
-import { React, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addRequestBody } from '../../../features/newtest/newtest';
+import { React, useEffect } from 'react';
 
 const SPACES_FOR_TAB = 2;
-// const SAMPLE_JSON = `{
-//   "key1": "value1",
-//   "key2": "value2",
-//   "key3": "value3",
-// }
-// `;
 
 function CodeInput({ requestBody, setRequestBody }) {
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (requestBody.caret >= 0) {
       requestBody.target.setSelectionRange(

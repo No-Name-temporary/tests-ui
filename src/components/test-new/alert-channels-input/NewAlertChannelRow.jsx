@@ -1,13 +1,9 @@
 import { React, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import TextSelect from '../../shared/TextSelect';
 import TextInput from '../../shared/TextInput';
-import { addAlertChannel } from '../../../features/newtest/newtest';
 
 function NewAlertChannelRow({ alertChannels, setAlertChannels }) {
-  const dispatch = useDispatch();
-
   const alertChannelTypes = [
     {
       id: 1, name: 'slack', displayName: 'Slack', value: 'slack',
@@ -46,7 +42,6 @@ function NewAlertChannelRow({ alertChannels, setAlertChannels }) {
     const alertChannelsCopy = [...alertChannels];
     alertChannelsCopy.push(newAlertChannel);
     setAlertChannels(alertChannelsCopy);
-    // dispatch(addAlertChannel(newAlertChannel));
   };
 
   return (

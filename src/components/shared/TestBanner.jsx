@@ -8,7 +8,6 @@ function TestBanner({
   flagUrls,
   testData,
 }) {
-  console.log('testData: ', testData);
   const editedOnMarkup = () => {
     if (testData.updatedAt) {
       return (

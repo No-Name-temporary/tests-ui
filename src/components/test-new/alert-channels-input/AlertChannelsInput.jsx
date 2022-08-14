@@ -1,11 +1,8 @@
-import { React } from 'react';
-// import { useSelector } from 'react-redux';
+import React from 'react';
 import AlertChannelRows from './AlertChannelRows';
 import NewAlertChannelRow from './NewAlertChannelRow';
 
 function AlertChannelsInput({ alertChannels, setAlertChannels }) {
-  // const alertChannels = useSelector((state) => state.newtest.alertChannels);
-
   return (
     <div className="mt-8 flex flex-col">
       <h2 className="text-1xl font-bold text-heading-h2">Alert Channels</h2>
