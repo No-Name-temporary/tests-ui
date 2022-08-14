@@ -112,7 +112,7 @@ function TestForm({
         minutesBetweenRuns={minutesBetweenRuns}
         setMinutesBetweenRuns={setMinutesBetweenRuns}
       />
-      <AlertChannelsInput />
+      <AlertChannelsInput alertChannels={alertChannels} setAlertChannels={setAlertChannels} />
       <div className="mt-5 flex text-tertiary-900">
         <Button onClick={() => console.log('save!')} message="Save" save />
       </div>

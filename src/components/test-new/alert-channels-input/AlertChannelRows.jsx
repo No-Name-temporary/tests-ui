@@ -1,7 +1,7 @@
 import React from 'react';
 import AlertChannelRow from './AlertChannelRow';
 
-function AlertChannelRows({ alertChannels }) {
+function AlertChannelRows({ alertChannels, setAlertChannels }) {
   if (alertChannels) {
     return (
       <>
@@ -11,6 +11,8 @@ function AlertChannelRows({ alertChannels }) {
             id={alertChannel.id}
             type={alertChannel.type}
             destination={alertChannel.destination}
+            alertChannels={alertChannels}
+            setAlertChannels={setAlertChannels}
           />
         ))}
       </>

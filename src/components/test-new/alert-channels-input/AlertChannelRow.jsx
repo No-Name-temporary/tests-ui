@@ -1,13 +1,13 @@
-import { React } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteAlertChannel } from '../../../features/newtest/newtest';
+import React from 'react';
 import { camelCaseToDisplayName } from '../../../utils/helpers';
 import Garbage from '../../../assets/images/icons/garbage_can_slate.png';
 
-function AlertChannelRow({ id, type, destination }) {
-  const dispatch = useDispatch();
+function AlertChannelRow({
+  id, type, destination, alertChannels, setAlertChannels,
+}) {
   const handleDeleteAlertChannel = () => {
-    dispatch(deleteAlertChannel(id));
+    const alertChannelsCopy = alertChannels.filter((alert) => alert.id !== id);
+    setAlertChannels(alertChannelsCopy);
   };
 
   return (

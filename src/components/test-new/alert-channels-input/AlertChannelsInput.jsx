@@ -1,10 +1,10 @@
 import { React } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import AlertChannelRows from './AlertChannelRows';
 import NewAlertChannelRow from './NewAlertChannelRow';
 
-function AlertChannelsInput() {
-  const alertChannels = useSelector((state) => state.newtest.alertChannels);
+function AlertChannelsInput({ alertChannels, setAlertChannels }) {
+  // const alertChannels = useSelector((state) => state.newtest.alertChannels);
 
   return (
     <div className="mt-8 flex flex-col">
@@ -22,8 +22,8 @@ function AlertChannelsInput() {
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-200">
-          <AlertChannelRows alertChannels={alertChannels} />
-          <NewAlertChannelRow />
+          <AlertChannelRows alertChannels={alertChannels} setAlertChannels={setAlertChannels} />
+          <NewAlertChannelRow alertChannels={alertChannels} setAlertChannels={setAlertChannels} />
         </tbody>
 
       </table>

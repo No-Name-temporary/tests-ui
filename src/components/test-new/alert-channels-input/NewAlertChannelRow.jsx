@@ -5,7 +5,7 @@ import TextSelect from '../../shared/TextSelect';
 import TextInput from '../../shared/TextInput';
 import { addAlertChannel } from '../../../features/newtest/newtest';
 
-function NewAlertChannelRow() {
+function NewAlertChannelRow({ alertChannels, setAlertChannels }) {
   const dispatch = useDispatch();
 
   const alertChannelTypes = [
@@ -43,7 +43,10 @@ function NewAlertChannelRow() {
       alertsOnFailure: true,
     };
 
-    dispatch(addAlertChannel(newAlertChannel));
+    const alertChannelsCopy = [...alertChannels];
+    alertChannelsCopy.push(newAlertChannel);
+    setAlertChannels(alertChannelsCopy);
+    // dispatch(addAlertChannel(newAlertChannel));
   };
 
   return (
