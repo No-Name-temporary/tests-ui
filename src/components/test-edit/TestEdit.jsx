@@ -73,8 +73,8 @@ function TestEdit() {
   return (
     <div>
       <TestForm
-        mode="create"
-        heading="Edit a test"
+        mode="edit"
+        heading={`Edit test ${title}`}
         title={title}
         setTitle={setTitle}
         method={method}
