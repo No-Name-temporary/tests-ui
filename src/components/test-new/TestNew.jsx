@@ -32,7 +32,7 @@ function TestNew() {
       method,
       url,
       headers,
-      body: requestBody.value,
+      body: JSON.parse(requestBody.value),
       assertions,
     },
     alertChannels,
