@@ -50,26 +50,28 @@ function TestForm({
           </h2>
         </div>
       </div>
-      <NameInput mode={mode} title={title} setTitle={setTitle} />
-      <h3 className="text-1xl font-bold text-heading-h3 pt-6">HTTP request</h3>
+      <form form onSubmit={handleSubmitForm}>
+        <NameInput mode={mode} title={title} setTitle={setTitle} />
+        <h3 className="text-1xl font-bold text-heading-h3 pt-6">HTTP request</h3>
 
-      <div className="flex py-2">
-        <MethodInput method={method} setMethod={setMethod} />
-        <UrlInput url={url} setUrl={setUrl} />
-      </div>
+        <div className="flex py-2">
+          <MethodInput method={method} setMethod={setMethod} />
+          <UrlInput url={url} setUrl={setUrl} />
+        </div>
 
-      <TextBlockInput requestBody={requestBody} setRequestBody={setRequestBody} label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
-      <HeadersInput headers={headers} setHeaders={setHeaders} />
-      <AssertionsInput assertions={assertions} setAssertions={setAssertions} />
-      <LocationsInput locations={regions} setLocations={setRegions} />
-      <FrequencyInput
-        minutesBetweenRuns={minutesBetweenRuns}
-        setMinutesBetweenRuns={setMinutesBetweenRuns}
-      />
-      <AlertChannelsInput alertChannels={alertChannels} setAlertChannels={setAlertChannels} />
-      <div className="mt-5 flex text-tertiary-900">
-        <Button onClick={handleSubmitForm} message="Save" save />
-      </div>
+        <TextBlockInput requestBody={requestBody} setRequestBody={setRequestBody} label="Body" placeholder="JSON goes here" name="test_name" id="test_name" />
+        <HeadersInput headers={headers} setHeaders={setHeaders} />
+        <AssertionsInput assertions={assertions} setAssertions={setAssertions} />
+        <LocationsInput locations={regions} setLocations={setRegions} />
+        <FrequencyInput
+          minutesBetweenRuns={minutesBetweenRuns}
+          setMinutesBetweenRuns={setMinutesBetweenRuns}
+        />
+        <AlertChannelsInput alertChannels={alertChannels} setAlertChannels={setAlertChannels} />
+        <div className="mt-5 flex text-tertiary-900">
+          <Button message="Save" save submit />
+        </div>
+      </form>
     </div>
   );
 }
