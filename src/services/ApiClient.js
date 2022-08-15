@@ -24,6 +24,14 @@ const apiClient = {
       logError(e);
     }
   },
+  editTest: async (test, testId) => {
+    try {
+      const { data } = await axios.put(`${URL}/api/tests/${testId}`, test);
+      return data;
+    } catch (e) {
+      logError(e);
+    }
+  },
   getTests: async () => {
     try {
       const { data } = await axios.get(`${URL}/api/tests`);
@@ -32,7 +40,7 @@ const apiClient = {
       logError(e);
     }
   },
-  getTest: async (id) => {
+  getTest: async ({ id }) => {
     try {
       const { data } = await axios.get(`${URL}/api/tests/${id}`);
       return data;

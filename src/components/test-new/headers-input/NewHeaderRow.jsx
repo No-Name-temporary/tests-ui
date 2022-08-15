@@ -1,10 +1,7 @@
 import { React, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import TextInput from '../../shared/TextInput';
-import { addHeader } from '../../../features/newtest/newtest';
 
-function NewHeaderRow() {
-  const dispatch = useDispatch();
+function NewHeaderRow({ headers, setHeaders }) {
   const [headerKey, setHeaderKey] = useState('');
   const [headerValue, setHeaderValue] = useState('');
 
@@ -17,15 +14,11 @@ function NewHeaderRow() {
   };
 
   const handleNewHeaderSubmit = () => {
+    const headersCopy = { ...headers };
+    headersCopy[headerKey] = headerValue;
+    setHeaders(headersCopy);
     setHeaderKey('');
     setHeaderValue('');
-
-    const newHeader = {
-      headerKey,
-      headerValue,
-    };
-
-    dispatch(addHeader(newHeader));
   };
 
   return (

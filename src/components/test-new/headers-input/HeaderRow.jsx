@@ -1,12 +1,13 @@
 import { React } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteHeader } from '../../../features/newtest/newtest';
 import Garbage from '../../../assets/images/icons/garbage_can_slate.png';
 
-function HeaderRow({ headerKey, headerValue }) {
-  const dispatch = useDispatch();
+function HeaderRow({
+  headerKey, headerValue, headers, setHeaders,
+}) {
   const handleDeleteHeader = () => {
-    dispatch(deleteHeader(headerKey));
+    const headersCopy = { ...headers };
+    delete headersCopy[headerKey];
+    setHeaders(headersCopy);
   };
 
   return (

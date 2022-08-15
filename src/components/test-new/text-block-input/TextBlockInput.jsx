@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import CodeInput from './CodeInput';
 
 function TextBlockInput({
-  label, placeholder, name, id,
+  requestBody, setRequestBody, label, placeholder, name, id,
 }) {
   const [checkedOption, setCheckedOption] = useState('none');
 
@@ -23,7 +23,7 @@ function TextBlockInput({
           <label className="text-heading-h4 ml-2" htmlFor="json">JSON</label>
         </div>
       </div>
-      { checkedOption === 'json' ? <CodeInput /> : ''}
+      { checkedOption === 'json' ? <CodeInput requestBody={requestBody} setRequestBody={setRequestBody} /> : ''}
     </div>
   );
 }

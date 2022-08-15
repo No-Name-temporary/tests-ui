@@ -3,9 +3,7 @@ import { useSelector } from 'react-redux';
 import AssertionRows from './AssertionRows';
 import NewAssertionRow from './NewAssertionRow';
 
-function AssertionsInput() {
-  const assertions = useSelector((state) => state.newtest.httpRequest.assertions);
-
+function AssertionsInput({ assertions, setAssertions }) {
   return (
     <div className="mt-8 flex flex-col">
       <h2 className="text-1xl font-bold text-heading-h2">Assertions</h2>
@@ -29,8 +27,8 @@ function AssertionsInput() {
           </tr>
         </thead>
         <tbody className="divide-y text-table-value divide-slate-200">
-          <AssertionRows assertions={assertions} />
-          <NewAssertionRow />
+          <AssertionRows assertions={assertions} setAssertions={setAssertions} />
+          <NewAssertionRow assertions={assertions} setAssertions={setAssertions} />
         </tbody>
 
       </table>

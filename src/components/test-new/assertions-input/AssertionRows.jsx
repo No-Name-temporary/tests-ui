@@ -1,7 +1,7 @@
 import React from 'react';
 import AssertionRow from './AssertionRow';
 
-function AssertionRows({ assertions }) {
+function AssertionRows({ assertions, setAssertions }) {
   if (assertions) {
     return (
       <>
@@ -13,6 +13,8 @@ function AssertionRows({ assertions }) {
             property={assertion.property}
             comparison={assertion.comparison}
             target={assertion.target}
+            assertions={assertions}
+            setAssertions={setAssertions}
           />
         ))}
       </>

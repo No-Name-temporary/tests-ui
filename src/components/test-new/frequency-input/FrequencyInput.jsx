@@ -1,6 +1,4 @@
 import { React } from 'react';
-import { useDispatch } from 'react-redux';
-import { setMinutesBetweenRuns } from '../../../features/newtest/newtest';
 import TextSelect from '../../shared/TextSelect';
 
 const frequencyOptions = [
@@ -18,11 +16,9 @@ const frequencyOptions = [
   { displayName: '1 week', value: '10080' },
 ];
 
-function FrequencyInput() {
-  const dispatch = useDispatch();
-
-  const handleIntervalUnitsSelect = async (e) => {
-    dispatch(setMinutesBetweenRuns(e.target.value));
+function FrequencyInput({ minutesBetweenRuns, setMinutesBetweenRuns }) {
+  const handleSetMinutesBetweenRuns = async (e) => {
+    setMinutesBetweenRuns(e.target.value);
   };
 
   return (
@@ -30,7 +26,11 @@ function FrequencyInput() {
       <h2 className="text-1xl font-bold text-heading-h2">Time between test runs?</h2>
       <div className="mt-4 flex">
         <div>
-          <TextSelect onChange={handleIntervalUnitsSelect} options={frequencyOptions} />
+          <TextSelect
+            onChange={handleSetMinutesBetweenRuns}
+            options={frequencyOptions}
+            selected={minutesBetweenRuns}
+          />
         </div>
       </div>
     </div>

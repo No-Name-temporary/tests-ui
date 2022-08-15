@@ -1,16 +1,13 @@
-import { React } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteAssertion } from '../../../features/newtest/newtest';
+import React from 'react';
 import { camelCaseToDisplayName } from '../../../utils/helpers';
 import Garbage from '../../../assets/images/icons/garbage_can_slate.png';
 
 function AssertionRow({
-  id, type, property, comparison, target,
+  id, type, property, comparison, target, assertions, setAssertions,
 }) {
-  const dispatch = useDispatch();
-
   const handleDeleteAssertion = () => {
-    dispatch(deleteAssertion(id));
+    const assertionsCopy = assertions.filter((assertion) => assertion.id !== id);
+    setAssertions(assertionsCopy);
   };
 
   return (

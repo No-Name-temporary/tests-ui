@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import TextSelect from '../../shared/TextSelect';
 import TextInput from '../../shared/TextInput';
-import { addAssertion } from '../../../features/newtest/newtest';
 
-function NewAssertionRow() {
+function NewAssertionRow({ assertions, setAssertions }) {
   const dispatch = useDispatch();
 
   const assertionTypes = useSelector((state) => state.sideloads.assertionTypes);
@@ -44,7 +43,9 @@ function NewAssertionRow() {
       target,
     };
 
-    dispatch(addAssertion(newAssertion));
+    const assertionsCopy = [...assertions];
+    assertionsCopy.push(newAssertion);
+    setAssertions(assertionsCopy);
   };
 
   const propertyInput = () => {
