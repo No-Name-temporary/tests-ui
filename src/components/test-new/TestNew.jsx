@@ -3,20 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '../../services/ApiClient';
 import TestForm from './TestForm';
 
-const SAMPLE_JSON = `{
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3",
-}
-`;
-
 function TestNew() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [method, setMethod] = useState('get');
   const [url, setUrl] = useState('');
-  const [requestBody, setRequestBody] = useState({ value: SAMPLE_JSON, caret: -1, target: null });
+  const [requestBody, setRequestBody] = useState({ value: '', caret: -1, target: null });
   const [headers, setHeaders] = useState({});
   const [assertions, setAssertions] = useState([]);
   const [regions, setRegions] = useState([]);
@@ -32,14 +25,15 @@ function TestNew() {
       method,
       url,
       headers,
-      body: JSON.parse(requestBody.value),
+      body: JSON.parse(requestBody.value || '{}'),
       assertions,
     },
     alertChannels,
   });
 
   const handleSaveTest = () => {
-    apiClient.createTest({ test: createTestConfiguration() });
+    const testConfiguration = createTestConfiguration();
+    apiClient.createTest({ test: testConfiguration });
     navigate('/tests');
   };
 
