@@ -59,7 +59,7 @@ function TestEdit() {
       method,
       url,
       headers,
-      body: JSON.parse(requestBody.value),
+      body: JSON.parse(requestBody.value || '{}'),
       assertions,
     },
     alertChannels,

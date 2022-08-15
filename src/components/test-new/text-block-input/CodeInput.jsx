@@ -2,6 +2,13 @@ import { React, useEffect } from 'react';
 
 const SPACES_FOR_TAB = 2;
 
+const SAMPLE_JSON = `{
+  "key1": "value1",
+  "key2": "value2",
+  "key3": "value3"
+}
+`;
+
 function CodeInput({ requestBody, setRequestBody }) {
   useEffect(() => {
     if (requestBody.caret >= 0) {
@@ -35,6 +42,7 @@ function CodeInput({ requestBody, setRequestBody }) {
         onKeyDown={handleTab}
         onChange={handleRequestBodyChange}
         value={requestBody.value}
+        placeholder={SAMPLE_JSON}
       />
     </div>
   );
