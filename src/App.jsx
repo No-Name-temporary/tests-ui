@@ -1,8 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './components/Home';
-import CreateTest from './components/CreateTest';
 import TestResults from './components/test-results/TestResults';
 import TestRuns from './components/test-runs/TestRuns';
 import Header from './components/Header';
@@ -17,15 +15,14 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route index element={<Home />} />
+          <Route path="/" element={<Tests />} />
+          <Route index element={<Tests />} />
           <Route path="/tests/:testId/runs/:runId" element={<TestRun />} />
           <Route path="/tests/:id/runs" element={<TestRuns />} />
           <Route path="/tests/:id/results" element={<TestResults />} />
           <Route path="/tests/:id/edit" element={<TestEdit />} />
           <Route path="/tests/new" element={<TestNew />} />
           <Route path="/tests/:id" element={<TestResults />} />
-          <Route path="/create/test" element={<CreateTest />} />
           <Route path="/tests" element={<Tests />} />
         </Routes>
       </main>
